@@ -6,27 +6,53 @@ public class MemberDto {
 	String id;
 	String pw;
 	String email;
+	String address;
+	String phone;
 	
 	public MemberDto() {
 		
 	}
 	
-	public MemberDto(int no, String id, String pw, String email) {
+	public MemberDto(int no, String id, String pw,
+			String email,String address, String phone) {
 		this.no = no;
 		this.id = id;
 		this.pw = pw;
 		this.email = email;
+		this.address = address;
+		this.phone = phone;
 	}
 	
-	public MemberDto(String id, String pw, String email) {
+	public MemberDto(String id, String pw, String email,
+			String address, String phone) {
 		
 		this.id = id;
 		this.pw = pw;
 		this.email = email;
+		this.address = address;
+		this.phone = phone;
 	}
 	
 	
 	
+	
+	
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 	public int getNo() {
 		return no;

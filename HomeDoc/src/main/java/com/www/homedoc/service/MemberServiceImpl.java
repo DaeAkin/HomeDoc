@@ -2,8 +2,6 @@ package com.www.homedoc.service;
 
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.www.homedoc.dao.MemberDao;
 
 public class MemberServiceImpl implements MemberService{
@@ -11,7 +9,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	MemberDao memberDao;
 	
-	MailSender mailSender;
+	MemberMailSender mailSender;
 	
 	
 	
@@ -19,7 +17,7 @@ public class MemberServiceImpl implements MemberService{
 		this.memberDao = memberDao;
 	}
 	
-	public void setMailSender(MailSender mailSender) {
+	public void setMailSender(MemberMailSender mailSender) {
 		this.mailSender = mailSender;
 	}
 	
