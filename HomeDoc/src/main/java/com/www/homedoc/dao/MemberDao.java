@@ -15,5 +15,7 @@ public interface MemberDao {
 	
 	List<MemberDto> seleteAllMember(Map<String, Object> paramMap);
 	
+	MemberDto memberLogin(Map<String, Object> paramMap);
+	
 	
 }

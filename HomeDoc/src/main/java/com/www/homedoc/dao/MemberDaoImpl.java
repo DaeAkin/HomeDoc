@@ -5,9 +5,10 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.www.homedoc.dto.MemberDto;
-
+@Repository("memberDao")
 public class MemberDaoImpl implements MemberDao {
 	
 	@Autowired
@@ -35,6 +36,12 @@ public class MemberDaoImpl implements MemberDao {
 	public List<MemberDto> seleteAllMember(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("seleteAllMember",paramMap);
+	}
+
+	@Override
+	public MemberDto memberLogin(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberLogin", paramMap);
 	}
 
 }

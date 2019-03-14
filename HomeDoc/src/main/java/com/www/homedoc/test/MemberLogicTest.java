@@ -21,7 +21,7 @@ public class MemberLogicTest {
 		// service 객체에 Dao DI 해주기
 		memberService.setMemberDao(mockMemberDao);
 		
-		mockMemberDao.
+		
 	}
 	
 }

@@ -5,9 +5,10 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.www.homedoc.dto.BoardDto;
-
+@Repository("boardDao")
 public class BoardDaoImpl implements BoardDao{
 
 	@Autowired
@@ -20,9 +21,10 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override
-	public List<BoardDto> getAllboard(Map<String, Object> paramMap) {
+	public List<BoardDto> getAllboardWithCategory(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("getAllboard", paramMap);
+		System.out.println("sqlSession null? : " + sqlSession);
+		return sqlSession.selectList("getAllboardWithCategory", paramMap);
 	}
 
 	@Override

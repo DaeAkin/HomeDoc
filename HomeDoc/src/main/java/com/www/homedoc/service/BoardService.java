@@ -9,7 +9,7 @@ public interface BoardService {
 
 	int insertBoard(Map<String, Object> paramMap);
 	
-	List<BoardDto> getAllboard(Map<String, Object> paramMap);
+	List<BoardDto> getAllboardWithCategory(Map<String, Object> paramMap);
 	
 	BoardDto getOneBoard(Map<String, Object> paramMap);
 	

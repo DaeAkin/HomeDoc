@@ -11,4 +11,6 @@ public interface MailService {
 	void congratutationEmailSend(MemberDto member);
 	
 	
+	
+	
 }
