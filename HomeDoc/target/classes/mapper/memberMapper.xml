@@ -4,7 +4,7 @@
 
 	
 	
-	<select id="memberLogin" parameterType="java.util.HashMap"
+	<select id="memberLogin" parameterType="com.www.homedoc.dto.MemberDto"
 	resultType="com.www.homedoc.dto.MemberDto">
 		select 
 			*
@@ -18,7 +18,7 @@
 	
 	<insert 
 	id="insertMember"
-	parameterType="java.util.HashMap">
+	parameterType="com.www.homedoc.dto.MemberDto">
 		insert into member(
 		id,
 		pw,
@@ -47,7 +47,7 @@
 		member
 	</delete>
 	
-	<update id="updateMember"  parameterType="java.util.HashMap">
+	<update id="updateMember"  parameterType="com.www.homedoc.dto.MemberDto">
 		update
 			member
 		set

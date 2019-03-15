@@ -24,36 +24,36 @@ public class BoardServiceImpl implements BoardService{
 	}
 	
 	@Override
-	public int insertBoard(Map<String, Object> paramMap) {
+	public int insertBoard(BoardDto boardDto) {
 		// TODO Auto-generated method stub
-		return boardDao.insertBoard(paramMap);
+		return boardDao.insertBoard(boardDto);
 	}
 
 	@Override
-	public List<BoardDto> getAllboardWithCategory(Map<String, Object> paramMap) {
+	public List<BoardDto> getAllboardWithCategory(BoardDto boardDto) {
 		System.out.println(" ---- getAllboardWithCategory() ----");
 		
 		System.out.println("boardDao는 널인가? :" + boardDao);
-		return boardDao.getAllboardWithCategory(paramMap);
+		return boardDao.getAllboardWithCategory(boardDto);
 	}
 
 	@Override
-	public BoardDto getOneBoard(Map<String, Object> paramMap) {
+	public BoardDto getOneBoard(BoardDto boardDto) {
 		// TODO Auto-generated method stub
-		return boardDao.getOneBoard(paramMap);
+		return boardDao.getOneBoard(boardDto);
 	}
 
 	@Override
-	public int deleteBoard(Map<String, Object> paramMap) {
+	public int deleteBoard(BoardDto boardDto) {
 		// TODO Auto-generated method stub
-		return boardDao.deleteBoard(paramMap);
+		return boardDao.deleteBoard(boardDto);
 	}
 
 	@Override
-	public int updateBoard(Map<String, Object> paramMap) {
+	public int updateBoard(BoardDto boardDto) {
 		// TODO Auto-generated method stub
 		
-		return boardDao.updateBoard(paramMap);
+		return boardDao.updateBoard(boardDto);
 	}
 
 	@Override

@@ -8,6 +8,8 @@ import com.www.homedoc.dto.BoardDto;
 import com.www.homedoc.dto.MemberDto;
 import com.www.homedoc.dto.ReplyDto;
 
+import javafx.beans.DefaultProperty;
+@Deprecated
 public class DtoToMap {
 	
 	 public static Map<String, Object> 

@@ -32,21 +32,21 @@ public class MemberServiceImpl implements MemberService{
 	
 	
 	@Override
-	public int insertMember(Map<String, Object> paramMap) {
+	public int insertMember(MemberDto memberDto) {
 	
-		return memberDao.insertMember(paramMap);
+		return memberDao.insertMember(memberDto);
 	}
 
 	@Override
-	public int updateMember(Map<String, Object> paramMap) {
+	public int updateMember(MemberDto memberDto) {
 		// TODO Auto-generated method stub
-		return memberDao.updateMember(paramMap);
+		return memberDao.updateMember(memberDto);
 	}
 
 	@Override
-	public MemberDto selectOneMember(Map<String, Object> paramMap) {
+	public MemberDto selectOneMember(MemberDto memberDto) {
 		// TODO Auto-generated method stub
-		return memberDao.selectOneMember(paramMap);
+		return memberDao.selectOneMember(memberDto);
 	}
 
 	@Override
@@ -56,10 +56,10 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public Boolean memberLogin(Map<String, Object> paramMap) {
+	public Boolean memberLogin(MemberDto memberDto) {
 		// 아이디 비밀번호 매칭 작업
-		MemberDto memberDto = memberDao.memberLogin(paramMap);
-		if(memberDto == null) {
+		MemberDto resultMemberDto = memberDao.memberLogin(memberDto);
+		if(resultMemberDto == null) {
 			return false;
 		}
 		else {

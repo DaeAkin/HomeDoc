@@ -46,7 +46,7 @@ public class MemberServiceTest extends MemberMailSender{
 		
 		//  DTO 1개 삽입
 		memberService.insertMember(
-				DtoToMap.dtoToMapWithMemberDto(memberDto));
+				memberDto);
 		
 		
 		// DB데이터 전부 가져옴
@@ -62,7 +62,7 @@ public class MemberServiceTest extends MemberMailSender{
 		memberDto.setEmail("1111@gmail.com");
 		
 		memberService.updateMember(
-				DtoToMap.dtoToMapWithMemberDto(memberDto));
+				memberDto);
 		
 		allMemberDto = 
 				memberService.selectAllMember();

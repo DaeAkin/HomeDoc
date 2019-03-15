@@ -7,17 +7,17 @@ import com.www.homedoc.dto.BoardDto;
 
 public interface BoardService {
 
-	int insertBoard(Map<String, Object> paramMap);
+	int insertBoard(BoardDto boardDto);
 	
-	List<BoardDto> getAllboardWithCategory(Map<String, Object> paramMap);
+	List<BoardDto> getAllboardWithCategory(BoardDto boardDto);
 	
 	List<BoardDto> getAllBoard();
 	
-	BoardDto getOneBoard(Map<String, Object> paramMap);
+	BoardDto getOneBoard(BoardDto boardDto);
 	
-	int deleteBoard(Map<String, Object> paramMap);
+	int deleteBoard(BoardDto boardDto);
 	
-	int updateBoard(Map<String, Object> paramMap);
+	int updateBoard(BoardDto boardDto);
 	
 	void deleteAllBoard();
 	

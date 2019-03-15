@@ -38,7 +38,7 @@ public class BoardServiceTest {
 	
 		//DTO 1개 삽입
 		boardService.insertBoard(
-				DtoToMap.dtoToMapWithBoardDto(boardDto));
+				boardDto);
 		
 		//DB 전부 가져오기
 		List<BoardDto> boardDtos =
@@ -59,7 +59,7 @@ public class BoardServiceTest {
 		
 	
 		boardService.updateBoard(
-				DtoToMap.dtoToMapWtihBoardDtoIncludeNo(boardDto));
+				boardDto);
 		
 		 boardDtos = 
 					boardService.getAllBoard();

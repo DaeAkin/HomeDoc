@@ -1,5 +1,6 @@
 package com.www.homedoc.test;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 import com.www.homedoc.controller.MemberController;
+import com.www.homedoc.dto.MemberDto;
 import com.www.homedoc.service.MemberService;
 
 // MemberController 목 테스트
@@ -38,11 +40,13 @@ public class MockTestWithMemberController {
 		MockHttpServletRequest request = new MockHttpServletRequest("POST","/member/login");
 //		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		MemberDto memberDto = new MemberDto();
 			
 		request.setParameter("id", "test");
 		request.setParameter("pw", "1234");
 		
-		when(mockMemberService.memberLogin(paramMap)).thenReturn(true);
+		when(mockMemberService.memberLogin(memberDto)).thenReturn(true);
 		
 		String viewName = 
 				memberController.memberLogin(request, paramMap);

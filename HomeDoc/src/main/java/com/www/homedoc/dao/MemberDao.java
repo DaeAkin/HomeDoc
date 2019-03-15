@@ -7,17 +7,17 @@ import com.www.homedoc.dto.MemberDto;
 
 public interface MemberDao {
 	
-	int insertMember(Map<String, Object> paramMap);
+	int insertMember(MemberDto memberDto);
 	
-	int updateMember(Map<String, Object> paramMap);
+	int updateMember(MemberDto memberDto);
 	
 	void deleteAllMember();
 	
-	MemberDto selectOneMember(Map<String, Object> paramMap);
+	MemberDto selectOneMember(MemberDto memberDto);
 	
 	List<MemberDto> seleteAllMember();
 	
-	MemberDto memberLogin(Map<String, Object> paramMap);
+	MemberDto memberLogin(MemberDto memberDto);
 	
 	
 }

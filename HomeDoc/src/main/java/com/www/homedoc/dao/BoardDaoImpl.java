@@ -15,34 +15,34 @@ public class BoardDaoImpl implements BoardDao{
 	SqlSession sqlSession;
 	
 	@Override
-	public int insertBoard(Map<String, Object> paramMap) {
+	public int insertBoard(BoardDto boardDto) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("insertBoard",paramMap);
+		return sqlSession.insert("insertBoard",boardDto);
 	}
 
 	@Override
-	public List<BoardDto> getAllboardWithCategory(Map<String, Object> paramMap) {
+	public List<BoardDto> getAllboardWithCategory(BoardDto boardDto) {
 		// TODO Auto-generated method stub
 		System.out.println("sqlSession null? : " + sqlSession);
-		return sqlSession.selectList("getAllboardWithCategory", paramMap);
+		return sqlSession.selectList("getAllboardWithCategory", boardDto);
 	}
 
 	@Override
-	public BoardDto getOneBoard(Map<String, Object> paramMap) {
+	public BoardDto getOneBoard(BoardDto boardDto) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("getOneBoard",paramMap);
+		return sqlSession.selectOne("getOneBoard",boardDto);
 	}
 
 	@Override
-	public int deleteBoard(Map<String, Object> paramMap) {
+	public int deleteBoard(BoardDto boardDto) {
 		// TODO Auto-generated method stub
-		return sqlSession.delete("deleteBoard",paramMap);
+		return sqlSession.delete("deleteBoard",boardDto);
 	}
 
 	@Override
-	public int updateBoard(Map<String, Object> paramMap) {
+	public int updateBoard(BoardDto boardDto) {
 		
-		return sqlSession.update("updateBoard", paramMap);
+		return sqlSession.update("updateBoard", boardDto);
 	}
 
 	@Override

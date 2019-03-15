@@ -15,21 +15,21 @@ public class MemberDaoImpl implements MemberDao {
 	SqlSession sqlSession;
 	
 	@Override
-	public int insertMember(Map<String, Object> paramMap) {
+	public int insertMember(MemberDto memberDto) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("insertMember",paramMap);
+		return sqlSession.insert("insertMember",memberDto);
 	}
 
 	@Override
-	public int updateMember(Map<String, Object> paramMap) {
+	public int updateMember(MemberDto memberDto) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("updateMember",paramMap);
+		return sqlSession.update("updateMember",memberDto);
 	}
 
 	@Override
-	public MemberDto selectOneMember(Map<String, Object> paramMap) {
+	public MemberDto selectOneMember(MemberDto memberDto) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("selectOneMember",paramMap);
+		return sqlSession.selectOne("selectOneMember",memberDto);
 	}
 
 	@Override
@@ -39,9 +39,9 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public MemberDto memberLogin(Map<String, Object> paramMap) {
+	public MemberDto memberLogin(MemberDto memberDto) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("memberLogin", paramMap);
+		return sqlSession.selectOne("memberLogin", memberDto);
 	}
 
 	@Override

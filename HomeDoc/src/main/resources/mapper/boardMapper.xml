@@ -4,7 +4,7 @@
 
 	
 	
-	<select id="getAllboardWithCategory" parameterType="java.util.HashMap"
+	<select id="getAllboardWithCategory" parameterType="com.www.homedoc.dto.BoardDto"
 	resultType="com.www.homedoc.dto.BoardDto">
 		select 
 			*
@@ -14,7 +14,7 @@
 			category = #{category}
 	</select> 
 	
-	<insert id="insertBoard" parameterType="java.util.HashMap">
+	<insert id="insertBoard" parameterType="com.www.homedoc.dto.BoardDto">
 	
 		insert into board(
 		title,
@@ -53,12 +53,12 @@
 		no = #{no}
 	</delete>
 	<!--   -->
-	<update id="updateBoard" parameterType="java.util.HashMap">
+	<update id="updateBoard" parameterType="com.www.homedoc.dto.BoardDto">
 		update
 			board
 		set
 			title = #{title},
-			datetime = #{datetim}, <!-- datetime은 글을 수정한 날짜로 -->
+			datetime = #{datetime}, <!-- datetime은 글을 수정한 날짜로 -->
 			category = #{category},
 			content = #{content}
 		where
