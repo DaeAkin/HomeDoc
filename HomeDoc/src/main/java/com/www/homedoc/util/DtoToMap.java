@@ -6,6 +6,7 @@ import java.util.Map;
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.TypeHost;
 import com.www.homedoc.dto.BoardDto;
 import com.www.homedoc.dto.MemberDto;
+import com.www.homedoc.dto.ReplyDto;
 
 public class DtoToMap {
 	
@@ -51,6 +52,9 @@ public class DtoToMap {
 		
 		return resultMap;
 	}
+	
+
+	
 		
 }
 		

@@ -32,7 +32,8 @@
 
 	<logger name="org.springframework.web">
 		<level value="info" />
-	</logger><!-- Query Loggers -->
+	</logger>
+	<!-- Query Loggers -->
 	<logger name="jdbc.sqlonly" additivity="false">
 		<level value="INFO" />
 		<appender-ref ref="console-infolog" />
