@@ -11,9 +11,11 @@ public interface MemberDao {
 	
 	int updateMember(Map<String, Object> paramMap);
 	
+	void deleteAllMember();
+	
 	MemberDto selectOneMember(Map<String, Object> paramMap);
 	
-	List<MemberDto> seleteAllMember(Map<String, Object> paramMap);
+	List<MemberDto> seleteAllMember();
 	
 	MemberDto memberLogin(Map<String, Object> paramMap);
 	

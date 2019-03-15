@@ -8,9 +8,11 @@ public class BoardDto {
 	String datetime;
 	int hit;
 	String category;
+	String content;
 	
 	public BoardDto(int no, String title,String writer
-			,String datetime,int hit,String category) {
+			,String datetime,int hit,String category,
+			String content) {
 		
 		this.no = no;
 		this.title = title;
@@ -18,11 +20,13 @@ public class BoardDto {
 		this.datetime = datetime;
 		this.hit = hit;
 		this.category = category;
+		this.content = content;
 		
 	}
 	
 	public BoardDto( String title,String writer
-			,String datetime,int hit,String category) {
+			,String datetime,int hit,String category,
+			String content) {
 		
 		
 		this.title = title;
@@ -30,6 +34,7 @@ public class BoardDto {
 		this.datetime = datetime;
 		this.hit = hit;
 		this.category = category;
+		this.content = content;
 		
 	}
 	
@@ -74,6 +79,11 @@ public class BoardDto {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	
 }

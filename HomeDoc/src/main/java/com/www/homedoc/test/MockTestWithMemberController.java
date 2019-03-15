@@ -15,6 +15,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import com.www.homedoc.controller.MemberController;
 import com.www.homedoc.service.MemberService;
 
+// MemberController 목 테스트
 public class MockTestWithMemberController {
 	
 	@InjectMocks
@@ -32,25 +33,31 @@ public class MockTestWithMemberController {
 	}
 	
 	@Test
-	public void MockControllerTest() {
+	public void mockMemberLoginTest() {
 	
 		MockHttpServletRequest request = new MockHttpServletRequest("POST","/member/login");
 //		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 			
-		request.addParameter("id", "test");
+		request.setParameter("id", "test");
 		request.setParameter("pw", "1234");
 		
 		when(mockMemberService.memberLogin(paramMap)).thenReturn(true);
-		
-		
-		
 		
 		String viewName = 
 				memberController.memberLogin(request, paramMap);
 		
 		System.out.println(viewName);
 		
+	}
+	
+	@Test
+	public void mockMemberSignupTeest() {
+		MockHttpServletRequest request = new MockHttpServletRequest("POST","/member/login");
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		memberController.signUp(paramMap);
 		
 	}
 

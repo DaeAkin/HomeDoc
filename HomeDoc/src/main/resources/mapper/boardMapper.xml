@@ -14,6 +14,56 @@
 			category = #{category}
 	</select> 
 	
+	<insert id="insertBoard" parameterType="java.util.HashMap">
+	
+		insert into board(
+		title,
+		writer,
+		datetime, <!-- hit 의 디폴트는 0  -->
+		category, 
+		content
+		)values(
+		#{title},
+		#{writer},
+		#{datetime},
+		#{category},
+		#{content}
+		)
+	</insert>
+	
+	<delete id="deleteAllBoard">
+		delete
+			from
+		board
+	</delete>
+	
+	<select id="getAllBoard" resultType="com.www.homedoc.dto.BoardDto">
+		select
+			*
+		from
+			board
+	</select>
+	
+	<delete id="deleteOneBoardWithBoard_no"
+	parameterType="int">
+		delete
+			from
+		board
+			where
+		no = #{no}
+	</delete>
+	<!--   -->
+	<update id="updateBoard" parameterType="java.util.HashMap">
+		update
+			board
+		set
+			title = #{title},
+			datetime = #{datetim}, <!-- datetime은 글을 수정한 날짜로 -->
+			category = #{category},
+			content = #{content}
+		where
+			no = #{no}
+	</update>
 	
 
 	

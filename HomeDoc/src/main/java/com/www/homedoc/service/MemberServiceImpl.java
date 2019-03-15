@@ -33,7 +33,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public int insertMember(Map<String, Object> paramMap) {
-		// TODO Auto-generated method stub
+	
 		return memberDao.insertMember(paramMap);
 	}
 
@@ -50,9 +50,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public List<MemberDto> seleteAllMember(Map<String, Object> paramMap) {
+	public List<MemberDto> selectAllMember() {
 		// TODO Auto-generated method stub
-		return memberDao.seleteAllMember(paramMap);
+		return memberDao.seleteAllMember();
 	}
 
 	@Override
@@ -65,6 +65,12 @@ public class MemberServiceImpl implements MemberService{
 		else {
 			return true;
 		}
+	}
+
+	@Override
+	public void deleteAllMember() {
+		memberDao.deleteAllMember();
+		
 	}
 
 	

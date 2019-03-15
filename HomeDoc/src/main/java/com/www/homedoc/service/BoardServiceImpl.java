@@ -52,7 +52,26 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int updateBoard(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
+		
 		return boardDao.updateBoard(paramMap);
+	}
+
+	@Override
+	public void deleteAllBoard() {
+		boardDao.deleteAllBoard();
+		
+	}
+
+	@Override
+	public List<BoardDto> getAllBoard() {
+		// TODO Auto-generated method stub
+		return boardDao.getAllBoard();
+	}
+
+	@Override
+	public int deleteOneBoardWithBoard_no(int no) {
+		// TODO Auto-generated method stub
+		return boardDao.deleteOneBoardWithBoard_no(no);
 	}
 
 }

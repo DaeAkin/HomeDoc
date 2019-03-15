@@ -41,8 +41,28 @@ public class BoardDaoImpl implements BoardDao{
 
 	@Override
 	public int updateBoard(Map<String, Object> paramMap) {
+		
+		return sqlSession.update("updateBoard", paramMap);
+	}
+
+	@Override
+	public void deleteAllBoard() {
+		 sqlSession.delete("deleteAllBoard");
+		
+	}
+
+	@Override
+	public List<BoardDto> getAllBoard() {
 		// TODO Auto-generated method stub
-		return sqlSession.update("updateBoard",paramMap);
+		
+		return sqlSession.selectList("getAllBoard");
+	}
+
+	@Override
+	public int deleteOneBoardWithBoard_no(int no) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.delete("deleteOneBoardWithBoard_no" , no);
 	}
 
 }

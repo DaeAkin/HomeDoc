@@ -16,6 +16,49 @@
 			pw = #{pw}
 	</select> 
 	
+	<insert 
+	id="insertMember"
+	parameterType="java.util.HashMap">
+		insert into member(
+		id,
+		pw,
+		email,
+		address,
+		phone
+		)values(
+		#{id},
+		#{pw},
+		#{email},
+		#{address},
+		#{phone}
+		)
+	</insert>
+	<select id="selectAllMember" 
+	resultType="com.www.homedoc.dto.MemberDto">
+		select
+			*
+		from
+			member
+	</select>
+	
+	<delete id="deleteAllMember">
+		delete
+			from
+		member
+	</delete>
+	
+	<update id="updateMember"  parameterType="java.util.HashMap">
+		update
+			member
+		set
+			pw = #{pw},
+			email = #{email},
+			address = #{address},
+			phone = #{phone}
+		where
+			id = #{id}
+	
+	</update>
 	
 
 	

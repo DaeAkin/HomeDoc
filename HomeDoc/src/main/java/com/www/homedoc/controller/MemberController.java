@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sun.mail.imap.protocol.ID;
 import com.www.homedoc.service.MemberService;
@@ -19,7 +20,7 @@ public class MemberController {
 	MemberService memberService;
 	
 	@RequestMapping(value = "/member/login", method = RequestMethod.POST)
-	public String memberLogin(HttpServletRequest request,
+	public String memberLogin(@RequestParam HttpServletRequest request,
 			Map<String, Object> paramMap) {
 		
 		System.out.println("---- memberLogin() ----");
@@ -51,8 +52,10 @@ public class MemberController {
 	
 	
 	@RequestMapping(value = "/member/signup", method = RequestMethod.POST)
-	public String signUp(HttpServletRequest request,
+	public String signUp(@RequestParam
 			Map<String, Object> paramMap) {
+		
+		System.out.println(paramMap.get("test"));
 		
 		int result = memberService.insertMember(paramMap);
 		

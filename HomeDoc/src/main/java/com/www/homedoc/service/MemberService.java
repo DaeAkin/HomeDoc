@@ -12,8 +12,10 @@ public interface MemberService {
 	int updateMember(Map<String, Object> paramMap);
 
 	MemberDto selectOneMember(Map<String, Object> paramMap);
+	
+	void deleteAllMember();
 
-	List<MemberDto> seleteAllMember(Map<String, Object> paramMap);
+	List<MemberDto> selectAllMember();
 
 	Boolean memberLogin(Map<String, Object> paramMap);
 }
