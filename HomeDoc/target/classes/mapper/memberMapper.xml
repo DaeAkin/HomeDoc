@@ -64,6 +64,7 @@
 	resultType="com.www.homedoc.dto.AlertDto">
 	
 		select 
+			boardreply.no as reply_no,
 			board.title,
 			board.no,
 			boardreply.isalert,
@@ -73,6 +74,15 @@
 	   	 boardreply on 
 	   		boardreply.board_no = (select no from board where writer=#{wrtier})
 	</select>
+	
+	<update id="changeIsAlertToTrue" parameterType="int">
+		update
+			boardreply
+		set
+			isalert = true
+		where
+			no = #{reply_no}
+	</update>
 	
 
 	

@@ -23,5 +23,7 @@ public interface MemberDao {
 	
 	List<AlertDto> getAlert(String writer);
 	
+	void changeIsAlertToTrue(int reply_no);
+	
 	
 }

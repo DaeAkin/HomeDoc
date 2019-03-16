@@ -125,6 +125,19 @@ public class BoardAndReplyTest {
 		
 		assertThat(alertDtos.size(), is(1));
 		
+		// 읽음 표시
+		memberService.changeIsAlertToTrue(alertDtos.get(0).getReply_no());
+		
+		//다시 DB에서 가져오기 
+		 alertDtos = 
+					memberService.getAlert(memberDto.getId());
+		 
+		// 읽음처리 됐는지 확인. 
+		 assertThat(alertDtos.get(0).getIsalert(), is(true));
+		
+		
+		
+		
 	
 	}
 

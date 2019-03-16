@@ -22,4 +22,6 @@ public interface MemberService {
 	Boolean memberLogin(MemberDto memberDto);
 	
 	List<AlertDto> getAlert(String writer);
+	
+	void changeIsAlertToTrue(int reply_no);
 }

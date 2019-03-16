@@ -89,5 +89,12 @@ public class MemberServiceImpl implements MemberService{
 		return alertDtos;
 	}
 
+	@Override
+	public void changeIsAlertToTrue(int reply_no) {
+		
+		memberDao.changeIsAlertToTrue(reply_no);
+		
+	}
+
 	
 }
