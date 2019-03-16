@@ -22,7 +22,7 @@
 	</insert>
 	
 	<select id="getAllReplyWithboard_no" 
-	parameterType="int"
+	parameterType="com.www.homedoc.dto.ReplyDto"
 	resultType="com.www.homedoc.dto.ReplyDto">
 		select 
 			*

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sun.mail.imap.protocol.ID;
+import com.www.homedoc.dto.MemberDto;
 import com.www.homedoc.service.MemberService;
 
 public class MemberController {
@@ -34,13 +35,18 @@ public class MemberController {
 		System.out.println(" 아이디 : " + user);
 		System.out.println(" 비밀번호 : " + pw);
 		
+		
+		MemberDto memberDto = new MemberDto();
+		
 		HttpSession session = request.getSession();
 		
 			Boolean iscanLogined = 
-				memberService.memberLogin(paramMap);
+				memberService.memberLogin(memberDto);
 			
 			if(iscanLogined) {
 				//로그인 성공 페이지로
+				//알람도 같이 
+				memberService.getAlert(user);
 				session.setAttribute("user", user);
 				return "aa";
 			} else {
@@ -57,7 +63,9 @@ public class MemberController {
 		
 		System.out.println(paramMap.get("test"));
 		
-		int result = memberService.insertMember(paramMap);
+		MemberDto memberDto = new MemberDto();
+		
+		int result = memberService.insertMember(memberDto);
 		
 		return "home";
 		

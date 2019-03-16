@@ -3,7 +3,9 @@ package com.www.homedoc.service;
 import java.util.List;
 import java.util.Map;
 
+import com.www.homedoc.dto.AlertDto;
 import com.www.homedoc.dto.MemberDto;
+import com.www.homedoc.dto.ReplyDto;
 
 public interface MemberService {
 
@@ -18,4 +20,6 @@ public interface MemberService {
 	List<MemberDto> selectAllMember();
 
 	Boolean memberLogin(MemberDto memberDto);
+	
+	List<AlertDto> getAlert(String writer);
 }

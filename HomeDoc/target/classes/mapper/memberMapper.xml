@@ -60,6 +60,20 @@
 	
 	</update>
 	
+	<select id="getAlert" parameterType="java.lang.String"
+	resultType="com.www.homedoc.dto.AlertDto">
+	
+		select 
+			board.title,
+			board.no,
+			boardreply.isalert,
+			boardreply.writer
+	   	from 
+	   		board left outer join
+	   	 boardreply on 
+	   		boardreply.board_no = (select no from board where writer=#{wrtier})
+	</select>
+	
 
 	
 

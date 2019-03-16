@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.www.homedoc.dao.MemberDao;
+import com.www.homedoc.dto.AlertDto;
 import com.www.homedoc.dto.MemberDto;
+import com.www.homedoc.dto.ReplyDto;
 @Service
 public class MemberServiceImpl implements MemberService{
 
@@ -71,6 +73,20 @@ public class MemberServiceImpl implements MemberService{
 	public void deleteAllMember() {
 		memberDao.deleteAllMember();
 		
+	}
+
+	@Override
+	public List<AlertDto> getAlert(String writer) {
+		// 자기가쓴 댓글은 걸러주는 코드가 필요 (완료)
+		List<AlertDto> alertDtos = 
+				memberDao.getAlert(writer);
+		for(int i=0; i<alertDtos.size(); i++) {
+			if(alertDtos.get(i).getWriter().equals(writer)) {
+				alertDtos.remove(i);
+			}
+		}
+		
+		return alertDtos;
 	}
 
 	
