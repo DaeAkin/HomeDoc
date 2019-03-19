@@ -101,10 +101,10 @@ public class BoardAndReplyTest {
 
 		// 댓글 작성하기 
 		replyDto = new ReplyDto(boardDto.getNo(), 
-				"견적서 입니다", memberDto2.getId(), false);
+				"견적서 입니다", memberDto2.getId(), false,null);
 		
 		replyDto2 = new ReplyDto(boardDto.getNo(), 
-				"감사합니다.", memberDto.getId(), false);
+				"감사합니다.", memberDto.getId(), false,null);
 		
 		replyService.insertReply(replyDto);
 		replyService.insertReply(replyDto2);

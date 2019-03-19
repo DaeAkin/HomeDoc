@@ -50,5 +50,7 @@ public class BoardController {
 		return "board";
 	}
 	
+	@RequestMapping(value = "/board/")
+	
 	
 }

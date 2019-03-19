@@ -7,15 +7,18 @@ import org.springframework.stereotype.Service;
 
 import com.www.homedoc.dao.ReplyDao;
 import com.www.homedoc.dto.ReplyDto;
+import com.www.homedoc.util.TimeUtils;
 @Service
 public class ReplyServiceImpl implements ReplyService {
 	
 	@Autowired
 	ReplyDao replyDao;
 
+	
+	
 	@Override
 	public int insertReply(ReplyDto replyDto) {
-		// TODO Auto-generated method stub
+		
 		return replyDao.insertReply(replyDto);
 	}
 

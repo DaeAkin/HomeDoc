@@ -1,11 +1,7 @@
 package com.www.homedoc.service;
 
 import java.util.List;
-import java.util.Map;
 
-import javax.inject.Inject;
-
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +15,17 @@ public class BoardServiceImpl implements BoardService{
 	BoardDao boardDao;
 	
 	
+	
+	
+
 	public void setBoardDao(BoardDao boardDao) {
 		this.boardDao = boardDao;
 	}
 	
 	@Override
 	public int insertBoard(BoardDto boardDto) {
-		// TODO Auto-generated method stub
+		// 현재시간으로 datetime에 넣어주기. 
+		
 		return boardDao.insertBoard(boardDto);
 	}
 

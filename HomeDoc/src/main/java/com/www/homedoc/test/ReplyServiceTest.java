@@ -31,7 +31,7 @@ public class ReplyServiceTest {
 	@Before
 	public void setUp() {
 		
-		replyDto = new ReplyDto(1, "견적서 내용입니다.", "인덕철물점", false);
+		replyDto = new ReplyDto(1, "견적서 내용입니다.", "인덕철물점", false,null);
 		
 		 
 	}

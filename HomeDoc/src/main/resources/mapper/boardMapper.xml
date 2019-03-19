@@ -65,6 +65,22 @@
 			no = #{no}
 	</update>
 	
+	<select id="getBoardListDoWithPagination"
+	parameterType="java.util.HashMap"
+	resultType="com.www.homedoc.dto.BoardDto"
+	>
+		select 
+			* 
+		from
+			board 
+		where category = {category}
+			order by no desc
+		limit 0,5;
+		
+	
+	</select>
+	
+	
 
 	
 

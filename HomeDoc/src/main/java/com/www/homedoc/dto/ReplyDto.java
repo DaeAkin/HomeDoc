@@ -1,5 +1,7 @@
 package com.www.homedoc.dto;
 
+import com.www.homedoc.util.TimeUtils;
+
 public class ReplyDto {
 
 	int no;
@@ -7,21 +9,26 @@ public class ReplyDto {
 	String content;
 	String writer;
 	Boolean isalert;
+	String dateTime; 
+	
+	TimeUtils time = new TimeUtils();
 
-	public ReplyDto(int no, int board_no, String content, String writer, Boolean isalert) {
+	public ReplyDto(int no, int board_no, String content, String writer, Boolean isalert,String dateTime) {
 		this.no = no;
 		this.board_no = board_no;
 		this.content = content;
 		this.writer = writer;
 		this.isalert = isalert;
+		this.dateTime = dateTime;
 	}
 
-	public ReplyDto(int board_no, String content, String writer, Boolean isalert) {
+	public ReplyDto(int board_no, String content, String writer, Boolean isalert,String dateTime) {
 
 		this.board_no = board_no;
 		this.content = content;
 		this.writer = writer;
 		this.isalert = isalert;
+		this.dateTime = dateTime;
 	}
 
 	public ReplyDto() {
@@ -66,6 +73,12 @@ public class ReplyDto {
 
 	public void setIsalert(Boolean isalert) {
 		this.isalert = isalert;
+	}
+	public String getDateTime() {
+		return time.getCurrentTime();
+	}
+	public void setDateTime(String dateTime) {
+		this.dateTime = dateTime;
 	}
 
 }
