@@ -15,7 +15,7 @@ public class PagingController {
 	@Autowired
 	PaginationService paginationService;
 	
-	@RequestMapping("/")
+	@RequestMapping("/..")
 	public String movePage(@RequestParam Map<String, Object> paramMap) {
 		/* Get으로 어떤게 넘어 오는가 ?
 		 *  1) 게시판의 category ,
