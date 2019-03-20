@@ -8,5 +8,5 @@ import com.www.homedoc.dto.PaginationDto;
 
 public interface PaginationService {
 
-	List<BoardDto> getBoardListDoWithPagination(Map<String, Object> paramMap);
+	Map<String, Object> getBoardListDoWithPagination(Map<String, Object> paramMap);
 }

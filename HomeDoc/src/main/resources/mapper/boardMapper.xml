@@ -73,9 +73,9 @@
 			* 
 		from
 			board 
-		where category = {category}
+		where category = #{category}
 			order by no desc
-		limit 0,5;
+		limit #{startNo},#{endNo};
 		
 	
 	</select>
