@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sun.mail.imap.protocol.ID;
 import com.www.homedoc.dto.MemberDto;
 import com.www.homedoc.service.MemberService;
-
+@Controller
 public class MemberController {
 	
 	
@@ -74,9 +75,10 @@ public class MemberController {
 	
 	
 	@RequestMapping("/test")
-	public String testMock() {
-		System.out.println("---- testMock() ----");
+	public String testMock(@RequestParam Map<String, Object> paramMap) {
+		System.out.println("---- test ----");
 		
+		System.out.println("test :" + paramMap.get("test"));
 		return null;
 	}
 

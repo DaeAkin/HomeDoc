@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.www.homedoc.dto.BoardDto;
+import com.www.homedoc.dto.PaginationDto;
 @Repository("boardDao")
 public class BoardDaoImpl implements BoardDao{
 
@@ -63,6 +64,12 @@ public class BoardDaoImpl implements BoardDao{
 		// TODO Auto-generated method stub
 		
 		return sqlSession.delete("deleteOneBoardWithBoard_no" , no);
+	}
+
+	@Override
+	public List<BoardDto> getBoardListDoWithPagination(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("getBoardListDoWithPagination" , paramMap);
 	}
 
 }
