@@ -6,8 +6,7 @@
 
 <tiles-definitions>
 	<definition name="layout" template="/WEB-INF/views/decorator/sampleLayout.jsp">
-	<!-- 		<put-attribute name="top" value="/WEB-INF/views/top.jsp" />
-			<put-attribute name="bottom" value="/WEB-INF/views/bottom.jsp" /> -->
+		
 
 
 		

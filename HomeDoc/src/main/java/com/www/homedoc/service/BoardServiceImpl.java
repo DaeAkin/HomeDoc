@@ -1,6 +1,7 @@
 package com.www.homedoc.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,6 +73,15 @@ public class BoardServiceImpl implements BoardService{
 	public int deleteOneBoardWithBoard_no(int no) {
 		// TODO Auto-generated method stub
 		return boardDao.deleteOneBoardWithBoard_no(no);
+	}
+
+	@Override
+	public List<BoardDto> getBoardForHomeWithLimit(Map<String, Object> paramMap) {
+		// 필요한 파라미터들 
+		// 1) categoty
+		// 2) limit ex) 0,limit  데이터 몇개 뽑아 올건지
+		System.out.println("---- service getBoardForHomeWithLimit()");
+		return boardDao.getBoardForHomeWithLimit(paramMap);
 	}
 
 }

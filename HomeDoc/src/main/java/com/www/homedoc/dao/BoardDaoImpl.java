@@ -72,4 +72,13 @@ public class BoardDaoImpl implements BoardDao{
 		return sqlSession.selectList("getBoardListDoWithPagination" , paramMap);
 	}
 
+	@Override
+	public List<BoardDto> getBoardForHomeWithLimit(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		System.out.println(paramMap.get("category"));
+		System.out.println(paramMap.get("end"));
+		
+		return sqlSession.selectList("getBoardForHomeWithLimit",paramMap);
+	}
+
 }

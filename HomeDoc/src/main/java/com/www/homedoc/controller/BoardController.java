@@ -7,16 +7,19 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.www.homedoc.dto.BoardDto;
 import com.www.homedoc.service.BoardService;
 import com.www.homedoc.service.MemberService;
 
+@Controller
 public class BoardController {
 
 	@Autowired
@@ -30,27 +33,30 @@ public class BoardController {
 		return null;
 	}
 	
-	@RequestMapping(value = "/board/selectAll/{category}" , method= RequestMethod.POST)
-	public String selectAllBoardWithCategory(@PathVariable(value="category") 
-		int category,
-		ModelMap modelMap) {
+	@RequestMapping(value = "/board/selectAll/{category}" , method= RequestMethod.GET)
+	public ModelAndView selectAllBoardWithCategory(@PathVariable(value="category") 
+		String category) {
 		
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("category", category);
+		ModelAndView mv = new ModelAndView();
 		
 		
+		BoardDto boardDto = new BoardDto();
+		
+		boardDto.setCategory(category);
 		
 		System.out.println("boardService : " + boardService);
 		List<BoardDto> boardDtos = 
-				boardService.getAllboardWithCategory(paramMap);
+				boardService.getAllboardWithCategory(boardDto);
 		
-		modelMap.addAttribute("boardDtos",boardDtos);
+		mv.addObject("boardDtos", boardDtos);
+		mv.setViewName("boardList");
+		
 		
 
-		return "board";
+		return mv;
 	}
 	
-	@RequestMapping(value = "/board/")
+	
 	
 	
 }

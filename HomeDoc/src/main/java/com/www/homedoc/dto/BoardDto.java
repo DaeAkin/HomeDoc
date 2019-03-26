@@ -9,10 +9,11 @@ public class BoardDto {
 	int hit;
 	String category;
 	String content;
+	String thumbnail;
 	
 	public BoardDto(int no, String title,String writer
 			,String datetime,int hit,String category,
-			String content) {
+			String content,String thumbnail) {
 		
 		this.no = no;
 		this.title = title;
@@ -21,12 +22,13 @@ public class BoardDto {
 		this.hit = hit;
 		this.category = category;
 		this.content = content;
+		this.thumbnail = thumbnail;
 		
 	}
 	
 	public BoardDto( String title,String writer
 			,String datetime,int hit,String category,
-			String content) {
+			String content,String thumbnail) {
 		
 		
 		this.title = title;
@@ -35,6 +37,7 @@ public class BoardDto {
 		this.hit = hit;
 		this.category = category;
 		this.content = content;
+		this.thumbnail = thumbnail;
 		
 	}
 	
@@ -84,6 +87,12 @@ public class BoardDto {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 	
 }

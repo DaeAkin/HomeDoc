@@ -32,7 +32,7 @@ public class PaginationTest {
 	@Before
 	public void setUp() {
 		 boardDto = new BoardDto(
-				 "testboard", "testwriter", "2019-03-01", 0, "1" ,"컨텐트 내용");
+				 "testboard", "testwriter", "2019-03-01", 0, "1" ,"컨텐트 내용","asd.jpg");
 		
 		 	//DB 전부삭제. 
 			boardService.deleteAllBoard();

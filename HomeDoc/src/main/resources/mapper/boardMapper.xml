@@ -12,6 +12,7 @@
 			board
 		where 
 			category = #{category}
+		order by desc
 	</select> 
 	
 	<insert id="insertBoard" parameterType="com.www.homedoc.dto.BoardDto">
@@ -75,9 +76,23 @@
 			board 
 		where category = #{category}
 			order by no desc
-		limit #{startNo},#{endNo};
+		limit #{startNo},#{endNo}
 		
 	
+	</select>
+	
+	<select id="getBoardForHomeWithLimit" 
+		parameterType="java.util.HashMap"
+		resultType="com.www.homedoc.dto.BoardDto"
+	>
+	
+		select 
+			* 
+		from
+			board 
+		where category = #{category}
+			order by no desc
+		limit 0,#{end}
 	</select>
 	
 	
