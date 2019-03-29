@@ -34,7 +34,7 @@ public class HomeController {
 		// 몇개 짜를 건지 key end에 값 넣어주기.
 		
 		// boardService를 위한 Map 2개 생성 
-		Map<String, Object> serviceMap = new HashMap<>();
+		 Map<String, Object> serviceMap = new HashMap<>();
 		Map<String, Object> serviceMap2 = new HashMap<>();
 		
 		serviceMap.put("category", "1");

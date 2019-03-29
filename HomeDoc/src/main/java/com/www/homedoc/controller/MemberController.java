@@ -80,16 +80,32 @@ public class MemberController {
 	
 	
 	@RequestMapping(value = "/member/signup", method = RequestMethod.POST)
-	public String signUp(@RequestParam
+	public ModelAndView signUp(@RequestParam
 			Map<String, Object> paramMap) {
 		
-		System.out.println(paramMap.get("test"));
+		System.out.println("--- member signup() ----");
+		
+		ModelAndView mv = new ModelAndView();
+		
 		
 		MemberDto memberDto = new MemberDto();
+		memberDto.setId((String)paramMap.get("id"));
+		memberDto.setPw((String)paramMap.get("pw"));
+		memberDto.setAddress((String)paramMap.get("address"));
+		memberDto.setEmail((String)paramMap.get("email"));
+		
 		
 		int result = memberService.insertMember(memberDto);
 		
-		return "home";
+		if(result > 0) {
+			System.out.println("회원가입 성공");
+		}else {
+			System.out.println("회원가입 실패");
+		}
+		
+		mv.setViewName("redirect:/");
+		
+		return mv;
 		
 	}
 	

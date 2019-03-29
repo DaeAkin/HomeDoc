@@ -1,18 +1,14 @@
 package com.www.homedoc.service;
 
-import static org.springframework.test.web.client.response.MockRestResponseCreators.withBadRequest;
-
-import java.time.format.FormatStyle;
 import java.util.List;
-import java.util.Map;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.www.homedoc.dao.MemberDao;
 import com.www.homedoc.dto.AlertDto;
 import com.www.homedoc.dto.MemberDto;
-import com.www.homedoc.dto.ReplyDto;
 @Service
 public class MemberServiceImpl implements MemberService{
 
@@ -36,6 +32,12 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int insertMember(MemberDto memberDto) {
 	
+		//패스워드 암호화 
+		 String pw = 
+				 DigestUtils.sha256Hex(memberDto.getPw());
+		
+		 memberDto.setPw(pw);
+		 
 		return memberDao.insertMember(memberDto);
 	}
 
@@ -59,6 +61,12 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public Boolean memberLogin(MemberDto memberDto) {
+		//패스워드 암호화 
+		 String pw = 
+				 DigestUtils.sha256Hex(memberDto.getPw());
+		
+		 memberDto.setPw(pw);
+		
 		// 아이디 비밀번호 매칭 작업
 		MemberDto resultMemberDto = memberDao.memberLogin(memberDto);
 		if(resultMemberDto == null) {

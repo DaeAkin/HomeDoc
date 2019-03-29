@@ -33,14 +33,16 @@ public class MemberServiceTest extends MemberMailSender{
 	
 	@Before
 	public void setUp() {
-		memberDto = new MemberDto(
-				"testId", "testPw", "testeMail@gmail.com",
-				"testAdress", "01011112222"
-				);
+		
 	}
 	
 	@Test
 	public void cRUDTest() {
+		memberDto = new MemberDto(
+				"testId", "1234", "testeMail@gmail.com",
+				"testAdress", "01011112222"
+				);
+		
 		// DB 전부삭제
 		memberService.deleteAllMember();
 		

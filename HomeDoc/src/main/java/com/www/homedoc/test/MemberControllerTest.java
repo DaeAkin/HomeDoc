@@ -3,6 +3,11 @@ package com.www.homedoc.test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,7 +29,7 @@ import com.www.homedoc.controller.MemberController;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "context-testContext.xml")
-public class MemberControllerTest {
+public class MemberControllerTest extends MemberServiceTest{
 	
 	private MockMvc mockMvc;
 	
@@ -37,6 +42,9 @@ public class MemberControllerTest {
                 .standaloneSetup(memberController)
 //                .addFilters(new CORSFilter())
                 .build();
+		
+//		setUp();
+		cRUDTest();
 	}
 	
 	@Test
@@ -46,12 +54,13 @@ public class MemberControllerTest {
 				mockMvc.perform(post("/member/login")
 					.param("id", "testid")
 					.param("pw", "1234"))
-//			.andDo(print())
-//			.andExpect(status().is(302))
-			.andReturn();
+					.andDo(print())
+					//리다이렉트 응답코드는 302
+					.andExpect(status().is(200))
+					.andExpect(jsonPath("$.code", is("OK")))
+					.andReturn();
 
 	ModelAndView mav = result.getModelAndView();
-	
 	MockHttpServletRequest request = result.getRequest();
 	
 	HttpSession session = request.getSession();
@@ -59,7 +68,12 @@ public class MemberControllerTest {
 	System.out.println("--- session user : " + 
 			session.getAttribute("id"));
 	assertThat((String)session.getAttribute("id"), is("testid"));
-	System.out.println("getView : " + mav.getViewName());
+	
+	
+//	Map<String, Object> paramMap = null;
+//	System.out.println("code : " + 
+//			memberController.memberLogin(paramMap, session).get("code"));
+//	
 	
 	}
 	
@@ -68,15 +82,18 @@ public class MemberControllerTest {
 	public void MemberSignup() throws Exception {
 		MvcResult result =
 					mockMvc.perform(post("/member/signup")
-					.param("id", "aa")
+					.param("id", "testidid")
 					.param("pw", "1234")
+					.param("address", "서울시 강동구")
+					.param("email", "kei89011@gmail.com")
+					.param("phone", "010-1111-2222")
 							)
 					
+					
+					// redirect 됐는지 확인
+					.andExpect(status().is(302))
 					.andReturn();
 					
-							
-						
-						
 	}
 
-}
+} 
