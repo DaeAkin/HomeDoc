@@ -69,14 +69,16 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public List<BoardDto> getBoardListDoWithPagination(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
+		System.out.println("시작 : " + paramMap.get("startNo"));
+		System.out.println("끝 : " + paramMap.get("endNo"));
+		System.out.println("Dao perPage : " + paramMap.get("perPage"));
 		return sqlSession.selectList("getBoardListDoWithPagination" , paramMap);
 	}
 
 	@Override
 	public List<BoardDto> getBoardForHomeWithLimit(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
-		System.out.println(paramMap.get("category"));
-		System.out.println(paramMap.get("end"));
+	
 		
 		return sqlSession.selectList("getBoardForHomeWithLimit",paramMap);
 	}

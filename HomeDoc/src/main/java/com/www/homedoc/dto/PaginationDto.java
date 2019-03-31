@@ -1,11 +1,13 @@
 package com.www.homedoc.dto;
 
+import com.www.homedoc.util.PrettyPrintUtil;
+
 import apple.laf.JRSUIState.TitleBarHeightState;
 
 public class PaginationDto {
 
 	// 한번에 몇개의 페이지를 할건지? ex)5 : 1 2 3 4 5 가 뜸 
-	int perPage = 7;
+	int perPage = 5;
 	//누른 페이지가 몇페이지인지 ?
 	int currentPage;
 	// 1 2 3 4 5 중에 1에 해당하는 시작페이지
@@ -35,9 +37,6 @@ public class PaginationDto {
 	public PaginationDto(int currentPage,int totalPage) {
 		this.currentPage = currentPage;
 		this.totalPage = totalPage;
-		System.out.println("---- dto ----");
-		System.out.println("perPage :" + perPage);
-		System.out.println("currentPage :" + currentPage);
 		
 		this.startNo = perPage * (currentPage-1); // 0
 		
@@ -58,8 +57,7 @@ public class PaginationDto {
 			this.endPage = lastPage;
 			System.out.println("????");
 		}
-		System.out.println("endPage : " + this.endPage);
-		System.out.println("lastPage : " + this.lastPage);
+	PrettyPrintUtil.printPaginationDto(this);
 		
 		
 	}

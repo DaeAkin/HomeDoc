@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ko">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
  <head>
 
 
@@ -47,9 +48,19 @@
 	    <li class="page-item disabled">
 	      <a class="page-link" href="#" tabindex="1">이전</a>
 	    </li>
-	    <li class="page-item"><a class="page-link" href="#">1</a></li>
-	    <li class="page-item"><a class="page-link" href="#">2</a></li>
-	    <li class="page-item"><a class="page-link" href="#">3</a></li>
+	    
+	     <fmt:parseNumber var = "startPage" type = "number" value = "${paginationDto.startPage}" />
+	     <fmt:parseNumber var = "endPage" type = "number" value = "${paginationDto.endPage}" />
+	      
+	    <c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+	    <li class="page-item">
+		    <a class="page-link" 
+		    	href="<%=request.getContextPath()%>/board/selectAll?category=${category}&currentPage=${i}">
+		    ${i}
+	    </a>
+	    </li>
+
+	    </c:forEach>
 	    <li class="page-item">
 	      <a class="page-link" href="#">다음</a>
 	    </li>

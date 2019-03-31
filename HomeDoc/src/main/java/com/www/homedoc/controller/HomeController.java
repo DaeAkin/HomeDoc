@@ -59,7 +59,7 @@ public class HomeController {
 		String id = (String)session.getAttribute("id");
 		
 		// 로그인한상태라면 알람도 같이 가져와야됨.
-		if(id != null)
+//		if(id != null)
 				
 		mv.setViewName("index");
 		return mv;

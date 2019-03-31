@@ -35,6 +35,7 @@ public class BoardServiceImpl implements BoardService{
 		System.out.println(" ---- getAllboardWithCategory() ----");
 		
 		System.out.println("boardDao는 널인가? :" + boardDao);
+		
 		return boardDao.getAllboardWithCategory(boardDto);
 	}
 
