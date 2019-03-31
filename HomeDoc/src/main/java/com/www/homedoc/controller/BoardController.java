@@ -18,6 +18,7 @@ import com.www.homedoc.dto.BoardDto;
 import com.www.homedoc.dto.PaginationDto;
 import com.www.homedoc.service.BoardService;
 import com.www.homedoc.service.PaginationService;
+import com.www.homedoc.util.PrettyPrintUtil;
 
 @Controller
 public class BoardController {
@@ -28,7 +29,7 @@ public class BoardController {
 	@Autowired
 	PaginationService paginationService;
 	
-	@RequestMapping(value = "/board/insert " , method = RequestMethod.POST)
+	@RequestMapping(value = "/board/insert" , method = RequestMethod.POST)
 	public String boardInsert(HttpServletRequest request, 
 			Map<String, Object> paramMap) {
 		
@@ -79,6 +80,26 @@ public class BoardController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/board/view" , method = RequestMethod.GET)
+	public ModelAndView boardView(@RequestParam Map<String, Object> paramMap) {
+		
+		ModelAndView mv = new ModelAndView();
+		BoardDto boardDto = new BoardDto();
+		boardDto.setNo(Integer.parseInt((String)paramMap.get("no"))); 
+		
+		mv.addObject("boardDtos",
+		boardService.getOneBoard(boardDto));
+		
+		boardDto = boardService.getOneBoard(boardDto);
+		
+		PrettyPrintUtil.printBoardDto(boardDto);
+		
+		
+		
+		mv.setViewName("boardView");
+		
+		return mv;
+	}
 	
 	
 	

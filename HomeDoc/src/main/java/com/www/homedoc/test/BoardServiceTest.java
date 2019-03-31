@@ -43,6 +43,7 @@ public class BoardServiceTest {
 		//DB 전부 가져오기
 		List<BoardDto> boardDtos =
 				boardService.getAllBoard();
+	
 		
 		//확인 
 		assertThat(boardDtos.get(0).getTitle(), is(boardDto.getTitle()));
@@ -57,9 +58,15 @@ public class BoardServiceTest {
 		boardDto.setNo(
 				boardDtos.get(0).getNo());
 		
+
 	
-		boardService.updateBoard(
-				boardDto);
+	
+		boardService.updateBoard(boardDto);
+		
+		// 게시글 한개 가져오는 함수도 잘 작동되는지 확인하기. 
+		BoardDto resultBoard = boardService.getOneBoard(boardDto);
+		
+		assertThat(resultBoard.getTitle(), is(boardDto.getTitle()));
 		
 		 boardDtos = 
 					boardService.getAllBoard();

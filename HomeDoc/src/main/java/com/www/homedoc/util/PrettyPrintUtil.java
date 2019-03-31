@@ -1,5 +1,6 @@
 package com.www.homedoc.util;
 
+import com.www.homedoc.dto.BoardDto;
 import com.www.homedoc.dto.PaginationDto;
 
 public class PrettyPrintUtil {
@@ -19,5 +20,18 @@ public class PrettyPrintUtil {
 		System.out.println("---- paginationdto ----");
 		
 	}
+	
+	static public void printBoardDto(BoardDto boardDto) {
 
+		System.out.println("---- boardDto -----");
+		System.out.println("no : " + boardDto.getNo());
+		System.out.println("title : " + boardDto.getTitle());
+		System.out.println("writer : " + boardDto.getWriter());
+		System.out.println("datetime : " + boardDto.getDatetime());
+		System.out.println("hit : " + boardDto.getHit());
+		System.out.println("category : " + boardDto.getCategory());
+		System.out.println("content : " + boardDto.getContent());
+		System.out.println("thumbnail : " + boardDto.getThumbnail());
+		System.out.println("---- boardDto -----");
+	}
 }
