@@ -134,11 +134,7 @@ public class BoardAndReplyTest {
 		 
 		// 읽음처리 됐는지 확인. 
 		 assertThat(alertDtos.get(0).getIsalert(), is(true));
-		
-		
-		
-		
-	
+
 	}
 
 }

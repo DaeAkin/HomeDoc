@@ -24,4 +24,6 @@ public interface MemberService {
 	List<AlertDto> getAlert(String writer);
 	
 	void changeIsAlertToTrue(int reply_no);
+	
+	int memberIdCheck(String id);
 }

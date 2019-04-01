@@ -24,6 +24,8 @@ public class HomeController {
 	@Autowired
 	BoardService boardService;
 	
+	
+	
 	@RequestMapping("/")
 	public ModelAndView home(HttpServletRequest request) {
 		System.out.println("---- HomeController home()-----");
@@ -57,9 +59,6 @@ public class HomeController {
 		HttpSession session = request.getSession();
 		//로그인 한 사람 가져오기.
 		String id = (String)session.getAttribute("id");
-		
-		// 로그인한상태라면 알람도 같이 가져와야됨.
-//		if(id != null)
 				
 		mv.setViewName("index");
 		return mv;

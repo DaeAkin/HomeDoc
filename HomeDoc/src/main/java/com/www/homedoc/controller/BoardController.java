@@ -94,8 +94,6 @@ public class BoardController {
 		
 		PrettyPrintUtil.printBoardDto(boardDto);
 		
-		
-		
 		mv.setViewName("boardView");
 		
 		return mv;

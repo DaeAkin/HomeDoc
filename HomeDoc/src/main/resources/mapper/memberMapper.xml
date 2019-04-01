@@ -41,6 +41,16 @@
 			member
 	</select>
 	
+	<select id="selectOneMember" parameterType="com.www.homedoc.dto.MemberDto"
+		resultType="com.www.homedoc.dto.MemberDto">
+		select
+			*
+		from
+			member
+		where
+			id = #{id}
+	</select>
+	
 	<delete id="deleteAllMember">
 		delete
 			from

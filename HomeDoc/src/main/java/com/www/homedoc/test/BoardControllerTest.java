@@ -32,10 +32,10 @@ import com.www.homedoc.controller.BoardController;
 import com.www.homedoc.controller.MemberController;
 import com.www.homedoc.dto.BoardDto;
 import com.www.homedoc.dto.PaginationDto;
+import com.www.homedoc.service.interceptor.AlertInterceptor;
 import com.www.homedoc.util.PrettyPrintUtil;
 
 // MemberController 부터 MVC 통합 테스트.
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "context-testContext.xml")
 public class BoardControllerTest{
@@ -45,11 +45,15 @@ public class BoardControllerTest{
 	@Autowired
 	BoardController boardController;
 	
+	@Autowired
+	AlertInterceptor alertInterceptor;
+	
 	@Before
 	public void setUp() {
 		mockMvc = MockMvcBuilders
                 .standaloneSetup(boardController)
 //                .addFilters(new CORSFilter())
+                .addInterceptors(alertInterceptor)
                 .build();
 		
 
@@ -59,9 +63,8 @@ public class BoardControllerTest{
 	public void selectAllBoardTest() throws Exception {
 		//정상 로그인처리
 	MvcResult result =
-				mockMvc.perform(get("/board/selectAll/1")
-					.param("category", "1")
-//					.param("pw", "1234")
+				mockMvc.perform(get("/board/selectAll")
+				
 					)
 					.andDo(print())
 					//리다이렉트 응답코드는 302

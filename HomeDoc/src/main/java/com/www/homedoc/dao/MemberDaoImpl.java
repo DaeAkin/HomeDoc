@@ -62,7 +62,9 @@ public class MemberDaoImpl implements MemberDao {
 	public void changeIsAlertToTrue(int reply_no) {
 		System.out.println("dao ---changeIsAlertToTrue ----");
 		sqlSession.update("changeIsAlertToTrue",reply_no);
-		
 	}
+
+	
+
 
 }

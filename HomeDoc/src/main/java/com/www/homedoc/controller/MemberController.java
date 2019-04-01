@@ -54,11 +54,7 @@ public class MemberController {
 		memberDto.setPw((String)paramMap.get("pw"));
 		
 			Boolean iscanLogined = 
-				memberService.memberLogin(memberDto);
-			
-			
-			
-			
+					memberService.memberLogin(memberDto);
 			if(iscanLogined) {
 				//로그인 성공 페이지로
 				//알람은 Home에서 
@@ -75,7 +71,23 @@ public class MemberController {
 				return returnMap;
 			}
 			
-
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/member/idCheck")
+	public Object memberIdCheck(@RequestParam Map<String, Object> paramMap) {
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		int result = 
+				memberService.memberIdCheck((String)paramMap.get("id"));
+		
+		if(result == 1) 
+			resultMap.put("msg", "이미 중복된 아이디 입니다.");
+		
+		resultMap.put("msg", "ok");
+		
+		return resultMap;
+		
 	}
 	
 	
@@ -118,5 +130,9 @@ public class MemberController {
 		System.out.println("test :" + paramMap.get("test"));
 		return null;
 	}
+	
+	
+	
+
 
 }

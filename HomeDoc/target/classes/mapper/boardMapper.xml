@@ -38,6 +38,16 @@
 		board
 	</delete>
 	
+	<select id="getOneBoard" parameterType="com.www.homedoc.dto.BoardDto"
+	resultType="com.www.homedoc.dto.BoardDto">
+		select
+			*
+		from
+			board
+		where
+			no = #{no}
+	</select>
+	
 	<select id="getAllBoard" resultType="com.www.homedoc.dto.BoardDto">
 		select
 			*

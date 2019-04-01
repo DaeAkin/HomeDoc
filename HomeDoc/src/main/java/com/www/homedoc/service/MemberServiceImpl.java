@@ -1,5 +1,7 @@
 package com.www.homedoc.service;
 
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+
 import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -102,6 +104,23 @@ public class MemberServiceImpl implements MemberService{
 		
 		memberDao.changeIsAlertToTrue(reply_no);
 		
+	}
+	
+	
+	
+	@Override
+	public int memberIdCheck(String id) {
+		// TODO Auto-generated method stub
+		MemberDto memberDto = new MemberDto();
+		memberDto.setId(id);
+
+		MemberDto resultMemberDto = 
+				memberDao.selectOneMember(memberDto);    
+		if(resultMemberDto == null) 
+			return 0;
+		
+		return 1;
+		// 중복이면 1을 리턴하고 그렇지 않으면 0을 리턴한다.
 	}
 
 	

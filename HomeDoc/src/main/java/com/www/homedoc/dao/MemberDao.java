@@ -26,4 +26,5 @@ public interface MemberDao {
 	void changeIsAlertToTrue(int reply_no);
 	
 	
+	
 }
