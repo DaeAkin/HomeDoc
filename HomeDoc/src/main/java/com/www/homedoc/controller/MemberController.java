@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sun.media.sound.ModelDirector;
 import com.www.homedoc.dao.MemberDaoImpl;
 import com.www.homedoc.dto.MemberDto;
 import com.www.homedoc.service.MemberMailSender;
@@ -36,32 +37,23 @@ public class MemberController extends CRUDController<MemberDto, Integer,
 	// ajax 사용할 것.
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> memberLogin(@RequestParam Map<String, Object> paramMap,HttpSession session) {
-		
-		
-		
+	public Map<String, Object> memberLogin(@ModelAttribute MemberDto memberDto,
+			HttpSession session, ModelAndView mv) {
+
 		System.out.println("---- memberLogin() ----");
 		
 		Map<String, Object> returnMap = new HashMap<>();
+
+		System.out.println("로그인 한 유저 : " + memberDto.getId());
 		
-		ModelAndView mav = new ModelAndView();
-		
-		System.out.println("로그인 한 유저 : " + paramMap.get("id"));
-		
-		String id = (String)paramMap.get("id");
+		String id = memberDto.getId();
 
 		//실제서비스에서는 삭제할 예정
-		String pw = (String)paramMap.get("pw");
+		String pw = memberDto.getPw();
 		
 		System.out.println(" 아이디 : " + id);
 		System.out.println(" 비밀번호 : " + pw);
-		
-		
-		MemberDto memberDto = new MemberDto();
-		
-		memberDto.setId((String)paramMap.get("id"));
-		memberDto.setPw((String)paramMap.get("pw"));
-		
+
 			Boolean iscanLogined = 
 					memberService.memberLogin(memberDto);
 			if(iscanLogined) {
@@ -69,7 +61,7 @@ public class MemberController extends CRUDController<MemberDto, Integer,
 				//알람은 Home에서 
 				session.setAttribute("id", id);
 				// 로그인이 되면 Home을 호출
-				mav.setViewName("redirect:/");
+				mv.setViewName("redirect:/");
 				
 				returnMap.put("code", "OK");
 				
@@ -84,14 +76,12 @@ public class MemberController extends CRUDController<MemberDto, Integer,
 	
 	@ResponseBody
 	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
-	public Object memberIdCheck(@RequestParam Map<String, Object> paramMap) {
+	public Object memberIdCheck(@RequestParam String id) {
 		Map<String, Object> resultMap = new HashMap<>();
 		
 		int result = 
-				memberService.memberIdCheck((String)paramMap.get("id"));
+				memberService.memberIdCheck(id);
 		
-		System.out.println((String)paramMap.get("id"));
-		System.out.println("idCheck cnt :" + result);
 		resultMap.put("cnt", result);
 		
 		return resultMap;
