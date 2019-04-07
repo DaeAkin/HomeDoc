@@ -23,7 +23,7 @@ import com.www.homedoc.util.DtoToMap;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "context-testContext.xml")
-public class MemberServiceTest{
+public class CRUDMemberServiceTest{
 	
 	// 테스트용 MemberDao 생성 
 	@Autowired
@@ -51,9 +51,9 @@ public class MemberServiceTest{
 		// DB 전부삭제
 		memberService.deleteAll();
 		
-		//  DTO 1개 삽입
-		memberService.insert(
-				memberDto);
+		//  DTO 1개 삽입 
+		
+		memberService.insert(memberDto);
 		
 		
 		// DB데이터 전부 가져옴

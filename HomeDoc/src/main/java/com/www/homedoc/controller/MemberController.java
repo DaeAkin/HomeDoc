@@ -3,33 +3,42 @@ package com.www.homedoc.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
-import com.sun.mail.imap.protocol.ID;
+import com.www.homedoc.dao.MemberDaoImpl;
 import com.www.homedoc.dto.MemberDto;
+import com.www.homedoc.service.MemberMailSender;
 import com.www.homedoc.service.MemberService;
+import com.www.homedoc.service.MemberServiceImpl;
+
+@RequestMapping("/member")
 @Controller
-public class MemberController {
+public class MemberController extends CRUDController<MemberDto, Integer,
+	MemberService>{
 	
 	
 	
 	@Autowired
 	MemberService memberService;
 	
+	@Autowired
+	MemberMailSender memberMailSender;
+	
 	// ajax 사용할 것.
-	@RequestMapping(value = "/member/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> memberLogin(@RequestParam Map<String, Object> paramMap,HttpSession session) {
+		
+		
 		
 		System.out.println("---- memberLogin() ----");
 		
@@ -74,40 +83,38 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/member/idCheck")
+	@RequestMapping(value = "/idCheck", method = RequestMethod.POST)
 	public Object memberIdCheck(@RequestParam Map<String, Object> paramMap) {
 		Map<String, Object> resultMap = new HashMap<>();
 		
 		int result = 
 				memberService.memberIdCheck((String)paramMap.get("id"));
 		
-		if(result == 1) 
-			resultMap.put("msg", "이미 중복된 아이디 입니다.");
-		
-		resultMap.put("msg", "ok");
+		System.out.println((String)paramMap.get("id"));
+		System.out.println("idCheck cnt :" + result);
+		resultMap.put("cnt", result);
 		
 		return resultMap;
 		
 	}
+	// 인증번호 메일 발송
+	@ResponseBody
+	@RequestMapping(value = "/member/authenMail" , method = RequestMethod.POST)
+	public void memberEmailAuthentication(@RequestParam Map<String, Object> paramMap) {
+		
+		memberMailSender.
+			authenticationsend((String)paramMap.get("email"));
+	}
 	
 	
-	@RequestMapping(value = "/member/signup", method = RequestMethod.POST)
-	public ModelAndView signUp(@RequestParam
-			Map<String, Object> paramMap) {
+	
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public ModelAndView signUp(@ModelAttribute MemberDto memberDto,
+			ModelAndView mv) {
 		
 		System.out.println("--- member signup() ----");
 		
-		ModelAndView mv = new ModelAndView();
-		
-		
-		MemberDto memberDto = new MemberDto();
-		memberDto.setId((String)paramMap.get("id"));
-		memberDto.setPw((String)paramMap.get("pw"));
-		memberDto.setAddress((String)paramMap.get("address"));
-		memberDto.setEmail((String)paramMap.get("email"));
-		
-		
-		int result = memberService.insertMember(memberDto);
+		int result = memberService.insert(memberDto);
 		
 		if(result > 0) {
 			System.out.println("회원가입 성공");
@@ -122,6 +129,13 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping(value = "/signup" , method = RequestMethod.GET )
+	public String moveSignupJsp() {
+		
+		return "register";
+	}
+	
+	
 	
 	@RequestMapping("/test")
 	public String testMock(@RequestParam Map<String, Object> paramMap) {
@@ -130,8 +144,10 @@ public class MemberController {
 		System.out.println("test :" + paramMap.get("test"));
 		return null;
 	}
+
+
 	
-	
+
 	
 
 

@@ -5,40 +5,33 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import com.www.homedoc.dto.AlertDto;
 import com.www.homedoc.dto.MemberDto;
 import com.www.homedoc.dto.ReplyDto;
 @Repository("memberDao")
-public class MemberDaoImpl implements MemberDao {
+public class MemberDaoImpl extends CRUDDaoImpl<MemberDto, Integer> implements MemberDao {
 	
+
+
+	
+	// mapper의 namespace 
+	private static final String mappingName = 
+			"com.www.homedoc.dao.MemberDaoImpl";
+			
+	
+	public MemberDaoImpl() {
+		super(mappingName);
+	
+	}
+	
+	
+
 	@Autowired
 	SqlSession sqlSession;
 	
-	@Override
-	public int insertMember(MemberDto memberDto) {
-		// TODO Auto-generated method stub
-		return sqlSession.insert("insertMember",memberDto);
-	}
-
-	@Override
-	public int updateMember(MemberDto memberDto) {
-		// TODO Auto-generated method stub
-		return sqlSession.update("updateMember",memberDto);
-	}
-
-	@Override
-	public MemberDto selectOneMember(MemberDto memberDto) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("selectOneMember",memberDto);
-	}
-
-	@Override
-	public List<MemberDto> seleteAllMember() {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("selectAllMember");
-	}
 
 	@Override
 	public MemberDto memberLogin(MemberDto memberDto) {
@@ -46,11 +39,6 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectOne("memberLogin", memberDto);
 	}
 
-	@Override
-	public void deleteAllMember() {
-		sqlSession.delete("deleteAllMember");
-		
-	}
 
 	@Override
 	public List<AlertDto> getAlert(String writer) {
@@ -63,6 +51,16 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println("dao ---changeIsAlertToTrue ----");
 		sqlSession.update("changeIsAlertToTrue",reply_no);
 	}
+
+
+	@Override
+	public MemberDto selectOneById(MemberDto memberDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("selectOneById",memberDto);
+	}
+
+
+
 
 	
 

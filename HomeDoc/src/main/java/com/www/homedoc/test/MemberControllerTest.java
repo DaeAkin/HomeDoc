@@ -24,17 +24,24 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.www.homedoc.controller.MemberController;
+import com.www.homedoc.dto.MemberDto;
+import com.www.homedoc.service.MemberService;
 
 // MemberController 부터 MVC 통합 테스트.
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "context-testContext.xml")
-public class MemberControllerTest extends MemberServiceTest{
+public class MemberControllerTest{
 	
 	private MockMvc mockMvc;
 	
 	@Autowired
 	MemberController memberController;
+	
+	@Autowired
+	MemberService memberService;
+	
+	MemberDto memberDto;
 	
 	@Before
 	public void setUp() {
@@ -43,12 +50,22 @@ public class MemberControllerTest extends MemberServiceTest{
 //                .addFilters(new CORSFilter())
                 .build();
 		
-//		setUp();
-		cRUDTest();
+		memberDto = new MemberDto(
+				"testId", "1234", "testeMail@gmail.com",
+				"testAdress", "01011112222"
+				);
+		
+		
+		memberService.deleteAll();
+		
+		memberService.insert(memberDto);
 	}
 	
 	@Test
 	public void memberLogin() throws Exception {
+
+		
+		
 		//정상 로그인처리
 	MvcResult result =
 				mockMvc.perform(post("/member/login")
@@ -95,5 +112,11 @@ public class MemberControllerTest extends MemberServiceTest{
 					.andReturn();
 					
 	}
+	
+	
+	//이메일인증 로직 
+	
+	
+	
 
 } 

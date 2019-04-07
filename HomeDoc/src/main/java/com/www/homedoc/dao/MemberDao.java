@@ -7,23 +7,16 @@ import com.www.homedoc.dto.AlertDto;
 import com.www.homedoc.dto.MemberDto;
 import com.www.homedoc.dto.ReplyDto;
 
-public interface MemberDao {
+public interface MemberDao extends CRUDDao<MemberDto, Integer>{
 	
-	int insertMember(MemberDto memberDto);
-	
-	int updateMember(MemberDto memberDto);
-	
-	void deleteAllMember();
-	
-	MemberDto selectOneMember(MemberDto memberDto);
-	
-	List<MemberDto> seleteAllMember();
 	
 	MemberDto memberLogin(MemberDto memberDto);
 	
 	List<AlertDto> getAlert(String writer);
 	
 	void changeIsAlertToTrue(int reply_no);
+
+	MemberDto selectOneById(MemberDto memberDto);
 	
 	
 	

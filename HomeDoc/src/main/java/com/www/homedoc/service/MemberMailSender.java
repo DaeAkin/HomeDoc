@@ -13,10 +13,12 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.stereotype.Component;
 
 import com.www.homedoc.dto.MemberDto;
 import com.www.homedoc.util.RandomNumberMaker;
 
+@Component
 public class MemberMailSender implements MailService{
 	
 	
@@ -38,7 +40,7 @@ public class MemberMailSender implements MailService{
 	}
 	
 
-	int random;
+	private int random;
 	
 	@Override
 	public int authenticationsend(String email) {

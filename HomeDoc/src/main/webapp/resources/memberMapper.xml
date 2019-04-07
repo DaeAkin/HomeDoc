@@ -2,10 +2,17 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN/" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.www.homedoc.dao.MemberDaoImpl"><!-- Class be looked -->
 
-   
-	<!--  CRUD 기본 SQL들 -->
+    <!--a reference to parent base-mapper.xml where CRUD logic mapping is done-->
+
+
+	<select id="get" 
+		parameterType="Integer"
+	resultType="com.www.homedoc.dto.MemberDto" >
+		select * from member where no = #{no}
+	</select>
+	
 	<insert 
-	id="insert"
+	id="insertMember"
 	parameterType="com.www.homedoc.dto.MemberDto">
 		insert into member(
 		id,
@@ -21,30 +28,7 @@
 		#{phone}
 		)
 	</insert>
-
-	<update id="update"  parameterType="com.www.homedoc.dto.MemberDto">
-		update
-			member
-		set
-			pw = #{pw},
-			email = #{email},
-			address = #{address},
-			phone = #{phone}
-		where
-			id = #{id}
-	
-	</update>
-	
-	<delete id="delete" parameterType="com.www.homedoc.dto.MemberDto">
-		delete
-			from
-		member
-			where
-		no = #{no}
-	</delete>
-	
-	
-	<select id="selectAll" 
+	<select id="selectAllMember" 
 	resultType="com.www.homedoc.dto.MemberDto">
 		select
 			*
@@ -52,42 +36,7 @@
 			member
 	</select>
 	
-		<select id="selectByNo" 
-	resultType="com.www.homedoc.dto.MemberDto">
-		select
-			*
-		from
-			member
-		where 
-			no = #{no}
-	</select>
-	
-		<delete id="deleteAll">
-		delete
-			from
-		member
-	</delete>
-	
-	
-	
-	
-	<select id="memberLogin" parameterType="com.www.homedoc.dto.MemberDto"
-	resultType="com.www.homedoc.dto.MemberDto">
-		select 
-			*
-		from
-			member
-		where 
-			id = #{id}
-			and
-			pw = #{pw}
-	</select> 
-
-	<!-- 끝 -->
-
-
-	
-	<select id="selectOneById" parameterType="com.www.homedoc.dto.MemberDto"
+	<select id="selectOneMember" parameterType="com.www.homedoc.dto.MemberDto"
 		resultType="com.www.homedoc.dto.MemberDto">
 		select
 			*
@@ -103,6 +52,18 @@
 		member
 	</delete>
 	
+	<update id="updateMember"  parameterType="com.www.homedoc.dto.MemberDto">
+		update
+			member
+		set
+			pw = #{pw},
+			email = #{email},
+			address = #{address},
+			phone = #{phone}
+		where
+			id = #{id}
+	
+	</update>
 	
 	<select id="getAlert" parameterType="java.lang.String"
 	resultType="com.www.homedoc.dto.AlertDto">

@@ -1,7 +1,5 @@
 package com.www.homedoc.service;
 
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-
 import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -12,10 +10,13 @@ import com.www.homedoc.dao.MemberDao;
 import com.www.homedoc.dto.AlertDto;
 import com.www.homedoc.dto.MemberDto;
 @Service
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl extends CRUDServiceImpl<MemberDto, Integer, MemberDao>
+implements MemberService{
 
 	@Autowired
 	MemberDao memberDao;
+	
+
 	
 	MemberMailSender mailSender;
 	
@@ -32,7 +33,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	
 	@Override
-	public int insertMember(MemberDto memberDto) {
+	public int insert(MemberDto memberDto) {
 	
 		//패스워드 암호화 
 		 String pw = 
@@ -40,26 +41,9 @@ public class MemberServiceImpl implements MemberService{
 		
 		 memberDto.setPw(pw);
 		 
-		return memberDao.insertMember(memberDto);
+		return memberDao.insert(memberDto);
 	}
 
-	@Override
-	public int updateMember(MemberDto memberDto) {
-		// TODO Auto-generated method stub
-		return memberDao.updateMember(memberDto);
-	}
-
-	@Override
-	public MemberDto selectOneMember(MemberDto memberDto) {
-		// TODO Auto-generated method stub
-		return memberDao.selectOneMember(memberDto);
-	}
-
-	@Override
-	public List<MemberDto> selectAllMember() {
-		// TODO Auto-generated method stub
-		return memberDao.seleteAllMember();
-	}
 
 	@Override
 	public Boolean memberLogin(MemberDto memberDto) {
@@ -79,11 +63,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 
-	@Override
-	public void deleteAllMember() {
-		memberDao.deleteAllMember();
-		
-	}
+
 
 	@Override
 	public List<AlertDto> getAlert(String writer) {
@@ -115,13 +95,15 @@ public class MemberServiceImpl implements MemberService{
 		memberDto.setId(id);
 
 		MemberDto resultMemberDto = 
-				memberDao.selectOneMember(memberDto);    
+				memberDao.selectOneById(memberDto);    
 		if(resultMemberDto == null) 
 			return 0;
 		
 		return 1;
 		// 중복이면 1을 리턴하고 그렇지 않으면 0을 리턴한다.
 	}
+
+
 
 	
 }
