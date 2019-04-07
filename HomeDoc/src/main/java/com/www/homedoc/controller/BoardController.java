@@ -20,8 +20,10 @@ import com.www.homedoc.service.BoardService;
 import com.www.homedoc.service.PaginationService;
 import com.www.homedoc.util.PrettyPrintUtil;
 
+@RequestMapping("/board")
 @Controller
-public class BoardController {
+public class BoardController extends CRUDController<BoardDto, Integer,
+BoardService> {
 
 	@Autowired
 	BoardService boardService;
@@ -29,19 +31,18 @@ public class BoardController {
 	@Autowired
 	PaginationService paginationService;
 	
-	@RequestMapping(value = "/board/insert" , method = RequestMethod.POST)
-	public String boardInsert(HttpServletRequest request, 
-			Map<String, Object> paramMap) {
+	@RequestMapping(value = "/insert" , method = RequestMethod.GET)
+	public String boardInsert() {
 		
 		
-		return null;
+		return "board";
 	}
 	
 	//페이징 처리 같이들어감.
 	
 	// #{category} #{currentPage} 줘야함.
 	
-	@RequestMapping(value = "/board/selectAll" , method= RequestMethod.GET)
+	@RequestMapping(value = "/selectAllWithCategory" , method= RequestMethod.GET)
 	public ModelAndView selectAllBoardWithCategory(@RequestParam Map<String, Object> paramMap) {
 		/* Get으로 어떤게 넘어 오는가 ?
 		 *  1) 게시판의 category ,
@@ -51,9 +52,7 @@ public class BoardController {
 		// board/list?category=1&currnetPage=1
 		// @RequestParam이 자동으로 Map으로 매핑해준다.
 		
-		
 		ModelAndView mv = new ModelAndView();
-		
 		
 //		paramMap.put("category", category);
 	
@@ -80,17 +79,15 @@ public class BoardController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/board/view" , method = RequestMethod.GET)
-	public ModelAndView boardView(@RequestParam Map<String, Object> paramMap) {
+	@RequestMapping(value = "/view" , method = RequestMethod.GET)
+	public ModelAndView boardView(@RequestParam int no) {
 		
 		ModelAndView mv = new ModelAndView();
-		BoardDto boardDto = new BoardDto();
-		boardDto.setNo(Integer.parseInt((String)paramMap.get("no"))); 
-		
+		 
 		mv.addObject("boardDtos",
-		boardService.getOneBoard(boardDto));
+		boardService.selectByNo(no));
 		
-		boardDto = boardService.getOneBoard(boardDto);
+		BoardDto boardDto = boardService.selectByNo(no);
 		
 		PrettyPrintUtil.printBoardDto(boardDto);
 		

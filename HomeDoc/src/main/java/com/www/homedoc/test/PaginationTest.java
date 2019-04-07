@@ -35,13 +35,13 @@ public class PaginationTest {
 				 "testboard", "testwriter", "2019-03-01", 0, "1" ,"컨텐트 내용","asd.jpg");
 		
 		 	//DB 전부삭제. 
-			boardService.deleteAllBoard();
+			boardService.deleteAll();
 			
 			//테스트용 게시판 50개 작업 
 			//30개로 페이징 처리 테스트를 해볼 예정.
 			for(int i=0; i<50; i++) {
 				boardDto.setTitle("testboard" + i);
-				boardService.insertBoard(boardDto);
+				boardService.insert(boardDto);
 			}
 		 
 	}

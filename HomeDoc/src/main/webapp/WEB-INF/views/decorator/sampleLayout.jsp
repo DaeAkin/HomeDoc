@@ -219,7 +219,7 @@
     
   </div>
 
-            <button type="button" id="loginButton" class="btn btn-dark" style="width: 470px; height: 50px;">로그인</button>
+            <button type="button" id="loginButton" class="btn btn-dark" style="width: 470px; height: 50px;">로그인11</button>
 <br>
 <br>
 
@@ -425,13 +425,7 @@
         
         
     });
-        
-    
-    
-
-    
-    
-    
+  
 </script>
 <script>
     //  로그인에서 아이디 체크, 비밀번호 체크 검사
@@ -509,23 +503,7 @@
 })
     
     
-    //    
-//    //패스워드 체크 유효성 검사 2
-//    $(function(){
-//  $('#user_pass').keyup(function(){
-//   $('font[name=check]').text('');
-//  }); //#user_pass.keyup
-//
-//  $('#chpass').keyup(function(){
-//   if($('#user_pass').val()!=$('#chpass').val()){
-//    $('font[name=check]').text('');
-//    $('font[name=check]').html("암호틀림");
-//   }else{
-//    $('font[name=check]').text('');
-//    $('font[name=check]').html("암호맞음");
-//   }
-//  }); //#chpass.keyup
-// });
+
 </script>
       
   </body>

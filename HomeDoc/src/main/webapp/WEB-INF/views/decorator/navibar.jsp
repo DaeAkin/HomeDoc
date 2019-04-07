@@ -102,7 +102,7 @@
 	    <!-- 로그인 버튼 -->     
 		<form  class="nav_log" align="right">
           <font data-toggle="modal" data-target="#loginModal" style="cursor:pointer">
-	        <button type="button" class="btn btn-outline-info btn" style="border: solid; width: 60pt; height: 35pt;">로그인</button>
+	        <button type="button"   class="btn btn-outline-info btn" style="border: solid; width: 60pt; height: 35pt;">로그인</button>
 		  </font>
 
 		<!-- 로그인 버튼 form 끝 -->
@@ -140,14 +140,14 @@
       <div class="modal-body">
 		<form id="fmField" name="fmField" action="" method="post" onsubmit="return checkForm();">
 		  <div class="form-group">
-			<input type="text" name="userId" id="userId" class="form-control" aria-describedby="emailHelp" placeholder="아이디">
+			<input type="text" name="id" id="userId" class="form-control" aria-describedby="emailHelp" placeholder="아이디">
 		  </div>
 		  <div class="form-group">
-			<input type="password" class="form-control" name="userPw" id="userPw" placeholder="비밀번호">
+			<input type="password" class="form-control" name="pw" id="userPw" placeholder="비밀번호">
 		  </div>
 		  <div class="form-check">
 		  </div>
-		  <button type="submit" class="btn btn-dark" style="width: 470px; height: 50px;">로그인</button>
+		  <button type="button" id="loginButton" class="btn btn-dark" style="width: 470px; height: 50px;">로그인</button>
 			<br>
 			<br>
 
@@ -171,110 +171,6 @@
 </div>
     
     
-    
-            <!-- register Modal -->
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">HomeDoc</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="#" onsubmit="return tocheckall();" data-ajax="false" method="post">
-
-    <div class="form-group col-md-14">
-      <label for="inputEmail4" class="col-form-label">아이디</label>
-      <input type="text" class="form-control" id="userId" name="userId" placeholder="">
-    </div>
-
-    <div class="form-group col-md-14">
-      <label for="inputPassword" class="col-form-label">비밀번호</label>
-      <input type="password" class="form-control" id="Pw" name="pw" placeholder="">
-    </div>
-            
-<!--
-    <div class="form-group col-md-14">
-      <label for="inputPassword" class="col-form-label">비밀번호</label>
-      <input type="password" class="form-control" id="user_pass" name="user_pass" placeholder="">
-    </div>
--->
-            
-    <div class="form-group col-md-14">
-      <label for="inputPassword" class="col-form-label">비밀번호 재확인</label>
-      <input type="password" class="form-control" id="PwCheck" placeholder="">
-    </div>
-            <p id="pwsame" style="color:red;"></p>
-            
-<!--
-    <div class="form-group col-md-14">
-      <label for="inputPassword" class="col-form-label">비밀번호 재확인</label>
-      <input type="password" class="form-control" id="chpass" name="chpass">
-    </div>
-            <font name="check" size="2" color="red"></font> 
--->
-
-    
-  
-  <div class="form-group">
-    <label for="inputAddress" class="col-form-label">주소</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="서울특별시 노원구">
-  </div>
-  
-            <label for="inputAddress" class="col-form-label">본인 확인 이메일</label>
-<div class="form-row align-items-center">
-    <div class="col-md-5">
-      <label class="sr-only" for="inlineFormInput">Name</label>
-      <input type="text" class="form-control mb-2 mb-sm-0" id="inlineFormInput" placeholder="아이디">
-    </div>
-    <div class="col">
-      <label class="sr-only" for="inlineFormInputGroup">Username</label>
-      <div class="input-group mb-2 mb-sm-0">
-        <div class="input-group-addon">@</div>
-        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="">
-          &nbsp;
-          <button type="button" class="btn btn-info">인증</button>
-      </div>
-    </div>
-    
-            </div>
-            
-            <br>
-  <div class="form-row align-items-center">
-    <div class="form-group col-md-4">
-        
-      <label for="inputCity" class="col-form-label">인증번호</label>
-      <input type="text" class="form-control" id="inputCity">
-
-        
-    </div>
-      
-      <div class="form-group col-md-3">
-            <br>
-            <button type="button" class="btn btn-success btn-sm">인증확인</button>
-            </div>
-    </div>
-            
-            
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-dark" style="width: 500px; height:50px;">회원가입</button>
-          
-        </div>
-        </form>
-      </div>
-      
-        
-    </div>
-  </div>
-</div>
-    
-    
-    
-    
-	
-
 
 <!-- 로그인 Ajax -->	
 	<script type="text/javascript">
@@ -307,7 +203,7 @@
        			if(reVal.code != "OK") {
        				alert("아이디나 비밀번호를 확인해주세요.");
        				
-       				console.log("사용 불가능한 아이디.");
+       			
        			} else {
        				
        				// ajax가 성공하면 할일
@@ -319,10 +215,7 @@
        		error		:	function(request, status, error) {
        			console.log("AJAX_ERROR");
        		}
-       		
-       			
-       		
-       		
+	
        		
        	});
      
@@ -346,72 +239,7 @@
         
     
 </script>
-<script>
-    //  로그인에서 아이디 체크, 비밀번호 체크 검사
-    
-      function checkForm() {
-    var userId = document.fmField.userId;
-    // 아이디 입력 유무 체크
-    if(userId.value == '' || !(userId.value.length >= 1 && userId.value.length <= 12)) {
-        window.alert("아이디를 입력하시오");
-        document.fmField.userId.focus();
-        document.getElementById('userId').select();
-        return false; // 아이디 입력이 안되어 있다면 submint 이벤트를 중지
-    }
-    var userPw = document.getElementById('userPw');
-    // 암호 입력 유무 체크
-    if(document.fmField.userPw.value == ''){
-        alert('비밀번호를 입력하세요.');
-        userPw.focus();
-        return false;
-    }
-}
-    
-    
 
-// 회원가입 유효성 검사 나머지
-    
-    function tocheckall() {
-        var userId = document.fmField.userId;
-        
-        if(userId.value == '' || !(userId.value.length >= 1 && userId.value.length <= 12)) {
-        window.alert("아이디를 입력하시오");
-        document.fmField.userId.focus();
-        document.getElementById('userId').select();
-        return false; // 아이디 입력이 안되어 있다면 submint 이벤트를 중지
-    }
-        
-        var pw = document.getElementById("Pw").value;
-        var pwck = document.getElementById("PwCheck").value;        
-        
-        if (pw != pwck) {
-                document.getElementById('pwsame').innerHTML = '비밀번호가 틀렸습니다. 다시 입력해 주세요';
-                return false;
-            }
-    }
-    
-    
-    
-    
-	function openNav() {
-		document.getElementById("mySidenav").style.width = "250px";
-	}
-
-	function closeNav() {
-	    document.getElementById("mySidenav").style.width = "0px";
-	}
-/*  Menu Toggle Script */
-	 $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-
-	$(function () {
-  $('[data-toggle="popover"]').popover()
-})
-    
-    
-</script>
       
   </body>
 </html>

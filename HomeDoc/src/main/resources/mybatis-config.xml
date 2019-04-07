@@ -9,8 +9,11 @@
     </typeAliases> -->
 
 
-    <mappers>
+<!--     <mappers>
         
         <mapper resource="mapper/memberMapper.xml"/>
-    </mappers>
+        <mapper resource="mapper/boardMapper.xml"/>
+        <mapper resource="mapper/crudMemberMapper.xml"/>
+        <mapper resource="mapper/crudBoardMapper.xml"/>
+    </mappers> -->
 </configuration>

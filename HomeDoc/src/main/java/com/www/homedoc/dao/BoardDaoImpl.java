@@ -10,16 +10,20 @@ import org.springframework.stereotype.Repository;
 import com.www.homedoc.dto.BoardDto;
 import com.www.homedoc.dto.PaginationDto;
 @Repository("boardDao")
-public class BoardDaoImpl implements BoardDao{
+public class BoardDaoImpl extends CRUDDaoImpl<BoardDto, Integer> implements BoardDao{
+
+	// mapper의 namespace
+	private static final String mappingName = 
+			"com.www.homedoc.dao.BoardDaoImpl";
+	
+	public BoardDaoImpl() {
+		super(mappingName);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Autowired
 	SqlSession sqlSession;
 	
-	@Override
-	public int insertBoard(BoardDto boardDto) {
-		// TODO Auto-generated method stub
-		return sqlSession.insert("insertBoard",boardDto);
-	}
 
 	@Override
 	public List<BoardDto> getAllboardWithCategory(BoardDto boardDto) {
@@ -28,43 +32,7 @@ public class BoardDaoImpl implements BoardDao{
 		return sqlSession.selectList("getAllboardWithCategory", boardDto);
 	}
 
-	@Override
-	public BoardDto getOneBoard(BoardDto boardDto) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("getOneBoard",boardDto);
-	}
 
-	@Override
-	public int deleteBoard(BoardDto boardDto) {
-		// TODO Auto-generated method stub
-		return sqlSession.delete("deleteBoard",boardDto);
-	}
-
-	@Override
-	public int updateBoard(BoardDto boardDto) {
-		
-		return sqlSession.update("updateBoard", boardDto);
-	}
-
-	@Override
-	public void deleteAllBoard() {
-		 sqlSession.delete("deleteAllBoard");
-		
-	}
-
-	@Override
-	public List<BoardDto> getAllBoard() {
-		// TODO Auto-generated method stub
-		
-		return sqlSession.selectList("getAllBoard");
-	}
-
-	@Override
-	public int deleteOneBoardWithBoard_no(int no) {
-		// TODO Auto-generated method stub
-		
-		return sqlSession.delete("deleteOneBoardWithBoard_no" , no);
-	}
 
 	@Override
 	public List<BoardDto> getBoardListDoWithPagination(Map<String, Object> paramMap) {

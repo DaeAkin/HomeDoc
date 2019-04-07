@@ -21,19 +21,19 @@ public abstract class CRUDController<T,PK,S extends CRUDService<T, PK>> {
 	S service;
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	int insert(@ModelAttribute T dto) {
-		return service.insert(dto);
+	void insert(@ModelAttribute T dto) {
+		service.insert(dto);
 		
 	}
 	
 	@RequestMapping(value = "update" , method = RequestMethod.POST)
-	int update(@ModelAttribute T dto) {
-		return service.update(dto);
+	void update(@ModelAttribute T dto) {
+		service.update(dto);
 	}
 	
 	@RequestMapping(value = "/delete" , method = RequestMethod.GET)	
-	int deleteByNo(@RequestParam PK no) {	
-		return service.deleteByNo(no);
+	void deleteByNo(@RequestParam PK no) {	
+			service.deleteByNo(no);
 	}
 	
 	@RequestMapping(value = "/deleteAll" , method = RequestMethod.GET)	

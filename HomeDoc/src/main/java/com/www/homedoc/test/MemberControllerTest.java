@@ -2,6 +2,7 @@ package com.www.homedoc.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -114,7 +115,26 @@ public class MemberControllerTest{
 	}
 	
 	
-	//이메일인증 로직 
+	// CRUD Controller Test 
+	@Test
+	public void cRUDControllerTest() throws Exception {
+		mockMvc.perform(post("/member/insert")
+				.param("id", "testididid22")
+				.param("pw", "1234")
+				.param("address", "서울시 강동구")
+				.param("email", "kei89011@gmail.com")
+				.param("phone", "010-1111-2222")
+						);
+	}
+	
+	@Test
+	public void cRUDControllerTest2() throws Exception {
+		mockMvc.perform(get("/member/selectAll")
+
+						) .andDo(print());
+	}
+	
+	
 	
 	
 	
