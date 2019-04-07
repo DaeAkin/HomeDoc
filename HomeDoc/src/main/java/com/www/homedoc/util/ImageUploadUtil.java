@@ -31,6 +31,7 @@ public class ImageUploadUtil {
 	private static final String filePath = "/Users/donghyeonmin/upload";
 	private static final String imageMemberPath = "/Users/donghyeonmin/upload";
 
+//	@Deprecated
 	public void parseInsertFileInfoAjax(HttpServletRequest request) throws Exception {
 
 		HttpSession session = request.getSession();
@@ -79,7 +80,7 @@ public class ImageUploadUtil {
 	 * 
 	 * uploadPath는 bean으로 주입했음. 위치: servlet-context
 	 */
-
+//	@Deprecated
 	public Map<String, String> memberImageUpload(String uploadPath, String originalName, byte[] fileData)
 			throws Exception {
 
@@ -165,6 +166,10 @@ public class ImageUploadUtil {
 	}
 
 	// Main ImageUpload Method
+	/*
+	 * s_ 붙은건 썸네일 map.get("makeThumbnail");
+	 * 게시판에 넣어야 할 이미지 주소는 map.get("boardInsertImage");
+	 */
 	public Map<String, Object> uploadFile(String uploadPath, String originalName, byte[] fileData)
 			throws Exception {
 		// 2개의 객체를 리턴하기 위해 MAP을 사용
@@ -290,6 +295,7 @@ public class ImageUploadUtil {
 		BufferedImage sourceImg = ImageIO.read(new File(uploadPath + path, fileName));
 		// 100픽셀 단위의 썸네일 생성
 		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 100);
+		System.out.println("왜 오류냐 !! :" +destImg);
 		// 썸네일의 이름을 생성 ( 원본 파일명에 's_'를 붙임)
 		String thumbnailName = uploadPath + path + "s_" + fileName;
 		File newFile = new File(thumbnailName);

@@ -89,7 +89,7 @@ public class BoardAndReplyTest {
 		
 		// memberDto가 글을 작성하기
 		boardDto = new BoardDto("title", memberDto.getId(),
-				"2019-03-03", 0, "1", "테스트");
+				"2019-03-03", 0, "1", "테스트","sdasd.jpg");
 		
 		boardService.insertBoard(boardDto);
 		
@@ -134,11 +134,7 @@ public class BoardAndReplyTest {
 		 
 		// 읽음처리 됐는지 확인. 
 		 assertThat(alertDtos.get(0).getIsalert(), is(true));
-		
-		
-		
-		
-	
+
 	}
 
 }

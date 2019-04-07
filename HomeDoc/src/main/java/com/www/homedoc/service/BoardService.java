@@ -9,6 +9,7 @@ public interface BoardService {
 
 	int insertBoard(BoardDto boardDto);
 	
+	// category 필요 
 	List<BoardDto> getAllboardWithCategory(BoardDto boardDto);
 	
 	List<BoardDto> getAllBoard();
@@ -22,4 +23,6 @@ public interface BoardService {
 	void deleteAllBoard();
 	
 	int deleteOneBoardWithBoard_no(int no);
+	
+	List<BoardDto> getBoardForHomeWithLimit(Map<String, Object> paramMap);
 }

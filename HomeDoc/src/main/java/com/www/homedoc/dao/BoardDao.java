@@ -26,4 +26,5 @@ public interface BoardDao {
 	
 	List<BoardDto> getBoardListDoWithPagination(Map<String, Object> paramMap);
 	
+	List<BoardDto> getBoardForHomeWithLimit(Map<String, Object> paramMap);
 }

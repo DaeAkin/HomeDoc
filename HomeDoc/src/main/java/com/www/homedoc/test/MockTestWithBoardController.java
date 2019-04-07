@@ -55,7 +55,7 @@ public class MockTestWithBoardController {
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 		
-		boardDto = new BoardDto(1, "test", "writer", "2019-03-13", 0, "1" ,"123");
+		boardDto = new BoardDto(1, "test", "writer", "2019-03-13", 0, "1" ,"123","asd.jpg");
 
 		boardDtos = new ArrayList<BoardDto>();
 		boardDtos.add(boardDto);

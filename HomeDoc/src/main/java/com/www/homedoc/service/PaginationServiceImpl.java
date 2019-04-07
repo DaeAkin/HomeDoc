@@ -19,17 +19,24 @@ public class PaginationServiceImpl implements PaginationService{
 
 	@Autowired
 	BoardDao boardDao;
-	//Todo.
-	//Map에 List<BoardDto랑 paginationDto 넣을 것.
+	
+	
+	//dao로 #{category} #{startNo}, #{endNo} 줘야함.
+	//Map에 List<BoardDto>랑 paginationDto 넣어짐. 
 	@Override
 	public Map<String, Object> getBoardListDoWithPagination(Map<String, Object> paramMap) {
 		Integer currentPage;
+		//테스트 
+		System.out.println("Service Category : " + paramMap.get("category"));
+		
+		//끝 테스트 
+		
 		
 		// 현재 누른페이지 가져오기. 없으면 1대입. 
 		if(paramMap.get("currentPage") == null) {
 			currentPage = 1;
 		} else {
-			currentPage = (Integer)paramMap.get("currentPage");
+			currentPage = Integer.parseInt((String)paramMap.get("currentPage"));
 		}
 		
 		System.out.println("currentPage in Service : " + currentPage);
@@ -46,6 +53,7 @@ public class PaginationServiceImpl implements PaginationService{
 		System.out.println("startNo in Service :" +paginationDto.getStartNo());
 		System.out.println("perPage in Service :" +paginationDto.getPerPage());
 		
+		paramMap.put("perPage", paginationDto.getPerPage());
 		paramMap.put("startNo", paginationDto.getStartNo());
 		paramMap.put("endNo", paginationDto.getEndNo());
 		
@@ -53,6 +61,11 @@ public class PaginationServiceImpl implements PaginationService{
 		
 		resultMap.put("boardDtos", boardDao.getBoardListDoWithPagination(paramMap));
 		resultMap.put("paginationDto", paginationDto);
+		
+		List<BoardDto> boardDtos =
+				boardDao.getBoardListDoWithPagination(paramMap);
+		
+		System.out.println("사이즈 뭐얌 :" + boardDtos.size());
 		
 		return resultMap;
 	}

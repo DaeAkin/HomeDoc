@@ -2,22 +2,10 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN/" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.www.homedoc.dao.MemberDaoImpl"><!-- Class be looked -->
 
-	
-	
-	<select id="memberLogin" parameterType="com.www.homedoc.dto.MemberDto"
-	resultType="com.www.homedoc.dto.MemberDto">
-		select 
-			*
-		from
-			member
-		where 
-			id = #{id}
-			and
-			pw = #{pw}
-	</select> 
-	
+   
+	<!--  CRUD 기본 SQL들 -->
 	<insert 
-	id="insertMember"
+	id="insert"
 	parameterType="com.www.homedoc.dto.MemberDto">
 		insert into member(
 		id,
@@ -33,21 +21,8 @@
 		#{phone}
 		)
 	</insert>
-	<select id="selectAllMember" 
-	resultType="com.www.homedoc.dto.MemberDto">
-		select
-			*
-		from
-			member
-	</select>
-	
-	<delete id="deleteAllMember">
-		delete
-			from
-		member
-	</delete>
-	
-	<update id="updateMember"  parameterType="com.www.homedoc.dto.MemberDto">
+
+	<update id="update"  parameterType="com.www.homedoc.dto.MemberDto">
 		update
 			member
 		set
@@ -59,6 +34,75 @@
 			id = #{id}
 	
 	</update>
+	
+	<delete id="delete" parameterType="com.www.homedoc.dto.MemberDto">
+		delete
+			from
+		member
+			where
+		no = #{no}
+	</delete>
+	
+	
+	<select id="selectAll" 
+	resultType="com.www.homedoc.dto.MemberDto">
+		select
+			*
+		from
+			member
+	</select>
+	
+		<select id="selectByNo" 
+	resultType="com.www.homedoc.dto.MemberDto">
+		select
+			*
+		from
+			member
+		where 
+			no = #{no}
+	</select>
+	
+		<delete id="deleteAll">
+		delete
+			from
+		member
+	</delete>
+	
+	
+	
+	
+	<select id="memberLogin" parameterType="com.www.homedoc.dto.MemberDto"
+	resultType="com.www.homedoc.dto.MemberDto">
+		select 
+			*
+		from
+			member
+		where 
+			id = #{id}
+			and
+			pw = #{pw}
+	</select> 
+
+	<!-- 끝 -->
+
+
+	
+	<select id="selectOneById" parameterType="com.www.homedoc.dto.MemberDto"
+		resultType="com.www.homedoc.dto.MemberDto">
+		select
+			*
+		from
+			member
+		where
+			id = #{id}
+	</select>
+	
+	<delete id="deleteAllMember">
+		delete
+			from
+		member
+	</delete>
+	
 	
 	<select id="getAlert" parameterType="java.lang.String"
 	resultType="com.www.homedoc.dto.AlertDto">

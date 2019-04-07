@@ -1,23 +1,22 @@
 package com.www.homedoc.service;
 
-import static org.springframework.test.web.client.response.MockRestResponseCreators.withBadRequest;
-
-import java.time.format.FormatStyle;
 import java.util.List;
-import java.util.Map;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.www.homedoc.dao.MemberDao;
 import com.www.homedoc.dto.AlertDto;
 import com.www.homedoc.dto.MemberDto;
-import com.www.homedoc.dto.ReplyDto;
 @Service
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl extends CRUDServiceImpl<MemberDto, Integer, MemberDao>
+implements MemberService{
 
 	@Autowired
 	MemberDao memberDao;
+	
+
 	
 	MemberMailSender mailSender;
 	
@@ -34,31 +33,26 @@ public class MemberServiceImpl implements MemberService{
 	
 	
 	@Override
-	public int insertMember(MemberDto memberDto) {
+	public int insert(MemberDto memberDto) {
 	
-		return memberDao.insertMember(memberDto);
+		//패스워드 암호화 
+		 String pw = 
+				 DigestUtils.sha256Hex(memberDto.getPw());
+		
+		 memberDto.setPw(pw);
+		 
+		return memberDao.insert(memberDto);
 	}
 
-	@Override
-	public int updateMember(MemberDto memberDto) {
-		// TODO Auto-generated method stub
-		return memberDao.updateMember(memberDto);
-	}
-
-	@Override
-	public MemberDto selectOneMember(MemberDto memberDto) {
-		// TODO Auto-generated method stub
-		return memberDao.selectOneMember(memberDto);
-	}
-
-	@Override
-	public List<MemberDto> selectAllMember() {
-		// TODO Auto-generated method stub
-		return memberDao.seleteAllMember();
-	}
 
 	@Override
 	public Boolean memberLogin(MemberDto memberDto) {
+		//패스워드 암호화 
+		 String pw = 
+				 DigestUtils.sha256Hex(memberDto.getPw());
+		
+		 memberDto.setPw(pw);
+		
 		// 아이디 비밀번호 매칭 작업
 		MemberDto resultMemberDto = memberDao.memberLogin(memberDto);
 		if(resultMemberDto == null) {
@@ -69,11 +63,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 
-	@Override
-	public void deleteAllMember() {
-		memberDao.deleteAllMember();
-		
-	}
+
 
 	@Override
 	public List<AlertDto> getAlert(String writer) {
@@ -95,6 +85,25 @@ public class MemberServiceImpl implements MemberService{
 		memberDao.changeIsAlertToTrue(reply_no);
 		
 	}
+	
+	
+	
+	@Override
+	public int memberIdCheck(String id) {
+		// TODO Auto-generated method stub
+		MemberDto memberDto = new MemberDto();
+		memberDto.setId(id);
+
+		MemberDto resultMemberDto = 
+				memberDao.selectOneById(memberDto);    
+		if(resultMemberDto == null) 
+			return 0;
+		
+		return 1;
+		// 중복이면 1을 리턴하고 그렇지 않으면 0을 리턴한다.
+	}
+
+
 
 	
 }

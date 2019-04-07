@@ -28,7 +28,7 @@ public class BoardServiceTest {
 	@Before
 	public void setUp() {
 		 boardDto = new BoardDto(
-				 "testboard", "testwriter", "2019-03-01", 0, "1" ,"컨텐트 내용");
+				 "testboard", "testwriter", "2019-03-01", 0, "1" ,"컨텐트 내용","asd.jpg");
 	}
 	
 	@Test
@@ -43,6 +43,7 @@ public class BoardServiceTest {
 		//DB 전부 가져오기
 		List<BoardDto> boardDtos =
 				boardService.getAllBoard();
+	
 		
 		//확인 
 		assertThat(boardDtos.get(0).getTitle(), is(boardDto.getTitle()));
@@ -57,9 +58,15 @@ public class BoardServiceTest {
 		boardDto.setNo(
 				boardDtos.get(0).getNo());
 		
+
 	
-		boardService.updateBoard(
-				boardDto);
+	
+		boardService.updateBoard(boardDto);
+		
+		// 게시글 한개 가져오는 함수도 잘 작동되는지 확인하기. 
+		BoardDto resultBoard = boardService.getOneBoard(boardDto);
+		
+		assertThat(resultBoard.getTitle(), is(boardDto.getTitle()));
 		
 		 boardDtos = 
 					boardService.getAllBoard();

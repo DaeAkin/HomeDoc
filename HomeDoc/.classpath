@@ -26,6 +26,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="/Users/donghyeonmin/Documents/IcloudDocument/Programming asset/jar/imgscalr-lib-4.2.jar"/>
+	<classpathentry kind="lib" path="/Users/donghyeonmin/Documents/IcloudDocument/Programming asset/jar/commons-codec-1.12/commons-codec-1.12.jar"/>
+	<classpathentry kind="lib" path="/Users/donghyeonmin/Documents/IcloudDocument/Programming asset/jar/imgscalr-lib-4.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
