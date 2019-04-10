@@ -2,27 +2,8 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN/" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.www.homedoc.dao.ReplyDaoImpl"><!-- Class be looked -->
 
-	
-	
-	
-	<insert 
-	id="insertReply"
-	parameterType="com.www.homedoc.dto.ReplyDto">
-		insert into boardreply(
-		board_no,
-		content,
-		writer,
-		isalert
-		)values(
-		#{board_no},
-		#{content},
-		#{writer},
-		#{isalert}
-		)
-	</insert>
-	
 	<select id="getAllReplyWithboard_no" 
-	parameterType="com.www.homedoc.dto.ReplyDto"
+	parameterType="int"
 	resultType="com.www.homedoc.dto.ReplyDto">
 		select 
 			*
@@ -31,67 +12,5 @@
 		where
 			board_no = #{board_no}
 	</select>
-	
-	<select id="getAllReply" resultType="com.www.homedoc.dto.ReplyDto">
-		select
-			*
-		from
-			boardreply
-	
-	</select>
-	
-	
-		<select id="getOneReply" parameterType="com.www.homedoc.dto.ReplyDto"
-	resultType="com.www.homedoc.dto.ReplyDto">
-		select
-			*
-		from
-			boardreply
-		where 
-			no = #{no}
-			
-	</select>
-	
-	<delete id="deleteReply" parameterType="com.www.homedoc.dto.ReplyDto">
-		delete
-			from
-		boardreply
-			where 
-		no = #{no}
-	</delete>
-	
-	
-	
-	<update id="updateReply"  parameterType="com.www.homedoc.dto.ReplyDto">
-		update
-			boardReply
-		set
-			content = #{content}
-		where
-			no = #{no}
-	
-	</update>
-	
-	<delete id="deleteAllReply">
-		delete
-			from
-		boardreply
-	</delete>
-	
-	<delete id="deleteOneReplyWithReply_no" parameterType="int">
-		delete
-			from
-		boardreply
-			where
-		no = #{no}
-	
-	</delete>
-	
-	
-
-	
-
-
-	
 	
 </mapper>

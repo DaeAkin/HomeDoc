@@ -5,21 +5,7 @@ import java.util.Map;
 
 import com.www.homedoc.dto.ReplyDto;
 
-public interface ReplyDao {
+public interface ReplyDao extends CRUDDao<ReplyDto, Integer>{
 
-	int insertReply(ReplyDto replyDto);
-	
-	List<ReplyDto> getAllReplyWithboard_no(ReplyDto replyDto);
-	
-	List<ReplyDto> getAllReply();
-	
-	ReplyDto getOneReply(ReplyDto replyDto);
-	
-	int deleteReply(ReplyDto replyDto);
-	
-	int updateReply(ReplyDto replyDto);
-	
-	void deleteAllReply();
-	
-	int deleteOneReplyWithReply_no(int no);
+	List<ReplyDto> getAllReplyWithboard_no(int board_no);
 }

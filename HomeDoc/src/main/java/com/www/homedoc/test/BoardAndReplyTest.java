@@ -62,9 +62,9 @@ public class BoardAndReplyTest {
 	@Test
 	public void getReplyWithBoard_NoAndAlertTest() {
 		//DB 전부삭제. 
-		boardService.deleteAllBoard();
-		memberService.deleteAllMember();
-		replyService.deleteAllReply();
+		boardService.deleteAll();
+		memberService.deleteAll();
+		replyService.deleteAll();
 		
 
 		// 멤버1 주입 / 이 멤버가 글을 작성할 것임.
@@ -74,14 +74,14 @@ public class BoardAndReplyTest {
 		memberDto2 = new MemberDto("hihiid2", "1234",
 				"hihi@email", "인덕", "000010111");
 		
-		memberService.insertMember(memberDto);
-		memberService.insertMember(memberDto2);
+		memberService.insert(memberDto);
+		memberService.insert(memberDto2);
 		
 		
 		//멤버 한개 넣어주기. DB에서 생성해준 no의 값이 필요하다. 
 		// 지금 들어간 memberDto의 no를 모르니 전부 가져오자.
 		List<MemberDto> memberDtos = 
-				memberService.selectAllMember();
+				memberService.selectAll();
 		
 		memberDto.setNo(memberDtos.get(0).getNo());
 		
@@ -91,11 +91,11 @@ public class BoardAndReplyTest {
 		boardDto = new BoardDto("title", memberDto.getId(),
 				"2019-03-03", 0, "1", "테스트","sdasd.jpg");
 		
-		boardService.insertBoard(boardDto);
+		boardService.insert(boardDto);
 		
 		// board의 no 가져오기
 		List<BoardDto> boardDtos =
-				boardService.getAllBoard();
+				boardService.selectAll();
 		
 		boardDto.setNo(boardDtos.get(0).getNo());
 
@@ -106,11 +106,11 @@ public class BoardAndReplyTest {
 		replyDto2 = new ReplyDto(boardDto.getNo(), 
 				"감사합니다.", memberDto.getId(), false,null);
 		
-		replyService.insertReply(replyDto);
-		replyService.insertReply(replyDto2);
+		replyService.insert(replyDto);
+		replyService.insert(replyDto2);
 		
 		// 해당 board_no로 댓글이 잘 들어 갔는지 확인 
-		assertThat(replyService.getAllReplyWithboard_no(replyDto).size(), is(2));
+		assertThat(replyService.getAllReplyWithboard_no(replyDto.getBoard_no()).size(), is(2));
 		
 		
 		// 알람테스트 시작

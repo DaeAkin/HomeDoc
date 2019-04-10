@@ -33,22 +33,22 @@ public class ReplyServiceTest {
 		
 		replyDto = new ReplyDto(1, "견적서 내용입니다.", "인덕철물점", false,null);
 		
-		 
+		
 	}
 	// Param 형식 말고 Map 형식으로 할것임 	
 	@Test
 	public void cRUDTest() {
 
 		//DB 전부삭제. 
-		replyService.deleteAllReply();
+		replyService.deleteAll();
 	
 		//DTO 1개 삽입
-		replyService.insertReply(replyDto);
+		replyService.insert(replyDto);
 	
 		
 		//DB 전부 가져오기
 		List<ReplyDto> replyDtos = 
-				replyService.getAllReply();
+				replyService.selectAll();
 		
 		//확인 
 		assertThat(replyDtos.get(0).getContent(), is(replyDto.getContent()));
@@ -64,24 +64,24 @@ public class ReplyServiceTest {
 				replyDtos.get(0).getNo());
 		
 	
-		replyService.updateReply(replyDto);
+		replyService.update(replyDto);
 		
 		replyDtos = 
-				replyService.getAllReply();
+				replyService.selectAll();
 		
 		 assertThat(replyDtos.get(0).getContent(), is(replyDto.getContent()));
 		
 		//게시글 업데이트 끝. 
 		 
 		//삭제 테스트
-		replyService.deleteOneReplyWithReply_no(replyDto.getNo());
+		replyService.deleteByNo(replyDto.getNo());
 		
 		System.out.println("삭제할 no :" + replyDtos.get(0).getNo());
 		
 		
 		//DB 전부 가져오기 
 		List<ReplyDto> resultDtos = 
-				replyService.getAllReply();
+				replyService.selectAll();
 		
 		// DB가 0개인지 확인
 		assertThat(resultDtos.size(), is(0));
