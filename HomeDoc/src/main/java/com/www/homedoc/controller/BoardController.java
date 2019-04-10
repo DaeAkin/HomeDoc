@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.www.homedoc.dto.BoardDto;
@@ -21,6 +22,7 @@ import com.www.homedoc.service.PaginationService;
 import com.www.homedoc.util.PrettyPrintUtil;
 
 @RequestMapping("/board")
+@SessionAttributes("boardDto")
 @Controller
 public class BoardController extends CRUDController<BoardDto, Integer,
 BoardService> {

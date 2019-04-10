@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sun.media.sound.ModelDirector;
@@ -22,6 +23,7 @@ import com.www.homedoc.service.MemberService;
 import com.www.homedoc.service.MemberServiceImpl;
 
 @RequestMapping("/member")
+@SessionAttributes("memberDto")
 @Controller
 public class MemberController extends CRUDController<MemberDto, Integer,
 	MemberService>{
