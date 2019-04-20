@@ -1,5 +1,10 @@
 package com.www.homedoc.dto;
 
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+
+import com.mysql.fabric.xmlrpc.base.Member;
+
 public class MemberDto {
 
 	int no;
@@ -34,7 +39,16 @@ public class MemberDto {
 	}
 	
 	
+	//validation 관련메소드
+	public boolean supports(Class<?> clazz) {
+		return (Member.class.isAssignableFrom(clazz));
+	}
 	
+	public void validate(Object target, Errors errors) {
+		Member member = (Member)target;
+		
+		ValidationUtils.rejectIfEmpty(errors, "name", "field.required");
+	}
 	
 	
 

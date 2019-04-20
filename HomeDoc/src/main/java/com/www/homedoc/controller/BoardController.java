@@ -19,6 +19,7 @@ import com.www.homedoc.dto.BoardDto;
 import com.www.homedoc.dto.PaginationDto;
 import com.www.homedoc.service.BoardService;
 import com.www.homedoc.service.PaginationService;
+import com.www.homedoc.service.ReplyService;
 import com.www.homedoc.util.PrettyPrintUtil;
 
 @RequestMapping("/board")
@@ -31,13 +32,15 @@ BoardService> {
 	BoardService boardService;
 	
 	@Autowired
+	ReplyService replyService;
+	
+	@Autowired
 	PaginationService paginationService;
 	
 	@RequestMapping(value = "/insert" , method = RequestMethod.GET)
 	public String boardInsert() {
 		
-		
-		return "board";
+		return "boardInsert";
 	}
 	
 	//페이징 처리 같이들어감.
@@ -82,17 +85,14 @@ BoardService> {
 	}
 	
 	@RequestMapping(value = "/view" , method = RequestMethod.GET)
-	public ModelAndView boardView(@RequestParam int no) {
+	public ModelAndView boardView(@RequestParam int no,ModelAndView mv) {
+	 
+		mv.addObject("boardDto",
+				boardService.selectByNo(no));
 		
-		ModelAndView mv = new ModelAndView();
-		 
-		mv.addObject("boardDtos",
-		boardService.selectByNo(no));
-		
-		BoardDto boardDto = boardService.selectByNo(no);
-		
-		PrettyPrintUtil.printBoardDto(boardDto);
-		
+		mv.addObject("replyDto",
+				replyService.getAllReplyWithboard_no(no));
+
 		mv.setViewName("boardView");
 		
 		return mv;

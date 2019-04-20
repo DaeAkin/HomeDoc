@@ -1,12 +1,14 @@
 package com.www.homedoc.controller;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,9 +23,10 @@ import com.www.homedoc.dto.MemberDto;
 import com.www.homedoc.service.MemberMailSender;
 import com.www.homedoc.service.MemberService;
 import com.www.homedoc.service.MemberServiceImpl;
-
+@CrossOrigin
 @RequestMapping("/member")
-@SessionAttributes("memberDto")
+//아래 어노테이션을 쓰면 오류가 뜨는데 확인하길.
+//@SessionAttributes("memberDto")
 @Controller
 public class MemberController extends CRUDController<MemberDto, Integer,
 	MemberService>{
@@ -35,6 +38,7 @@ public class MemberController extends CRUDController<MemberDto, Integer,
 	
 	@Autowired
 	MemberMailSender memberMailSender;
+	
 	
 	// ajax 사용할 것.
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -61,6 +65,7 @@ public class MemberController extends CRUDController<MemberDto, Integer,
 			if(iscanLogined) {
 				//로그인 성공 페이지로
 				//알람은 Home에서 
+				System.out.println("로그인 성공");
 				session.setAttribute("id", id);
 				// 로그인이 되면 Home을 호출
 				mv.setViewName("redirect:/");
@@ -89,58 +94,14 @@ public class MemberController extends CRUDController<MemberDto, Integer,
 		return resultMap;
 		
 	}
-	// 인증번호 메일 발송
-	@ResponseBody
-	@RequestMapping(value = "/member/authenMail" , method = RequestMethod.POST)
-	public void memberEmailAuthentication(@RequestParam Map<String, Object> paramMap) {
-		
-		memberMailSender.
-			authenticationsend((String)paramMap.get("email"));
-	}
 	
 	
 	
-	@RequestMapping(value = "/signup", method = RequestMethod.POST)
-	public ModelAndView signUp(@ModelAttribute MemberDto memberDto,
-			ModelAndView mv) {
-		
-		System.out.println("--- member signup() ----");
-		
-		int result = memberService.insert(memberDto);
-		
-		if(result > 0) {
-			System.out.println("회원가입 성공");
-		}else {
-			System.out.println("회원가입 실패");
-		}
-		
-		mv.setViewName("redirect:/");
-		
-		return mv;
-		
-	}
-	
-	
-	@RequestMapping(value = "/signup" , method = RequestMethod.GET )
+	@RequestMapping(value = "/insert" , method = RequestMethod.GET )
 	public String moveSignupJsp() {
-		
-		return "register";
+		return "register_client";
 	}
 	
 	
-	
-	@RequestMapping("/test")
-	public String testMock(@RequestParam Map<String, Object> paramMap) {
-		System.out.println("---- test ----");
-		
-		System.out.println("test :" + paramMap.get("test"));
-		return null;
-	}
-
-
-	
-
-	
-
 
 }

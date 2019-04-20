@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!doctype html>
-
-
 <html lang="ko">
   <head>
-    <title>HomeDoc : 회원가입</title>
+    <title>HomeDoc : 고객 등록</title>
     <!-- meta tags 필요 -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,33 +11,32 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-	
   </head>
-  
   <body>
       
     <div class="container" style="width:450px;">
         <div style="margin: 20px 0px 0px 0px;">
             <div style="text-align: center;">
-        <a href="/comso/jiseong" style="font-size: 55px; color: black;"><b>HomeDoc</b></a>
+        <a href="/comso/jiseong" style="font-size: 55px; color: black; text-decoration:none;"><b>HomeDoc</b></a>
+                <font color="gray"><b>고객등록</b></font>
                 </div>
             <br>
-    <form action="<%=request.getContextPath() %>/member/signup" onsubmit="return validate();" data-ajax="false" method="post">
+    <form action="/comso/jiseong" onsubmit="return validate();" data-ajax="false" method="post" id="regfrm" name="regfrm">
         
         
 <div class="form-row align-items-center">
     <div class="form-group col-md-9">
       <label for="inputId" class="col-form-label">아이디</label>
-      <input type="text" class="form-control" id="id" name="id">
+      <input id="id" class="form-control" name="id">
     </div>
     <div class="form-group col-md-3" style="margin: 0px 0px -20px 0px;">
-        <button type="button" id="idck" class="btn btn-info" style="width:96px; height: 38.5px;">중복체크</button>
+        <button type="button" class="btn btn-info" style="width:96px; height: 38.5px;" id="idck">중복체크</button>
     </div>
         </div>
 
     <div class="form-group col-md-14">
       <label for="inputPassword" class="col-form-label">비밀번호</label>
-      <input type="password" class="form-control" name="pw" id="pw">
+      <input type="password" class="form-control" id="pw">
     </div>
             
 
@@ -54,7 +51,7 @@
         
         <div class="form-group col-md-14">
       <label for="inputPhoneNum" class="col-form-label">전화번호</label>
-      <input type="text" class="form-control" id="phone" name="phone">
+      <input type="text" class="form-control" id="phone" placeholder="-는 제외하고 입력해주세요.">
     </div>
 <div class="form-row align-items-center">
         <div class="form-group col-md-5">
@@ -68,29 +65,29 @@
 
 
 <div class="form-group col-md-14">
-<input type="text" id="address" name="address1" placeholder="주소" class="form-control" disabled>
+<input type="text" id="address1" placeholder="주소" class="form-control" disabled>
         </div>
         
 <div class="form-row align-items-center">
 <div class="form-group col-md-8">
-<input type="text" id="detailAddress" name="address2" placeholder="상세주소" class="form-control">
+<input type="text" id="address2" placeholder="상세주소" class="form-control">
     </div>
 <div class="form-group col-md-4">
-<input type="text" id="extraAddress" placeholder="참고항목" class="form-control" disabled>
+<input type="text" id="address3" placeholder="참고항목" class="form-control" disabled>
     </div>
-    
+<input type="hidden" id="address" placeholder="참고항목" class="form-control" disabled>
         </div>
      
   
 <div class="form-row align-items-center">
     <div class="form-group col-md-9">
       <label for="inputEmail" class="col-form-label">이메일</label>
-      <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+      <input id="email" class="form-control" name="email" aria-describedby="emailHelp">
     </div>
     <div class="form-group col-md-3" style="margin: 0px 0px -20px 0px;">
 
         
-    <button type="button" id="button_confirm" class="btn btn-info" style="width:96px; height: 38.5px;" onclick="confirmnumEnabled()">인증</button></div>
+    <button type="button" class="btn btn-info" style="width:96px; height: 38.5px;" onclick="confirmnumEnabled()" id="emailck">인증</button></div>
     
 </div> 
 
@@ -98,7 +95,7 @@
   <div class="form-row align-items-center">
     <div class="form-group col-md-8">
         
-      <label for="inputNumber" class="col-form-label">인증번호</label>
+      <label for="inputConfirmnumber" class="col-form-label">인증번호</label>
       <input type="text" class="form-control" id="confirmnum" disabled>
 
         
@@ -106,7 +103,7 @@
 
       <div class="form-group col-md-3" style="margin: 0px 0px -20px 0px;">
           
-          <button type="button" class="btn btn-success btn" style="width:133px; height: 37.5px;">인증확인</button>
+          <button type="button" class="btn btn-success btn" style="width:133px; height: 37.5px;" id="confirmnumck">인증확인</button>
       </div>
     </div>
             
@@ -166,7 +163,7 @@
          
         var phonenum = $('#phone').val();
 
-         var regPhone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/g;
+         var regPhone = /(01[0|1|6|9|7])(\d{3}|\d{4})(\d{4}$)/g;
 
          if(!regPhone.test(phonenum)){
 
@@ -180,23 +177,25 @@
         
         
          
-         var address = document.getElementById("address");
-         var detailAddress = document.getElementById("detailAddress");
+         var address1 = document.getElementById("address1");
+         var address2 = document.getElementById("address2");
          
-         if(address.value=="") {
+         if(address1.value=="") {
              alert("주소를 입력해주세요");
-             address.focus();
+             address1.focus();
              return false;
          }
          
-         if(detailAddress.value=="") {
+         if(address2.value=="") {
              alert("상세주소를 입력해주세요");
-             detailAddress.focus();
+             address2.focus();
              return false;
          }
      
-
-
+         var address = document.getElementById("address1") + document.getElementById("address2");
+         
+         
+         
          var email = document.getElementById("email");
          
          
@@ -214,11 +213,11 @@
 
          var confirmnum = document.getElementById("confirmnum");
          
-/*          if(confirmnum.value=="") {
+         if(confirmnum.value=="") {
              alert("인증을 완료해주세요");
              confirmnum.focus();
              return false;
-         } */
+         }
          
          
          
@@ -228,7 +227,6 @@
          
          
         
-                   
               if(confirm("회원가입을 하시겠습니까?")){
         if(idck==0){
             alert('아이디 중복체크를 해주세요');
@@ -288,17 +286,17 @@
                         extraAddr = '(' + extraAddr + ')';
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("extraAddress").value = extraAddr;
+                    document.getElementById("address3").value = extraAddr;
                 
                 } else {
-                    document.getElementById("extraAddress").value = '';
+                    document.getElementById("address3").value = '';
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('postcode').value = data.zonecode;
-                document.getElementById("address").value = addr;
+                document.getElementById("address1").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("detailAddress").focus();
+                document.getElementById("address2").focus();
             }
         }).open();
     }
@@ -309,9 +307,171 @@
     
     //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
 var idck = 0;
+$(function() {
+    //idck 버튼을 클릭했을 때 
+    $("#idck").click(function() {
+        
+        //userid 를 param.
+            	var objParams = {
+         			id			:	$("#id").val()
+         	};
+     
+        
+        $.ajax({
+            async: true,
+            type : 'POST',
+            data : objParams,
+            url : "<%=request.getContextPath()%>/member/idCheck",
+            dataType : "json",
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            success : function(data) {
+                if (data.cnt > 0) {
+                    
+                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+                    //아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+                    $("#divInputId").addClass("has-error")
+                    $("#divInputId").removeClass("has-success")
+                    $("#id").focus();
+                    
+                
+                } else {
+                    alert("사용가능한 아이디입니다.");
+                    //아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+                    $("#divInputId").addClass("has-success")
+                    $("#divInputId").removeClass("has-error")
+                    $("#pw").focus();
+                    //아이디가 중복하지 않으면  idck = 1 
+                    idck = 1;
+                    
+                }
+                
+                
+            },
+            error : function(error) {
+                
+                alert("error : " + error);
+            }
+        });
+    });
+    
+    /* id text 값 바꼈을때 idck 1 시작 */
+    
+                $("#id").change(function(){
 
+                    idck = 1;
+                });
+    
+    /* id text 값 바꼈을때 idck 1 끝 */
+});
     
     /* 아이디 중복체크 끝 */
+    
+    
+    
+    
+    
+    /* 이메일 인증번호 보내기 */
+    
+    var emailck = 0;
+    $(function() {
+    //emailck(인증) 버튼을 클릭했을 때 
+    $("#emailck").click(function() {
+        
+    	var objParams = {
+    		email :  $("#email").val()
+     	};
+        //email을 param.
+        
+        
+        $.ajax({
+        	async : true,
+            type : "post",
+            data : objParams,
+            url : "<%=request.getContextPath()%>/authenMail",
+          
+            dataType : "text",
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            success : function() {
+       			alert("성공");
+            },
+            error : function(request,status,error) {
+                
+                alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+            }
+        });
+    });
+        /* email text 값 바꼈을때 emailck 1 시작 */
+    
+                $("#email").change(function(){
+
+                    emailck = 1;
+                });
+    
+    /* email text 값 바꼈을때 emailck 1 끝 */
+});
+    
+    
+    /* 이메일 인증번호 보내기 끝 */
+    
+    
+    
+    
+      /* 이메일 인증번호 보내기 */
+    
+    var confirmnumck = 0;
+    $(function() {
+    $("#confirmnumck").click(function() {
+        
+    	var objParams = {
+    			confirmnum : $("#confirmnum").val()
+     	};
+        
+        
+        $.ajax({
+            async: true,
+            type : 'POST',
+            data : objParams,
+			 url : "<%=request.getContextPath()%>/authenConfirm",
+            dataType : "json",
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            success : function(data) {
+           
+                if (data.validation == false) {
+                    alert("인증번호가 일치하지 않습니다.");
+                    $("#divInputConfirmnumber").addClass("has-error")
+                    $("#divInputConfirmnumber").removeClass("has-success")
+                    $("#confirmnum").focus();
+                    
+                
+                } else {
+                	alert("인증번호가 확인되었습니다.")
+                    $("#divInputConfirmnumber").addClass("has-success")
+                    $("#divInputConfirmnumber").removeClass("has-error")
+                    $("#confirmnum").focus();
+                    confirmnumck = 1;
+                    
+                }
+                
+                
+            },
+            error : function(request,status,error) {
+                
+            	 alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
+            }
+        });
+    });
+    
+     $("#confirmnum").change(function(){
+
+        confirmnumck = 1;
+                    
+     });
+});
+    
+    
+    /*  인증번호 체크 끝 */
+    
+    
     
     
     
@@ -326,64 +486,9 @@ var idck = 0;
         }
     
     /* 인증 눌렀을 때 disabled 사라지게하기 끝 */
-
+    
+    
     
 </script>
-
-<script>
-  
-  $(document).ready(function() {
-      //idck 버튼을 클릭했을 때 
-      $("#idck").click(function() {
-          
-    
-          
-      	var objParams = {
-         			id			:	$("#id").val()
-         	};
-          
-          $.ajax({
-              async: true,
-              type : 'POST',
-              data : objParams,
-  		  	  url : "<%=request.getContextPath()%>/member/idCheck",
-              dataType : "json",
-              contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-              success : function(data) {
-              	
-                  if (data.cnt > 0) {
-                      
-                      alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
-                      //아이디가 존재할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
-                      $("#divInputId").addClass("has-error")
-                      $("#divInputId").removeClass("has-success")
-                      $("#id").focus();
-                      
-                  
-                  } else {
-                      alert("사용가능한 아이디입니다.");
-                      //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
-                      $("#divInputId").addClass("has-success")
-                      $("#divInputId").removeClass("has-error")
-                      $("#pw").focus();
-                      //아이디가 중복하지 않으면  idck = 1 
-                      idck = 1;
-                      
-                  }
-                        /* id text 값 바꼈을때 idck 1 시작 */
-      
-                  $("#id").change(function(){
-
-                      idck = 1;
-                  });
-              },
-              error : function(error) {
-                  
-                  alert("error : " + error);
-              }
-          });
-      });
-  });
-  </script>
   </body>
 </html>

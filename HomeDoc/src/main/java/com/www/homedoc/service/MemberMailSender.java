@@ -21,8 +21,7 @@ import com.www.homedoc.util.RandomNumberMaker;
 @Component
 public class MemberMailSender implements MailService{
 	
-	
-	
+
 	@Autowired
 	JavaMailSender mailSender;
 	
@@ -30,7 +29,6 @@ public class MemberMailSender implements MailService{
 	RandomNumberMaker randomNumber;
 	
 
-	
 	public void setMailSender(JavaMailSender mailSender) {
 		this.mailSender = mailSender;
 	}
