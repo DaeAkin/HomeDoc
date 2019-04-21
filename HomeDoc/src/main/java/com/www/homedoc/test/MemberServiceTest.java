@@ -49,7 +49,7 @@ public class MemberServiceTest{
 	public void cRUDTest() {
 		
 		// DB 전부삭제
-		memberService.deleteAll();
+//		memberService.deleteAll();
 		
 		//  DTO 1개 삽입
 		memberService.insert(

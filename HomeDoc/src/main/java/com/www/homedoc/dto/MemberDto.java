@@ -1,5 +1,7 @@
 package com.www.homedoc.dto;
 
+import java.util.UUID;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 
@@ -7,7 +9,7 @@ import com.mysql.fabric.xmlrpc.base.Member;
 
 public class MemberDto {
 
-	int no;
+	String no = UUID.randomUUID().toString();
 	String id;
 	String pw;
 	String email;
@@ -18,7 +20,7 @@ public class MemberDto {
 		
 	}
 	
-	public MemberDto(int no, String id, String pw,
+	public MemberDto(String no, String id, String pw,
 			String email,String address, String phone) {
 		this.no = no;
 		this.id = id;
@@ -68,11 +70,11 @@ public class MemberDto {
 		this.phone = phone;
 	}
 
-	public int getNo() {
+	public String getNo() {
 		return no;
 	}
 
-	public void setNo(int no) {
+	public void setNo(String no) {
 		this.no = no;
 	}
 
