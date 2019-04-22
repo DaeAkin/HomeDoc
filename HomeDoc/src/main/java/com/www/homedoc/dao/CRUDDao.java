@@ -6,7 +6,7 @@ public interface CRUDDao<T,PK> {
 
 	int insert(T dto);
 	
-//	int update(T dto);
+	int update(T dto,PK no);
 	
 	int deleteByNo(PK no);
 //	

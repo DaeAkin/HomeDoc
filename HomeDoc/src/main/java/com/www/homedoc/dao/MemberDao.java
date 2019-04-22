@@ -7,7 +7,7 @@ import com.www.homedoc.dto.AlertDto;
 import com.www.homedoc.dto.MemberDto;
 import com.www.homedoc.dto.ReplyDto;
 
-public interface MemberDao extends CRUDDao<MemberDto, Integer>{
+public interface MemberDao extends CRUDDao<MemberDto, String>{
 	
 	
 	MemberDto memberLogin(MemberDto memberDto);

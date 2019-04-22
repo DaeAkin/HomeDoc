@@ -16,15 +16,17 @@ public class FirebaseTest {
 
 	@Test
 	public void test() throws IOException {
-		System.out.println("??");
-		MemberDto memberDto = new MemberDto(
-				"testId", "1234", "testeMail@gmail.com",
-				"testAdress", "01011112222" 
-				);
+//		System.out.println("??");
+//		MemberDto memberDto = new MemberDto(
+//				"testId", "1234", "testeMail@gmail.com",
+//				"testAdress", "01011112222" 
+//				);
 		MemberDaoImpl dao = new MemberDaoImpl();
 		
-		dao.insert(memberDto);
+//		dao.insert(memberDto);
 		
-		dao.deleteByNo(1);
+//		dao.deleteByNo("KaTRbCw5ql9ugSlbP9hG");
+		
+		dao.update(null,"91uXpcMPnsktmUVb9Q5d");
 	}
 }

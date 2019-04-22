@@ -13,7 +13,7 @@ import com.www.homedoc.dto.AlertDto;
 import com.www.homedoc.dto.MemberDto;
 import com.www.homedoc.dto.ReplyDto;
 @Repository("memberDao")
-public class MemberDaoImpl extends CRUDDaoImpl<MemberDto, Integer> implements MemberDao {
+public class MemberDaoImpl extends CRUDDaoImpl<MemberDto, String> implements MemberDao {
 
 	private static String collectionName = "users";
 
