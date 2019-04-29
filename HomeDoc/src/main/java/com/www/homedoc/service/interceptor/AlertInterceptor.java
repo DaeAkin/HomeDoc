@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.www.homedoc.dto.AlertDto;
 import com.www.homedoc.service.MemberService;
 
-
+@Component
 public class AlertInterceptor implements HandlerInterceptor {
 	
 	@Inject
@@ -32,22 +32,35 @@ public class AlertInterceptor implements HandlerInterceptor {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
+		
 		HttpSession session = request.getSession();
+		
+
 		
 		String id = (String)session.getAttribute("id");
 		
 		if(id != null) {
 			
+			System.out.println("alert 가져올 id : " + id);
+			
 			System.out.println("memberService 가 널 ? : " + memberService);
 			System.out.println("AlertInterceptor 알람 가져오기 실행!!");
 			List<AlertDto> alertDtos = 
 					memberService.getAlert(id);
-			
-			modelAndView.addObject("alertDtos", alertDtos);
+		
 			System.out.println("alertDtos.toString() :" + alertDtos.toString());
+			System.out.println("alertDtos : " + alertDtos);
+			modelAndView.addObject("alertDtos", alertDtos);
+			
+//			request.setAttribute("alertDtos", alertDtos);
+			modelAndView.addObject("a", "a");
+		
+			
+			
 		}
 	
 		System.out.println("---하이하이 !!!! 인터셉터!! =---");
+		
 	}
 
 	@Override

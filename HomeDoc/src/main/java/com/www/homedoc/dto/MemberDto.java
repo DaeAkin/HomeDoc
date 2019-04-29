@@ -36,20 +36,7 @@ public class MemberDto {
 		this.email = email;
 		this.address = address;
 		this.phone = phone;
-	}
-	
-	
-	//validation 관련메소드
-	public boolean supports(Class<?> clazz) {
-		return (Member.class.isAssignableFrom(clazz));
-	}
-	
-	public void validate(Object target, Errors errors) {
-		Member member = (Member)target;
-		
-		ValidationUtils.rejectIfEmpty(errors, "name", "field.required");
-	}
-	
+	}	
 	
 
 	public String getAddress() {

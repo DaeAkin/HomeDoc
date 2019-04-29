@@ -39,6 +39,9 @@ public class MemberControllerTest{
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	AlertInterceptor alertInterceptor;
 
 	MemberDto memberDto;
 
@@ -46,7 +49,7 @@ public class MemberControllerTest{
 	public void setUp() {
 		mockMvc = MockMvcBuilders
                 .standaloneSetup(memberController)
-                .addInterceptors(new AlertInterceptor())
+                .addInterceptors(alertInterceptor)
                 .build();
 
 	}
@@ -61,9 +64,7 @@ public class MemberControllerTest{
 				mockMvc.perform(post("/member/login")
 					.param("id", "testid")
 					.param("pw", "1234"))
-//					.andDo(print())
-					.andExpect(status().is(200))
-					.andExpect(jsonPath("$.code", is("OK")))
+//					.andExpect(status().is(302))
 					.andReturn();
 
 	ModelAndView mv = result.getModelAndView();
@@ -71,11 +72,15 @@ public class MemberControllerTest{
 
 	HttpSession session = request.getSession();
 	
+	System.out.println("view Name :" + mv.getViewName());
 	System.out.println("--- session user : " + 
 			session.getAttribute("id"));
 	assertThat((String)session.getAttribute("id"), is("testid"));
 	
+	System.out.println("model : " + mv.getModel().get("a"));
+	
 	assertThat(mv.getModelMap().get("alertDtos"), is(notNullValue()));
+//	System.out.println("request : " + request.getAttribute("alertDtos"));
 	
 	
 	
@@ -83,7 +88,7 @@ public class MemberControllerTest{
 	
 	//회원가입 테스트
 	@Test
-	public void MemberSignup() throws Exception {
+	public void memberSignup() throws Exception {
 		MvcResult result =
 					mockMvc.perform(post("/member/insert")
 					.param("id", "testidid")
@@ -94,6 +99,15 @@ public class MemberControllerTest{
 							)
 					.andReturn();
 					
+	}
+	
+	@Test
+	public void memberValidationTest() throws Exception {
+	
+				mockMvc.perform(post("/member/login")
+//				.param("id", "testid")
+				.param("pw", "1234"));
+	
 	}
 	
 

@@ -8,12 +8,14 @@
 <%
 	String resourceUri = request.getContextPath() + "/resources/";
 %>
-
 <!doctype html>
 <html lang="ko">
   <head>
     <title>HomeDoc</title>
-
+	<script
+	  src="https://code.jquery.com/jquery-3.4.0.slim.js"
+	  integrity="sha256-milezx5lakrZu0OP9b2QWFy1ft/UEUK6NH1Jqz8hUhQ="
+	  crossorigin="anonymous"></script>
     <!-- meta tags 필요 -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,33 +39,78 @@
 	<!-- icon css -->
 	<link href="<%=resourceUri %>css/font-awesome.min.css" rel="stylesheet">
 	
-		<!-- Bootstrap core CSS -->
-	
 
-	<!-- Custom styles for this template -->
-	
-
-	
-
-
-	
 	</head>
 
 <body>      
+
+asdasddasd
+
+${alertDtos }
   <!-- 전체를 감싸는 div -->
-  <div class="d-flex" id="wrapper" style="overflow: auto;">      
+  <div class="d-flex" id="wrapper" style="">      
 
 	<!-- Sidebar -->
 	<div class="bg-light border-right" id="sidebar-wrapper" style="">
-      <div class="sidebar-heading" style=""><font color="white">HomeDocssssssssssssss</font></div>
+      <div class="sidebar-heading" style="background-color:white; height:50px; border: 1px solid #ffffff;"><font color="white">HomeDocssssssssssssss</font></div>
       <div class="list-group list-group-flush" style="position: fixed;">
-		<a href="mypage1.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-user">&nbsp</i>마이 페이지</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-house-damage">&nbsp</i>수리견적</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fa fa-search">&nbsp&nbsp</i>업체검색</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fab fa-fort-awesome">&nbsp&nbsp</i>하우징 서비스</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light" style="width:239px;"><i class="fas fa-headphones-alt">&nbsp&nbsp</i>고객센터</a>
+		<a href="mypage.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-user">&nbsp&nbsp&nbsp</i>마이 페이지</a>
+        <a href="quo_select.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-house-damage">&nbsp&nbsp</i>수리견적</a>
+		<a href="quo_select_c.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-house-damage">&nbsp&nbsp</i>견적 확인(업체메뉴)</a>
+        <a href="company_list.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fa fa-search">&nbsp&nbsp&nbsp</i>업체검색</a>
+		<button class="list-group-item list-group-item-action bg-light" style="width:239px;  border-bottom:1px;" data-toggle="collapse" data-target="#side_m0" aria-expanded="false" aria-controls="collapseExample"><i class="fab fa-fort-awesome">&nbsp&nbsp</i>하우징 서비스</button>
+<!--<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+data-target 버튼
+</button> -->
+		<div class="collapse" id="side_m0" style="width:240px;">
+		  <div style="width:240px; padding:5px 10px 0px 10px; background-color:#EBF2F7;">
+			<a href="housing_1.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp침실</a>
+			<a href="housing_2.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp욕실</a>
+			<a href="housing_3.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp거실</a>
+		  </div>
+		</div>
+
+		<button class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;" data-toggle="collapse" data-target="#side_m1" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-bed">&nbsp&nbsp</i>실내 인테리어</button>
+<!--<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+data-target 버튼
+</button> -->
+		<div class="collapse" id="side_m1" style="width:240px;">
+		  <div style="width:240px; padding:5px 10px 0px 10px; background-color:#EBF2F7;">
+			<a href="inter_1.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp도배 / 장판</a>
+			<a href="inter_2.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp전기 / 조명</a>
+			<a href="inter_3.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp유리교체 / 창호</a>
+		  </div>
+		</div>
+
+		<button class="list-group-item list-group-item-action bg-light" style="width:239px;  border:none;" data-toggle="collapse" data-target="#side_m2" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-store-alt">&nbsp&nbsp</i>실외 인테리어</button>
+<!--<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+data-target 버튼
+</button> -->
+		<div class="collapse" id="side_m2" style="width:240px;">
+		  <div style="width:240px; padding:5px 10px 0px 10px; background-color:#EBF2F7;">
+			<a href="out_1.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp외벽 / 지붕수리</a>
+			<a href="out_2.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp타일 시공</a>
+			<a href="out_3.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp페인트</a>
+			</div>
+		</div>
+		<a href="review.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fa fa-search">&nbsp&nbsp</i>서비스 후기</a>
+		<button class="list-group-item list-group-item-action bg-light" style="width:239px;" data-toggle="collapse" data-target="#side_ser" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-headphones-alt">&nbsp&nbsp</i>고객센터</button>
+<!--<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+data-target 버튼
+</button> -->
+		<div class="collapse" id="side_ser" style="width:240px;">
+		  <div style="width:240px; padding:5px 10px 0px 10px; background-color:#EBF2F7;">
+			<a href="service.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp자주묻는 질문 / 답변</a>
+			<a href="service_request.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp 1:1 문의하기</a>
+			<a href="about_us.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp도움말</a>
+			</div>
+
+		</div>
 <!--    <a href="#" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fa fa-phone">&nbsp&nbsp&nbsp&nbsp</i>Contact</a> -->
-        <a href="admin_door.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-user-cog">&nbsp</i>관리자모드(TEST)</a>
+        <a href="../admin_door.html"
+		class="list-group-item list-group-item-action bg-light"
+		style="width:239px; border:none;">
+		<i class="fas fa-user-cog">&nbsp</i>관리자모드(TEST)</a>
       </div>
     </div>
 	
@@ -71,22 +118,25 @@
     <div id="page-content-wrapper">
 
       <!-- 네비게이션 바 -->
-	  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light " style="margin-bottom: 80px; height: 37pt;">
+	  <nav class="navbar navbar-expand-lg fixed-top navbar-light" style="margin-bottom: 80px; height: 37pt; background-color:#ffffff">
 
 	  <!-- 로고 -->
 		<!-- 메뉴 모양 -->
+		 
 		<div style="margin: 0px 10px 0px 10px;">   
-		  <span style="color: gray; cursor:pointer;" ><i class="fas fa-bars fa-lg"  id="menu-toggle"></i></span>
+			<span style="color: gray; cursor:pointer;" ><i class="fas fa-bars fa-lg"  id="menu-toggle"></i></span>
         </div>
+		
     
 	  <!-- 홈 모양 / 로고 -->
+	  <a href="index.html">
 		<div class="container" style="width:100px;">
 	      <span style="color:limegreen"><i class="fas fa-house-damage fa-lg"></i></span>
 		  <div style="margin: 8px 0px 0px 10px;">
 			<a class="navbar-brand" href="index.html"><h6>HomeDoc</h6></a>
 		  </div>
 		</div>
-	  
+		</a>
 	  <!-- 검색 -->
 		<div class="container">     
 		  <div class="col-lg-8">
@@ -109,37 +159,24 @@
 <div>                              
                               
  <div class='list-group'>
+ <c:forEach var="alertDto" items="${alertDtos}" varStatus="status">
   <a href='#' class='list-group-item list-group-item-action flex-column align-items-start' style='width: 240px;'>
     <div>
     <i class='fas fa-paper-plane'></i>
     &nbsp
-    <b>홍길동 님의 댓글.</b>
+    <b>${alertDto.writer } 님의 댓글.</b>
     <br> <small>아주 좋네요!</small>
     <br> <small>1분 전</small>
     </div>
   </a>
+  </c:forEach>
 
-    <a href='#' class='list-group-item list-group-item-action flex-column align-items-start' style='width: 240px;'>
-        <div>
-        <i class='fas fa-paper-plane'></i>
-        &nbsp
-        <b>김나라 님의 댓글.</b>
-        <br> <small>Great</small>
-        <br> <small>1시간 전</small>
-        </div>
-      </a>
+
                               
                               
-    <a href='#' class='list-group-item list-group-item-action flex-column align-items-start' style='width: 240px;'>
-        <div>
-        <i class='fas fa-paper-plane'></i>
-        &nbsp
-        <b>강과산 님의 댓글.</b>
-        <br> <small>직원이 불친절 하시네요..;</small>
-        <br> <small>1일 전</small>
-        </div>
-      </a>
+
   </div>
+  
 				"
 				data-html="true" data-placement="bottom"
 				style="border:0px; background-color:#F8F9FA;"><i class="fas fa-bell fa-lg" style="cursor:pointer"></i></button></span>
@@ -162,36 +199,10 @@
 	  </nav>
 
 	  <!-- @@@@@@@@@@@@@@@@내용은 여기에@@@@@@@@@@@@@@@@@ -->
+ <tiles:insertAttribute name="content"/>
 
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="margin-top:50px;">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="<%=resourceUri %>img/index_slide_1.jpg" alt="첫번째 슬라이드">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="<%=resourceUri %>img/index_slide_2.jpg" alt="두번째 슬라이드">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="<%=resourceUri %>img/index_slide_3.jpg" alt="세번째 슬라이드">
-    </div>
-	<div class="carousel-item">
-      <img class="d-block w-100" src="<%=resourceUri %>img/index_slide_4.jpg" alt="세번째 슬라이드">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">이전</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">다음</span>
-  </a>
-</div>
-
-	  <tiles:insertAttribute name="content"/>
-	  <!-- @@@@@@@@@@@@@@@@내용은 여기까지@@@@@@@@@@@@@@@@@ -->
-
-	<!-- Page Content 끝 -->
+<!-- @@@@@@@@@@@@@@@@내용은 여기까지@@@@@@@@@@@@@@@@@ -->
+<!-- Page Content 끝 -->
 	</div>
   <!-- 전체를 감싸는 div 끝 -->
   </div>
@@ -219,19 +230,18 @@
     
   </div>
 
-            <button type="button" id="loginButton" class="btn btn-dark" style="width: 470px; height: 50px;">로그인11</button>
+            <button type="submit" class="btn btn-dark" style="width: 470px; height: 50px;">로그인</button>
 <br>
 <br>
 
         <div class="modal-footer">
           
             <div class="form-register">
-                <a href="#">아이디 찾기</a>
+                <a href="find_id.html">아이디 찾기</a>
                 ㅣ
-                <a href="#">비밀번호 찾기</a>
+                <a href="find_pw.html">비밀번호 찾기</a>
                 ㅣ
-                <font data-toggle="modal" data-target="#registerModal" style="cursor:pointer">
-        회원가입
+                <a href="register.html">회원가입</a>
 		</font></div>
             
         </div>
@@ -244,189 +254,21 @@
     
     
     
-            <!-- register Modal -->
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">HomeDoc</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="#" onsubmit="return tocheckall();" data-ajax="false" method="post">
-
-    <div class="form-group col-md-14">
-      <label for="inputEmail4" class="col-form-label">아이디</label>
-      <input type="text" class="form-control" id="userId" name="id" placeholder="">
-    </div>
-
-    <div class="form-group col-md-14">
-      <label for="inputPassword" class="col-form-label">비밀번호</label>
-      <input type="password" class="form-control" id="Pw" name="pw" placeholder="">
-    </div>
             
-<!--
-    <div class="form-group col-md-14">
-      <label for="inputPassword" class="col-form-label">비밀번호</label>
-      <input type="password" class="form-control" id="user_pass" name="user_pass" placeholder="">
-    </div>
--->
-            
-    <div class="form-group col-md-14">
-      <label for="inputPassword" class="col-form-label">비밀번호 재확인</label>
-      <input type="password" class="form-control" id="PwCheck" placeholder="">
-    </div>
-            <p id="pwsame" style="color:red;"></p>
-            
-<!--
-    <div class="form-group col-md-14">
-      <label for="inputPassword" class="col-form-label">비밀번호 재확인</label>
-      <input type="password" class="form-control" id="chpass" name="chpass">
-    </div>
-            <font name="check" size="2" color="red"></font> 
--->
-
-    
-  
-  <div class="form-group">
-    <label for="inputAddress" class="col-form-label">주소</label>
-    <input type="text" class="form-control" id="inputAddress" 
-    name="address" placeholder="서울특별시 노원구">
-  </div>
-<label for="inputAddress" class="col-form-label">본인 확인 이메일</label>
-<div class="form-row align-items-center">
-    <div class="col-md-5">
-      <label class="sr-only" for="inlineFormInput">Name</label>
-      <input type="text" class="form-control mb-2 mb-sm-0" id="inlineFormInput" placeholder="아이디">
-    </div>
-    <div class="col">
-      <label class="sr-only" for="inlineFormInputGroup">Username</label>
-      <div class="input-group mb-2 mb-sm-0">
-        <div class="input-group-addon">@</div>
-        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="">
-          &nbsp;
-          <button type="button" class="btn btn-info">인증</button>
-      </div>
-    </div>
-    
-            </div>
-            
-            <br>
-  <div class="form-row align-items-center">
-    <div class="form-group col-md-4">
-        
-      <label for="inputCity" class="col-form-label">인증번호</label>
-      <input type="text" class="form-control" id="inputCity">
-	
-        
-    </div>
-      
-      <div class="form-group col-md-3">
-            <br>
-            <button type="button" class="btn btn-success btn-sm">인증확인</button>
-            </div>
-    </div>
-            
-            
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-dark" style="width: 500px; height:50px;">회원가입</button>
-          
-        </div>
-        </form>
-      </div>
-      
-        
-    </div>
-  </div>
-</div>
-    
-    
     
     
 	<!-- side menu bar -->
 	<!-- Optional JavaScript -->
     <!-- 먼저 jQuery가 오고 그 다음 Popper.js 그 다음 Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
 	<!-- /#wrapper -->
 
     <!-- Bootstrap core JavaScript -->
-    <script src="<%=resourceUri %>vendor/jquery/jquery.min.js"></script>
+   <script src="<%=resourceUri %>vendor/jquery/jquery.min.js"></script>
     <script src="<%=resourceUri %>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- 로그인 Ajax -->	
-	<script type="text/javascript">
-    $(document).ready(function() {
-    	
-       //아이디 중복확인하기.
-       $("#loginButton").click(function() {
-
-     /*   if($("#id").val().trim() == "") {
-    	   	alert("아이디를 입력해주세요");
-    	   	return false;
-       }  */
-       	
-       	
-       	var objParams = {
-       			id			:	$("#userId").val(),
-       			pw			:	$("#userPw").val()
-       	};
-       	
-       	//ajax 호출
-       	$.ajax ({
-       		url				:	"<%=request.getContextPath()%>/member/login",
-       		dataType		:	"json",
-       		contentType		:	"application/x-www-form-urlencoded; charset=UTF-8",
-       		type			:	"post",
-       		async			:	true, //동기식으로 처리하는 방법 동기식 false, 비동기식 true
-       		data			:	objParams,
-       		success			:	function(reVal) {
-       			
-       			if(reVal.code != "OK") {
-       				alert("아이디나 비밀번호를 확인해주세요.");
-       				
-       				console.log("사용 불가능한 아이디.");
-       			} else {
-       				
-       				// ajax가 성공하면 할일
-       				String url = <% request.getRequestURL().substring(0, request.getRequestURL().indexOf(request.getContextPath())); %>
-       				window.location.replace(url);
-       				
-       		} 
-       			},
-       		error		:	function(request, status, error) {
-       			console.log("AJAX_ERROR");
-       		}
-       		
-       			
-       		
-       		
-       		
-       	});
-     
-       	
-       })
-       
-       
-       // 로그인 끝
-        
-           $("#memberSubmit").click(function() {
-            
-            $("#membercheck").submit();
-            
-        })
-        
-        
-        /* 닉네임 중복확인 */
-        
-        
-    });
-  
-</script>
 <script>
     //  로그인에서 아이디 체크, 비밀번호 체크 검사
     
@@ -449,19 +291,6 @@
 }
     
     
-//    회원가입에서 비밀번호 체크 유효 검사
-    
-//    function tocheckpw() {
-//            var pw = document.getElementById("Pw").value;
-//            var pwck = document.getElementById("PwCheck").value;
-//
-//            if (pw != pwck) {
-//                document.getElementById('pwsame').innerHTML = '비밀번호가 틀렸습니다. 다시 입력해 주세요';
-//                return false;
-//            }
-//        }
-    
-// 회원가입 유효성 검사 나머지
     
     function tocheckall() {
         var userId = document.fmField.userId;
@@ -503,7 +332,23 @@
 })
     
     
-
+    //    
+//    //패스워드 체크 유효성 검사 2
+//    $(function(){
+//  $('#user_pass').keyup(function(){
+//   $('font[name=check]').text('');
+//  }); //#user_pass.keyup
+//
+//  $('#chpass').keyup(function(){
+//   if($('#user_pass').val()!=$('#chpass').val()){
+//    $('font[name=check]').text('');
+//    $('font[name=check]').html("암호틀림");
+//   }else{
+//    $('font[name=check]').text('');
+//    $('font[name=check]').html("암호맞음");
+//   }
+//  }); //#chpass.keyup
+// });
 </script>
       
   </body>

@@ -66,5 +66,16 @@ public class AlertDto {
 	public void setReply_no(int reply_no) {
 		this.reply_no = reply_no;
 	}
+	
+	@Override
+	public String toString() {
+		
+		return "--- alertDto ---" + "\n" +
+		"title : " + this.title + "\n" +
+		"no : " + this.no + "\n" +
+		"isAlert : " + this.isalert + "\n" +
+		"wrtier : " + this.writer +  "\n" +
+		"reply_no :" + this.reply_no + "\n";
+	}
 
 }

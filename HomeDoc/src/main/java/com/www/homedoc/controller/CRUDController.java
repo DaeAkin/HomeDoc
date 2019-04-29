@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.www.homedoc.dao.CRUDDao;
+import com.www.homedoc.dto.BoardDto;
 import com.www.homedoc.service.CRUDService;
 import com.www.homedoc.service.CRUDServiceImpl;
 
@@ -21,7 +23,7 @@ public abstract class CRUDController<T,PK,S extends CRUDService<T, PK>> {
 	S service;
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	void insert(@ModelAttribute T dto) {
+	void insert(@ModelAttribute T dto, BoardDto boardDto) {
 		service.insert(dto);
 		
 	}
