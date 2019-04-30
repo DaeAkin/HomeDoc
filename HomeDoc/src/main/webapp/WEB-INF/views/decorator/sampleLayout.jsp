@@ -165,8 +165,8 @@ data-target 버튼
     <i class='fas fa-paper-plane'></i>
     &nbsp
     <b>${alertDto.writer } 님의 댓글.</b>
-    <br> <small>아주 좋네요!</small>
-    <br> <small>1분 전</small>
+    <br> <small>${alertDto.content }</small>
+    <br> <small>${alertDto.datetime }분 전</small>
     </div>
   </a>
   </c:forEach>

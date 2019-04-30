@@ -53,7 +53,7 @@ public class AlertInterceptor implements HandlerInterceptor {
 			modelAndView.addObject("alertDtos", alertDtos);
 			
 //			request.setAttribute("alertDtos", alertDtos);
-			modelAndView.addObject("a", "a");
+
 		
 			
 			

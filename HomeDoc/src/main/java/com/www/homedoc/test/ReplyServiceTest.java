@@ -38,7 +38,6 @@ public class ReplyServiceTest {
 	// Param 형식 말고 Map 형식으로 할것임 	
 	@Test
 	public void cRUDTest() {
-
 		//DB 전부삭제. 
 		replyService.deleteAll();
 	

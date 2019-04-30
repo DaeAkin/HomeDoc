@@ -6,9 +6,11 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.www.homedoc.dao.MemberDao;
 import com.www.homedoc.dto.AlertDto;
 import com.www.homedoc.dto.MemberDto;
+import com.www.homedoc.util.TimeUtil;
 @Service
 public class MemberServiceImpl extends CRUDServiceImpl<MemberDto, Integer, MemberDao>
 implements MemberService{
@@ -69,11 +71,19 @@ implements MemberService{
 	public List<AlertDto> getAlert(String writer) {
 		// 자기가쓴 댓글은 걸러주는 코드가 필요 (완료)
 		List<AlertDto> alertDtos = memberDao.getAlert(writer);
+		
 		if (alertDtos.size() != 0) {
 			System.out.println("service : " + alertDtos.size());
+			
 			for (int i = 0; i < alertDtos.size(); i++) {
 				if (alertDtos.get(i).getWriter().equals(writer)) {
+					//자기가 쓴 댓글이면 삭제
 					alertDtos.remove(i);
+				} else {
+					// datetime 변경
+					alertDtos.get(i).setDatatime(
+							TimeUtil.TimeChange(alertDtos.get(i).getDatatime()));
+					System.out.println("alertService 시간 변경확인 :" + alertDtos.get(i).getDatatime());
 				}
 			}
 		}

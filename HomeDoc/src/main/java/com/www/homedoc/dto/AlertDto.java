@@ -12,18 +12,26 @@ public class AlertDto {
 	String writer;
 	// 댓글의 no
 	int reply_no;
-
+	// 댓글 내용
+	String content;
+	//댓글 시간
+	String datetime;
+	
 	public AlertDto() {
 
 	}
 
-	public AlertDto(String title, int no, Boolean isalert, String writer, int reply_no) {
+	public AlertDto(String title, int no,
+			Boolean isalert, String writer, int reply_no,
+			String content, String datetime) {
 
 		this.title = title;
 		this.no = no;
 		this.isalert = isalert;
 		this.writer = writer;
 		this.reply_no = reply_no;
+		this.content = content;
+		this.datetime = datetime;
 
 	}
 
@@ -67,6 +75,22 @@ public class AlertDto {
 		this.reply_no = reply_no;
 	}
 	
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getDatatime() {
+		return datetime;
+	}
+
+	public void setDatatime(String datatime) {
+		this.datetime = datatime;
+	}
+
 	@Override
 	public String toString() {
 		
@@ -75,7 +99,9 @@ public class AlertDto {
 		"no : " + this.no + "\n" +
 		"isAlert : " + this.isalert + "\n" +
 		"wrtier : " + this.writer +  "\n" +
-		"reply_no :" + this.reply_no + "\n";
+		"reply_no :" + this.reply_no + "\n"+
+		"content : " + this.content +  "\n" +
+		"datetime : " + this.datetime +  "\n" ;
 	}
 
 }

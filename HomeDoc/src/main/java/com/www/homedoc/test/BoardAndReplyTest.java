@@ -3,6 +3,10 @@ package com.www.homedoc.test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -54,13 +58,23 @@ public class BoardAndReplyTest {
 	ReplyDto replyDto;
 	ReplyDto replyDto2;
 	
+	Calendar cal = Calendar.getInstance();
+	
+	SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+	String dateInString = "2019-04-22 10:22:11";
+	
+	
+	
 	
 	@Before
 	public void setUp() {
 		
 	}
 	@Test
-	public void getReplyWithBoard_NoAndAlertTest() {
+	public void getReplyWithBoard_NoAndAlertTest() throws ParseException {
+		Date date = format.parse(dateInString);
+		
+		
 		//DB 전부삭제. 
 		boardService.deleteAll();
 		memberService.deleteAll();
@@ -69,16 +83,16 @@ public class BoardAndReplyTest {
 
 		// 멤버1 주입 / 이 멤버가 글을 작성할 것임.
 		memberDto = new MemberDto("testid", "1234",
-				"test@email", "인덕", "000010111");
+				"test@email", "인덕", "");
 		
 		memberDto2 = new MemberDto("hihiid2", "1234",
-				"hihi@email", "인덕", "000010111");
+				"hihi@email", "인덕", "");
 		
 		memberService.insert(memberDto);
 		memberService.insert(memberDto2);
 		
 		
-		//멤버 한개 넣어주기. DB에서 생성해준 no의 값이 필요하다. 
+		//멤버 한개 넣어주기. DB에서 생성해준 no의 값이 필요하다.  
 		// 지금 들어간 memberDto의 no를 모르니 전부 가져오자.
 		List<MemberDto> memberDtos = 
 				memberService.selectAll();
@@ -101,10 +115,13 @@ public class BoardAndReplyTest {
 
 		// 댓글 작성하기 
 		replyDto = new ReplyDto(boardDto.getNo(), 
-				"견적서 입니다", memberDto2.getId(), false,null);
+				"견적서 입니다", memberDto2.getId(), false,"testid");
+		replyDto = new ReplyDto(boardDto.getNo(), 
+				"나중에 알려드릴께요", memberDto2.getId(), false,"testid",
+				String.valueOf(date));
 		
 		replyDto2 = new ReplyDto(boardDto.getNo(), 
-				"감사합니다.", memberDto.getId(), false,null);
+				"감사합니다.", memberDto.getId(), false,"testid");
 		
 		replyService.insert(replyDto);
 		replyService.insert(replyDto2);
@@ -119,9 +136,11 @@ public class BoardAndReplyTest {
 				memberService.getAlert(memberDto.getId());
 		System.out.println("--- 알람 ----");
 		
-		for(int i=0; i<alertDtos.size(); i++) {
-			System.out.println(alertDtos.get(i).getTitle() + "에 댓글이 달렸습니다.");
-		}
+//		for(int i=0; i<alertDtos.size(); i++) {
+//			System.out.println(alertDtos.get(i).getTitle() + "에 댓글이 달렸습니다.");
+//			System.out.println(alertDtos.get(i).getContent());
+//			System.out.println(alertDtos.get(i).getDatatime()+ "전");
+//		}
 		
 		assertThat(alertDtos.size(), is(1));
 		
@@ -129,11 +148,14 @@ public class BoardAndReplyTest {
 		memberService.changeIsAlertToTrue(alertDtos.get(0).getReply_no());
 		
 		//다시 DB에서 가져오기 
-		 alertDtos = 
+		 alertDtos =
 					memberService.getAlert(memberDto.getId());
 		 
 		// 읽음처리 됐는지 확인. 
 		 assertThat(alertDtos.get(0).getIsalert(), is(true));
+		 
+		 System.out.println("alertDtos : " + alertDtos.toString());
+		 
 
 	}
 
