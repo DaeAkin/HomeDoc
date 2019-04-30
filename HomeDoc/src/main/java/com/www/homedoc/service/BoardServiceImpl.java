@@ -40,5 +40,13 @@ public class BoardServiceImpl extends CRUDServiceImpl<BoardDto, Integer, BoardDa
 	}
 
 
+	@Override
+	public void increaseHit(int board_no) {
+		
+		boardDao.increaseHit(board_no);
+		
+	}
+
+
 
 }

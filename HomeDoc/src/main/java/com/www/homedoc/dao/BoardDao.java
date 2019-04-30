@@ -15,4 +15,6 @@ public interface BoardDao extends CRUDDao<BoardDto, Integer>{
 	List<BoardDto> getBoardListDoWithPagination(Map<String, Object> paramMap);
 	
 	List<BoardDto> getBoardForHomeWithLimit(Map<String, Object> paramMap);
+	
+	void increaseHit(int board_no);
 }

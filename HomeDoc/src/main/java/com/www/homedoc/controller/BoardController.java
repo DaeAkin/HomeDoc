@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.batch.MyBatisBatchItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +26,7 @@ import com.www.homedoc.service.ReplyService;
 import com.www.homedoc.util.PrettyPrintUtil;
 
 @RequestMapping("/board")
-@SessionAttributes("boardDto")
+//@SessionAttributes("boardDto")
 @Controller
 public class BoardController extends CRUDController<BoardDto, Integer,
 BoardService> {
@@ -42,6 +45,24 @@ BoardService> {
 		
 		return "boardInsert";
 	}
+	
+	@RequestMapping(value = "/boardwrite" , method = RequestMethod.GET)
+	public String moveBoardWriteView() {
+		return "boardWrite";
+				
+	}
+	
+	@RequestMapping(value = "/boardwrite" , method = RequestMethod.POST)
+	public String doBoardWrite(@ModelAttribute BoardDto boardDto,HttpSession session,
+			BindingResult result) {
+			
+		boardService.insert(boardDto);
+		
+		
+		return "boardWrite";
+				
+	}
+	
 	
 	//페이징 처리 같이들어감.
 	

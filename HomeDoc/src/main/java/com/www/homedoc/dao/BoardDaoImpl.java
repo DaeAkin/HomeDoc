@@ -51,4 +51,11 @@ public class BoardDaoImpl extends CRUDDaoImpl<BoardDto, Integer> implements Boar
 		return sqlSession.selectList("getBoardForHomeWithLimit",paramMap);
 	}
 
+
+
+	@Override
+	public void increaseHit(int board_no) {
+		sqlSession.update("increaseHit",board_no);
+	}
+
 }

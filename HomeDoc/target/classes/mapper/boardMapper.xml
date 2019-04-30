@@ -105,6 +105,17 @@
 		limit 0,#{end}
 	</select>
 	
+	<update id="increaseHit"
+		parameterType="int">
+		update
+			board
+		set
+			hit = hit + 1
+		where
+			no = #{no}
+		
+	</update>
+	
 	
 
 	

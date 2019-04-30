@@ -43,14 +43,15 @@ public class BoardServiceTest {
 		//DB 전부 가져오기
 		List<BoardDto> boardDtos =
 				boardService.selectAll();
-	
-		
 		//확인 
 		assertThat(boardDtos.get(0).getTitle(), is(boardDto.getTitle()));
 		
+		//조회수 증가 테스트
+		boardService.increaseHit(boardDtos.get(0).getNo());
 		// 게시글 업데이트 시작.
 		boardDto.setTitle("updateTitle");
 		boardDto.setContent("update Content"); 
+		
 		
 		// 게시글 업데이트
 		// no 업데이트 
@@ -73,6 +74,9 @@ public class BoardServiceTest {
 		
 		 assertThat(boardDtos.get(0).getTitle(), is(boardDto.getTitle()));
 		
+		 //조회수가 1증가했는지확인.
+		 assertThat(boardDto.getHit()+1,
+				 	is(resultBoard.getHit()));
 		//게시글 업데이트 끝. 
 		 
 		//삭제 테스트
@@ -86,7 +90,7 @@ public class BoardServiceTest {
 		List<BoardDto> resultDtos = 
 				boardService.selectAll();
 		
-		// DB가 0개인지 확인
+		// DB가 0개인지 확인 
 		assertThat(resultDtos.size(), is(0));
 		
 		 
