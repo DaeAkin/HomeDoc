@@ -39,7 +39,7 @@ public class UploadController {
 	 public Object imageUpload(HttpServletRequest request,MultipartHttpServletRequest multipartRequest) throws Exception {
 		System.out.println("---- Controller imageUpload() ----");
 		
-		List<MultipartFile> files = multipartRequest.getFiles("file");
+		List<MultipartFile> files = multipartRequest.getFiles("formData");
 		
 		System.out.println("파일 사이즈 : " + files.size());
 		for (MultipartFile file : files) {

@@ -21,7 +21,7 @@
                 <font color="gray"><b>고객등록</b></font>
                 </div>
             <br>
-    <form action="/comso/jiseong" onsubmit="return validate();" data-ajax="false" method="post" id="regfrm" name="regfrm">
+    <form action="<%=request.getContextPath() %>/member/insert" onsubmit="return validate();" data-ajax="false" method="post" id="regfrm" name="regfrm">
         
         
 <div class="form-row align-items-center">
@@ -36,7 +36,7 @@
 
     <div class="form-group col-md-14">
       <label for="inputPassword" class="col-form-label">비밀번호</label>
-      <input type="password" class="form-control" id="pw">
+      <input type="password" name="pw" class="form-control" id="pw">
     </div>
             
 
@@ -51,7 +51,7 @@
         
         <div class="form-group col-md-14">
       <label for="inputPhoneNum" class="col-form-label">전화번호</label>
-      <input type="text" class="form-control" id="phone" placeholder="-는 제외하고 입력해주세요.">
+      <input type="text" name="phone" class="form-control" id="phone" placeholder="-는 제외하고 입력해주세요.">
     </div>
 <div class="form-row align-items-center">
         <div class="form-group col-md-5">
@@ -75,7 +75,7 @@
 <div class="form-group col-md-4">
 <input type="text" id="address3" placeholder="참고항목" class="form-control" disabled>
     </div>
-<input type="hidden" id="address" placeholder="참고항목" class="form-control" disabled>
+<input type="hidden" name="address" id="address" placeholder="참고항목" class="form-control" >
         </div>
      
   
@@ -87,25 +87,12 @@
     <div class="form-group col-md-3" style="margin: 0px 0px -20px 0px;">
 
         
-    <button type="button" class="btn btn-info" style="width:96px; height: 38.5px;" onclick="confirmnumEnabled()" id="emailck">인증</button></div>
+   
     
 </div> 
 
             
-  <div class="form-row align-items-center">
-    <div class="form-group col-md-8">
-        
-      <label for="inputConfirmnumber" class="col-form-label">인증번호</label>
-      <input type="text" class="form-control" id="confirmnum" disabled>
 
-        
-    </div>
-
-      <div class="form-group col-md-3" style="margin: 0px 0px -20px 0px;">
-          
-          <button type="button" class="btn btn-success btn" style="width:133px; height: 37.5px;" id="confirmnumck">인증확인</button>
-      </div>
-    </div>
             
             
         <div class="modal-footer"></div>
@@ -175,8 +162,8 @@
 
          }
         
-        
-         
+         $("#address").val(  $("#address1").val() +   $("#address2").val() );
+     
          var address1 = document.getElementById("address1");
          var address2 = document.getElementById("address2");
          
@@ -190,10 +177,11 @@
              alert("상세주소를 입력해주세요");
              address2.focus();
              return false;
-         }
+         }	
      
          var address = document.getElementById("address1") + document.getElementById("address2");
          
+        
          
          
          var email = document.getElementById("email");

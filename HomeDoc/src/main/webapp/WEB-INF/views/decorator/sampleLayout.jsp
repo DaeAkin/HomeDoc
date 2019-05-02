@@ -44,9 +44,6 @@
 
 <body>      
 
-asdasddasd
-
-${alertDtos }
   <!-- 전체를 감싸는 div -->
   <div class="d-flex" id="wrapper" style="">      
 
@@ -149,12 +146,13 @@ data-target 버튼
 		  </div>
 
         <!-- 알림 아이콘 -->
-		  <div id="notice">
-			
-			<span class="p1 fa-stack fa-1x has-badge" data-count="9+" style="color:gray">
-				<button type="button"
-				data-toggle="popover"
-				data-content="
+        <% if(session.getAttribute("id") != null ) { %>
+					<div id="notice">
+
+						<span class="p1 fa-stack fa-1x has-badge"
+							data-count="${alertSize}" style="color: gray">
+							<button type="button" data-toggle="popover"
+								data-content="
                               
 <div>                              
                               
@@ -166,7 +164,7 @@ data-target 버튼
     &nbsp
     <b>${alertDto.writer } 님의 댓글.</b>
     <br> <small>${alertDto.content }</small>
-    <br> <small>${alertDto.datetime }분 전</small>
+    <br> <small>${alertDto.datetime }분 전</small> 
     </div>
   </a>
   </c:forEach>
@@ -178,19 +176,32 @@ data-target 버튼
   </div>
   
 				"
-				data-html="true" data-placement="bottom"
-				style="border:0px; background-color:#F8F9FA;"><i class="fas fa-bell fa-lg" style="cursor:pointer"></i></button></span>
-			
-			
-          </div>
-      <!-- 검색 div 끝 -->  
+								data-html="true" data-placement="bottom"
+								style="border: 0px; background-color: #F8F9FA;">
+								<i class="fas fa-bell fa-lg" style="cursor: pointer"></i>
+							</button>
+						</span>
+
+
+					</div>
+					
+					<%} %>
+					<!-- 검색 div 끝 -->  
 		</div>
 
+		<%if(session.getAttribute("id") == null) { %>
 	    <!-- 로그인 버튼 -->     
-		<form  class="nav_log" align="right">
+			<form  class="nav_log" align="right">
           <font data-toggle="modal" data-target="#loginModal" style="cursor:pointer">
 	        <button type="button" class="btn btn-outline-info btn" style="border: solid; width: 60pt; height: 35pt;">로그인</button>
 		  </font>
+		  <%} else { %>
+		  
+		  	<form  class="nav_log" align="right">
+          <font data-toggle="modal" data-target="#loginModal" style="cursor:pointer">
+	        <a href="<%=request.getContextPath() %>/member/logout" type="button" class="btn btn-outline-info btn" style="border: solid; width: 60pt; height: 35pt;">로그아웃</a>
+		  </font>
+		  <%} %>
 
 		<!-- 로그인 버튼 form 끝 -->
 		</form>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.mybatis.spring.batch.MyBatisBatchItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,12 +44,12 @@ BoardService> {
 	@RequestMapping(value = "/insert" , method = RequestMethod.GET)
 	public String boardInsert() {
 		
-		return "boardInsert";
+		return "board/boardInsert";
 	}
 	
 	@RequestMapping(value = "/boardwrite" , method = RequestMethod.GET)
 	public String moveBoardWriteView() {
-		return "boardWrite";
+		return "board/boardWrite";
 				
 	}
 	
@@ -56,10 +57,11 @@ BoardService> {
 	public String doBoardWrite(@ModelAttribute BoardDto boardDto,HttpSession session,
 			BindingResult result) {
 			
+		System.out.println("글쓰기 ㄱㄱ ");
 		boardService.insert(boardDto);
 		
 		
-		return "boardWrite";
+		return "board/boardWrite";
 				
 	}
 	
@@ -69,7 +71,8 @@ BoardService> {
 	// #{category} #{currentPage} 줘야함.
 	
 	@RequestMapping(value = "/selectAllWithCategory" , method= RequestMethod.GET)
-	public ModelAndView selectAllBoardWithCategory(@RequestParam Map<String, Object> paramMap) {
+	public String selectAllBoardWithCategory(@RequestParam Map<String, Object> paramMap
+			,Model model) {
 		/* Get으로 어떤게 넘어 오는가 ?
 		 *  1) 게시판의 category ,
 		 *  2) 현재페이지를 나타내는 currentPage 
@@ -78,22 +81,19 @@ BoardService> {
 		// board/list?category=1&currnetPage=1
 		// @RequestParam이 자동으로 Map으로 매핑해준다.
 		
-		ModelAndView mv = new ModelAndView();
-		
 //		paramMap.put("category", category);
 	
 		// boardDtos 랑 paginationDto 담겨 있음.
 		Map<String, Object> resultMap = 
 				paginationService.getBoardListDoWithPagination(paramMap);
 		
-		mv.addObject("boardDtos",
+		model.addAttribute("boardDtos",
 				(List<BoardDto>)resultMap.get("boardDtos"));
 		
-		mv.addObject("paginationDto",(PaginationDto)resultMap.get("paginationDto"));
+		model.addAttribute("paginationDto",(PaginationDto)resultMap.get("paginationDto"));
 		
-		mv.addObject("category",paramMap.get("category"));
+		model.addAttribute("category",paramMap.get("category"));
 		
-		mv.setViewName("boardList");
 		
 		List<BoardDto> boardDtos = 
 				(List<BoardDto>)resultMap.get("boardDtos");
@@ -102,7 +102,7 @@ BoardService> {
 			System.out.println(boardDto2.getNo());
 		}
 
-		return mv;
+		return "board/boardList";
 	}
 	
 	@RequestMapping(value = "/view" , method = RequestMethod.GET)

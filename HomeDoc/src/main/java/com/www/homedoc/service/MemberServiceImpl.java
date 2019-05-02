@@ -36,6 +36,8 @@ implements MemberService{
 	
 	@Override
 	public int insert(MemberDto memberDto) {
+		
+		System.out.println("회원가입 완료");
 	
 		//패스워드 암호화 
 		 String pw = 
@@ -81,9 +83,9 @@ implements MemberService{
 					alertDtos.remove(i);
 				} else {
 					// datetime 변경
-					alertDtos.get(i).setDatatime(
-							TimeUtil.TimeChange(alertDtos.get(i).getDatatime()));
-					System.out.println("alertService 시간 변경확인 :" + alertDtos.get(i).getDatatime());
+//					alertDtos.get(i).setDatetime(
+//							TimeUtil.TimeChange(alertDtos.get(i).getDatetime()));
+//					System.out.println("alertService 시간 변경확인 :" + alertDtos.get(i).getDatetime());
 				}
 			}
 		}

@@ -7,7 +7,7 @@ import apple.laf.JRSUIState.TitleBarHeightState;
 public class PaginationDto {
 
 	// 한번에 몇개의 페이지를 할건지? ex)5 : 1 2 3 4 5 가 뜸 
-	int perPage = 5;
+	int perPage = 9;
 	//누른 페이지가 몇페이지인지 ?
 	int currentPage;
 	// 1 2 3 4 5 중에 1에 해당하는 시작페이지

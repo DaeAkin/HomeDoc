@@ -50,9 +50,10 @@ public class AlertInterceptor implements HandlerInterceptor {
 		
 			System.out.println("alertDtos.toString() :" + alertDtos.toString());
 			System.out.println("alertDtos : " + alertDtos);
-			modelAndView.addObject("alertDtos", alertDtos);
+//			modelAndView.addObject("alertDtos", alertDtos);
 			
-//			request.setAttribute("alertDtos", alertDtos);
+			request.setAttribute("alertDtos", alertDtos);
+			request.setAttribute("alertSize",alertDtos.size());
 
 		
 			

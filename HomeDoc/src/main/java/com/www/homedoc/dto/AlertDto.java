@@ -82,14 +82,13 @@ public class AlertDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
+public String getDatetime() {
+	return datetime;
+}
+public void setDatetime(String datetime) {
+	this.datetime = datetime;
+}
 
-	public String getDatatime() {
-		return datetime;
-	}
-
-	public void setDatatime(String datatime) {
-		this.datetime = datatime;
-	}
 
 	@Override
 	public String toString() {

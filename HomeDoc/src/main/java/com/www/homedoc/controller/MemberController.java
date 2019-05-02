@@ -44,15 +44,22 @@ public class MemberController extends CRUDController<MemberDto, Integer,
 	@Autowired
 	MemberValidator memberValidator;
 	
-	@InitBinder
-	protected void initBinder(WebDataBinder binder) {
-		binder.addValidators(memberValidator);
-		
-	}
+//	@InitBinder
+//	protected void initBinder(WebDataBinder binder) {
+//		binder.addValidators(memberValidator);
+//		
+//	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String moveLoginPage() {
 		return "/member/login";
+	}
+	
+	@RequestMapping(value="/logout")
+	public String memberLogout(HttpSession session) {
+		session.invalidate();
+		
+		return "index";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
