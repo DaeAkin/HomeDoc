@@ -103,7 +103,7 @@ public class BoardAndReplyTest {
 		
 		// memberDto가 글을 작성하기
 		boardDto = new BoardDto("title", memberDto.getId(),
-				"2019-03-03", 0, "1", "테스트","sdasd.jpg");
+			 0, "1", "테스트","sdasd.jpg");
 		
 		boardService.insert(boardDto);
 		
@@ -117,8 +117,7 @@ public class BoardAndReplyTest {
 		replyDto = new ReplyDto(boardDto.getNo(), 
 				"견적서 입니다", memberDto2.getId(), false,"testid");
 		replyDto = new ReplyDto(boardDto.getNo(), 
-				"나중에 알려드릴께요", memberDto2.getId(), false,"testid",
-				String.valueOf(date));
+				"나중에 알려드릴께요", memberDto2.getId(), false,"testid");
 		
 		replyDto2 = new ReplyDto(boardDto.getNo(), 
 				"감사합니다.", memberDto.getId(), false,"testid");
@@ -145,7 +144,7 @@ public class BoardAndReplyTest {
 		assertThat(alertDtos.size(), is(1));
 		
 		// 읽음 표시
-		memberService.changeIsAlertToTrue(alertDtos.get(0).getReply_no());
+		replyService.changeIsAlertToTrue(alertDtos.get(0).getReply_no());
 		
 		//다시 DB에서 가져오기 
 		 alertDtos =

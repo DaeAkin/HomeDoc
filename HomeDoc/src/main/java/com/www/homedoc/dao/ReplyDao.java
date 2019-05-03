@@ -8,4 +8,7 @@ import com.www.homedoc.dto.ReplyDto;
 public interface ReplyDao extends CRUDDao<ReplyDto, Integer>{
 
 	List<ReplyDto> getAllReplyWithboard_no(int board_no);
+	
+	
+	void changeIsAlertToTrue(int reply_no);
 }

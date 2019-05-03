@@ -12,7 +12,5 @@ public interface MemberService extends CRUDService<MemberDto, Integer> {
 	
 	List<AlertDto> getAlert(String writer);
 	
-	void changeIsAlertToTrue(int reply_no);
-	
 	int memberIdCheck(String id);
 }

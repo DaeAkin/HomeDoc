@@ -46,12 +46,6 @@ public class MemberDaoImpl extends CRUDDaoImpl<MemberDto, Integer> implements Me
 		return sqlSession.selectList("getAlert", writer);
 	}
 
-	@Override
-	public void changeIsAlertToTrue(int reply_no) {
-		System.out.println("dao ---changeIsAlertToTrue ----");
-		sqlSession.update("changeIsAlertToTrue",reply_no);
-	}
-
 
 	@Override
 	public MemberDto selectOneById(MemberDto memberDto) {

@@ -13,4 +13,12 @@
 			board_no = #{board_no}
 	</select>
 	
+		<update id="changeIsAlertToTrue" parameterType="int">
+		update
+			boardreply
+		set
+			isalert = true
+		where
+			no = #{reply_no}
+	</update>
 </mapper>

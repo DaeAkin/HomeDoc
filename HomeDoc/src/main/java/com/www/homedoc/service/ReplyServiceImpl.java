@@ -20,6 +20,12 @@ public class ReplyServiceImpl extends CRUDServiceImpl<ReplyDto, Integer,
 		return replyDao.getAllReplyWithboard_no(board_no);
 	}
 
+	@Override
+	public void changeIsAlertToTrue(int reply_no) {
+		replyDao.changeIsAlertToTrue(reply_no);
+		
+	}
+
 	
 	
 

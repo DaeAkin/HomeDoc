@@ -37,6 +37,7 @@ public class TimeUtil {
 			// mysql 게시물 오늘날짜이면 시간으로 표시, 아니면 날짜로만 표시.
 			
 			System.out.println("today :" + today);
+			System.out.println("들어온 시간 :" + time );
 			System.out.println("시간짜른거 : " + time.substring(0, 10));
 			//yyyy-mm-dd 로 자른 값이 today랑 같으면 오늘써진 글이다.
 			if(time.substring(0, 10).equals(today))  
@@ -93,6 +94,19 @@ public class TimeUtil {
 
 		return currentTime;
 	}
+	//시간까지 가져옴 
+	public static String getExactlyCurrentTime() {
+
+		Date today = new Date();
+
+		SimpleDateFormat time = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+		String currentTime = time.format(today);
+
+		return currentTime;
+	}
+	
+	
 
 	/*
 	 * 현재 년도,월,일,시간,분,초 가져옴.

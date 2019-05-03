@@ -3,21 +3,42 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+	
+		<!-- Custom styles for this template -->
+	<link href="<%=request.getContextPath() %>/resources/css/simple-sidebar.css" rel="stylesheet">
+
+	<!-- Basic css -->
+	<link href="<%=request.getContextPath() %>/resources/css/basic_js.css" rel="stylesheet">
+	<!--<link href="css/main.css" rel="stylesheet">-->
+
+	<!-- icon css -->
+	<link href="<%=request.getContextPath() %>/resources/css/font-awesome.min.css" rel="stylesheet">
+	
+	
+	</head>
+
+<body>
+
 <!-- 전체 div -->
 <div id="jb-container">
 
 <!-- 그리드를 감싸는 div -->
-  <% for(int i=0; i<3; i++) { %>
-  <div id="container-re">
-  
+
+<% int i=0; %>
 
 <c:forEach var="boardDtos" items="${boardDtos}" varStatus="status">
+
+  <div id="container-re">
+  
 	<div class="index_review">
+
 	
 	
 	  <div class="card border-light" style="width: 28rem; height:29rem; cursor: pointer;" 
-	  onclick="<%=request.getContextPath()%>/board/view?no=${boardDtos.no }">
-	    <img class="card-img-top" src="img/map.jpg" id="index_r_image" alt="Card image cap">
+	  onclick="location.href='<%=request.getContextPath()%>/board/view?no=${boardDtos.no }';">
+	    <img class="card-img-top" src="<%=request.getContextPath() %>/resources/img/map.jpg" id="index_r_image" alt="Card image cap">
 		<div class="card-body">
 		   <h3 class="card-title"><b>${boardDtos.title }</b></h3>   
             <small>${boardDtos.datetime }</small>
@@ -27,15 +48,14 @@
 		</div>
 	  </div>
                  
-                            
+
 	<!-- div.index_tag end-->
 	</div>
-	</c:forEach>
 	
 	
   <!-- div.container-re end -->
   </div>
-	<%} %>
+	</c:forEach>
   
 
   <!-- pagination start -->
@@ -69,3 +89,5 @@
 
 <!-- div#jb-container end -->
 </div>
+</body>
+</html>

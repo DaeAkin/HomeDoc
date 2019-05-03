@@ -1,5 +1,6 @@
 package com.www.homedoc.dto;
 
+import com.www.homedoc.util.TimeUtil;
 import com.www.homedoc.util.TimeUtils;
 
 public class ReplyDto {
@@ -10,7 +11,7 @@ public class ReplyDto {
 	String content;
 	String writer;
 	Boolean isalert;
-	String datetime; 
+	String datetime = TimeUtil.getExactlyCurrentTime();
 	
 	TimeUtils time = new TimeUtils();
 

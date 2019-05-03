@@ -28,7 +28,7 @@ public class BoardServiceTest {
 	@Before
 	public void setUp() {
 		 boardDto = new BoardDto(
-				 "testboard", "testwriter", "2019-03-01", 0, "1" ,"컨텐트 내용","asd.jpg");
+				 "testboard", "testwriter", 0, "1" ,"컨텐트 내용","asd.jpg");
 	}
 	
 	@Test

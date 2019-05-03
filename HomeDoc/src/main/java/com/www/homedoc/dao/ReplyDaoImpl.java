@@ -29,6 +29,12 @@ public class ReplyDaoImpl extends CRUDDaoImpl<ReplyDto, Integer>implements Reply
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("getAllReplyWithboard_no",board_no);
 	}
+
+	@Override
+	public void changeIsAlertToTrue(int reply_no) {
+		sqlSession.update("changeIsAlertToTrue",reply_no);
+		
+	}
 	
 
 

@@ -14,7 +14,6 @@ public interface MemberDao extends CRUDDao<MemberDto, Integer>{
 	
 	List<AlertDto> getAlert(String writer);
 	
-	void changeIsAlertToTrue(int reply_no);
 
 	MemberDto selectOneById(MemberDto memberDto);
 	

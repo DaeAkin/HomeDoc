@@ -1,13 +1,19 @@
+<%@page import="com.www.homedoc.dto.AlertDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 
 <%
 	String resourceUri = request.getContextPath() + "/resources/";
 %>
+
+
+
 <!doctype html>
 <html lang="ko">
   <head>
@@ -38,6 +44,14 @@
 
 	<!-- icon css -->
 	<link href="<%=resourceUri %>css/font-awesome.min.css" rel="stylesheet">
+	<style>
+
+		.list-group-item:first-child {
+  
+    width: 250px;
+
+	}
+	</style>
 	
 
 	</head>
@@ -158,15 +172,23 @@ data-target 버튼
                               
  <div class='list-group'>
  <c:forEach var="alertDto" items="${alertDtos}" varStatus="status">
-  <a href='#' class='list-group-item list-group-item-action flex-column align-items-start' style='width: 240px;'>
+  <a href='<%=request.getContextPath() %>/reply/alertView?no=${alertDto.no}&reply_no=${alertDto.reply_no}' class='list-group-item list-group-item-action flex-column align-items-start'
+    
+    <c:if test="${alertDto.isalert}">
+  style='background-color: RGB(248,249,250)';
+  </c:if>
+  >
+
+
+   	
     <div>
     <i class='fas fa-paper-plane'></i>
     &nbsp
-    <b>${alertDto.writer } 님의 댓글.</b>
+    <b>${alertDto.writer } 님의 댓글</b>
     <br> <small>${alertDto.content }</small>
-    <br> <small>${alertDto.datetime }분 전</small> 
+    <br> <small>${alertDto.datetime } </small> 
     </div>
-  </a>
+</a>
   </c:forEach>
 
 
