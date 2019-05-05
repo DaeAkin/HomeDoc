@@ -47,6 +47,13 @@ BoardService> {
 		return "board/boardInsert";
 	}
 	
+	@RequestMapping(value = "/selectAllBoard" , method = RequestMethod.GET)
+	public String selectAllBoard(Model model) {
+		
+		
+		return "board/boardAllList";
+	}
+	
 	@RequestMapping(value = "/boardwrite" , method = RequestMethod.GET)
 	public String moveBoardWriteView() {
 		return "board/boardWrite";
@@ -104,6 +111,8 @@ BoardService> {
 
 		return "board/boardList";
 	}
+	
+
 	
 	@RequestMapping(value = "/view" , method = RequestMethod.GET)
 	public ModelAndView boardView(@RequestParam int no,ModelAndView mv) {

@@ -26,11 +26,12 @@
 
 <!-- 그리드를 감싸는 div -->
 
-<% int i=0; %>
 
-<c:forEach var="boardDtos" items="${boardDtos}" varStatus="status">
+
 
   <div id="container-re">
+
+<c:forEach var="boardDtos" items="${boardDtos}" varStatus="status">
   
 	<div class="index_review">
 
@@ -50,12 +51,15 @@
                  
 
 	<!-- div.index_tag end-->
+	
 	</div>
 	
 	
-  <!-- div.container-re end -->
-  </div>
 	</c:forEach>
+  <!-- div.container-re end -->
+
+  </div>
+
   
 
   <!-- pagination start -->

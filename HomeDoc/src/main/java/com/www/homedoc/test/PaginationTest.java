@@ -57,7 +57,7 @@ public class PaginationTest {
 		Map<String, Object> pagingMap = new HashMap<>();
 		
 		pagingMap.put("category", "1");
-		pagingMap.put("currentPage", 4);
+		pagingMap.put("currentPage", "4");
 		
 		
 		
@@ -71,21 +71,16 @@ public class PaginationTest {
 		
 		PaginationDto paginationDto =
 				(PaginationDto)resultMap.get("paginationDto");
-		
-		System.out.println("---- 출력할 페이지 ----");
-		System.out.println("startPage :" +paginationDto.getStartPage());
-		System.out.println("endPage :" +paginationDto.getEndPage());
-		System.out.println("currentPage :" +paginationDto.getCurrentPage());
-		System.out.println("startNo :" +paginationDto.getStartNo());
-		System.out.println("endNo :" +paginationDto.getEndNo());
-		System.out.println("lastPage :" +paginationDto.getLastPage());
-		
+			
+		System.out.println(paginationDto.toString());
 		
 		System.out.print("<<" + " ");
 		for(int i = paginationDto.getStartPage(); i<=paginationDto.getEndPage(); i++) {
 			System.out.print(i + " ");
 		}
 		System.out.print(">>" + " ");
+		
+		//<< 1 2 3 4 5 6 >>
 		
 	}
 	

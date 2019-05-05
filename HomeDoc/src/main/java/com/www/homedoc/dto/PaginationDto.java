@@ -147,6 +147,20 @@ public class PaginationDto {
 		this.lastPage = lastPage;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "--- PagintationDto ---" + "\n" +
+		"perPage : " + this.perPage + "\n" +
+		"currentPage : " + this.currentPage + "\n" +
+		"startPage : " + this.startPage + "\n" +
+		"endPage : " + this.endPage +  "\n" +
+		"totalPage :" + this.totalPage + "\n"+
+		"startNo : " + this.startNo +  "\n" +
+		"perView : " + this.perView +  "\n" +
+		"endNo : " + this.endNo +  "\n" +
+		"lastPage : " + this.lastPage +  "\n";
+	}
 	
 	
 }
