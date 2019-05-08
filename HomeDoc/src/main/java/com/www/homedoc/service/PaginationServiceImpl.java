@@ -13,12 +13,15 @@ import org.springframework.stereotype.Service;
 import com.www.homedoc.dao.BoardDao;
 import com.www.homedoc.dto.BoardDto;
 import com.www.homedoc.dto.PaginationDto;
+import com.www.homedoc.util.TimeUtil;
 
 @Service
 public class PaginationServiceImpl implements PaginationService{
 
 	@Autowired
 	BoardDao boardDao;
+	
+	
 	
 	
 	//dao로 #{category} #{startNo}, #{endNo} 줘야함.
@@ -54,21 +57,49 @@ public class PaginationServiceImpl implements PaginationService{
 	public Map<String, Object >doPagination(int perPage,int currentPage,int totalPage) {
 		Map<String, Object> paramMap = new HashMap<>();
 		
-		System.out.println("doPagination() :: currentPage : " + currentPage);
-		PaginationDto paginationDto = new PaginationDto(currentPage,totalPage);
-		System.out.println("doPagination() : " + paginationDto.toString());
-		paginationDto.setPerPage(perPage);
 		
-		System.out.println("startNo in Service :" +paginationDto.getStartNo());
-		System.out.println("perPage in Service :" +paginationDto.getPerPage());
+		PaginationDto paginationDto = new PaginationDto(perPage,currentPage,totalPage);
+		
 		
 		paramMap.put("perPage", paginationDto.getPerPage());
 		paramMap.put("startNo", paginationDto.getStartNo());
 		paramMap.put("endNo", paginationDto.getEndNo());
+		paramMap.put("perView", paginationDto.getPerView());
 		paramMap.put("paginationDto", paginationDto);
 		
 		return paramMap;
 		
+	}
+
+	@Override
+	public Map<String, Object> getAllBoardWithPagination(Map<String, Object> paramMap) {
+
+		Integer currentPage;
+		// 현재 누른페이지 가져오기. 없으면 1대입.
+		if (paramMap.get("currentPage") == null) {
+			currentPage = 1;
+		} else {
+			currentPage = Integer.parseInt((String) paramMap.get("currentPage"));
+		}
+		// 전체개시물 가져오기 .
+		int totalNum = boardDao.selectAll().size();
+		Map<String, Object> paginationMap = doPagination(3,currentPage,totalNum);
+		
+		Map<String, Object> resultMap = new HashMap<>();
+
+		List<BoardDto> boardDtos = boardDao.getBoardListDoWithPagination(paginationMap);
+		resultMap.put("boardDtos", boardDtos);
+		for (BoardDto boardDto : boardDtos) {
+			boardDto.setDatetime(TimeUtil.TimeChange(boardDto.getDatetime()));
+			
+		}
+		
+		System.out.println(resultMap.get("boardDtos").toString());
+		
+		resultMap.put("paginationDto", paginationMap.get("paginationDto"));
+		
+
+		return resultMap;
 	}
 	
 	

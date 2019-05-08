@@ -30,9 +30,23 @@
 			* 
 		from
 			board 
-		where category = #{category}
+	
 			order by no desc
-		limit #{startNo},#{perPage}
+		limit #{startNo},#{perView }
+		
+	
+	</select>
+	
+		<select id="getAllBoardWithPagination"
+	parameterType="java.util.HashMap"
+	resultType="com.www.homedoc.dto.BoardDto"
+	>
+		select 
+			* 
+		from
+			board 
+		order by no desc
+			limit #{startNo},#{perPage}
 		
 	
 	</select>

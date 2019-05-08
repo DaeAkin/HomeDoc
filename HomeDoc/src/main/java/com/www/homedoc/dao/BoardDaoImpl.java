@@ -58,4 +58,12 @@ public class BoardDaoImpl extends CRUDDaoImpl<BoardDto, Integer> implements Boar
 		sqlSession.update("increaseHit",board_no);
 	}
 
+
+
+	@Override
+	public List<BoardDto> getAllBoardWithPagination(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("getAllBoardWithPagination",paramMap);
+	}
+
 }

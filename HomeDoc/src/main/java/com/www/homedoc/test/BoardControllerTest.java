@@ -168,5 +168,23 @@ public class BoardControllerTest {
 		
 		
 	}
+	//게시판 전부다 가져오는 테스트
+	@Test
+	public void getAllBoardWithPagination() throws Exception {
+		MvcResult result = 
+				mockMvc.perform(get("/board/selectAllBoard"))
+				.andReturn();
+		
+		ModelAndView mv = result.getModelAndView();
+		
+		
+		System.out.println("---- test ----");
+		System.out.println(mv.getModel().get("boardDtos").toString());
+		
+		PaginationDto paginationDto = (PaginationDto) mv.getModel().get("paginationDto");
+		
+		System.out.println(paginationDto.toString());
+	}
+	
 
 }

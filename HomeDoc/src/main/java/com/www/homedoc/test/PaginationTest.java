@@ -85,5 +85,38 @@ public class PaginationTest {
 	}
 	
 	
+	@Test
+	public void paginationTest2() {
+		// 게시판 전부 가져오는..
+		Map<String, Object> pagingMap = new HashMap<>();
+		
+		pagingMap.put("currentPage", "4");
+		
+		
+		
+		
+		Map<String, Object> resultMap = 
+				paginationService.getAllBoardWithPagination(pagingMap);
+						
+		List<BoardDto> boardDtos = (List<BoardDto>)resultMap.get("boardDtos");
+		
+		System.out.println(boardDtos.size());
+		
+		PaginationDto paginationDto =
+				(PaginationDto)resultMap.get("paginationDto");
+			
+		System.out.println(paginationDto.toString());
+		
+		System.out.print("<<" + " ");
+		for(int i = paginationDto.getStartPage(); i<=paginationDto.getEndPage(); i++) {
+			System.out.print(i + " ");
+		}
+		System.out.print(">>" + " ");
+		
+		//<< 1 2 3 4 5 6 >>
+		
+	}
+	
+	
 
 }

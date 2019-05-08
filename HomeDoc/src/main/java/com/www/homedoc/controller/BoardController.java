@@ -25,7 +25,7 @@ import com.www.homedoc.service.BoardService;
 import com.www.homedoc.service.PaginationService;
 import com.www.homedoc.service.ReplyService;
 import com.www.homedoc.util.PrettyPrintUtil;
-
+@SuppressWarnings("unchecked")
 @RequestMapping("/board")
 //@SessionAttributes("boardDto")
 @Controller
@@ -47,13 +47,6 @@ BoardService> {
 		return "board/boardInsert";
 	}
 	
-	@RequestMapping(value = "/selectAllBoard" , method = RequestMethod.GET)
-	public String selectAllBoard(Model model) {
-		
-		
-		return "board/boardAllList";
-	}
-	
 	@RequestMapping(value = "/boardwrite" , method = RequestMethod.GET)
 	public String moveBoardWriteView() {
 		return "board/boardWrite";
@@ -73,10 +66,26 @@ BoardService> {
 	}
 	
 	
+	@RequestMapping(value = "/selectAllBoard" , method = RequestMethod.GET)
+	public String selectAllBoard(@RequestParam Map<String, Object> paramMap, Model model) {
+		System.out.println("--- selectAllBoard() ---");
+		/* Get으로 어떤게 넘어 오는가 ?
+		 *  1) 현재페이지를 나타내는 currentPage 
+		 */
+		Map<String, Object> resultMap = 
+				paginationService.getAllBoardWithPagination(paramMap);
+		
+		model.addAttribute("boardDtos",
+				(List<BoardDto>)resultMap.get("boardDtos"));
+		
+		model.addAttribute("paginationDto",(PaginationDto)resultMap.get("paginationDto"));
+		
+		
+		return "board/boardAllList";
+	}
+	
 	//페이징 처리 같이들어감.
-	
 	// #{category} #{currentPage} 줘야함.
-	
 	@RequestMapping(value = "/selectAllWithCategory" , method= RequestMethod.GET)
 	public String selectAllBoardWithCategory(@RequestParam Map<String, Object> paramMap
 			,Model model) {
@@ -117,6 +126,8 @@ BoardService> {
 	@RequestMapping(value = "/view" , method = RequestMethod.GET)
 	public ModelAndView boardView(@RequestParam int no,ModelAndView mv) {
 	 
+		boardService.increaseHit(no);
+		
 		mv.addObject("boardDto",
 				boardService.selectByNo(no));
 		

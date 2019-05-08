@@ -1,3 +1,5 @@
+<%@page import="com.www.homedoc.dto.PaginationDto"%>
+<%@page import="org.springframework.ui.Model"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -25,15 +27,15 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
   <c:forEach var="boardDtos" items="${boardDtos}" varStatus="status">
+  <tr>
     <td>${boardDtos.no }</td>
-	<td>${boardDtos.title }</td>
+	<td><a href="<%=request.getContextPath() %>/board/view?no=${boardDtos.no }">${boardDtos.title }</a></td>
 	<td>${boardDtos.writer }</td>
 	<td>${boardDtos.datetime }</td>
 	<td>${boardDtos.hit }</td>
-   </c:forEach>
   </tr>
+   </c:forEach>
   </tbody>
 </table>
 <hr/>
@@ -42,8 +44,19 @@
 	<!-- pagination start -->
 <nav aria-label="...">
 	  <ul class="pagination pagination  justify-content-center">
-	    <li class="page-item disabled">
-	      <a class="page-link" href="#" tabindex="1">이전</a>
+
+
+			<c:choose>
+				<c:when test="${paginationDto.prevPage == 0}">
+     	   <li class="page-item disabled"> 
+       			 </c:when>
+				<c:otherwise>
+        <li class="page-item ">
+         </c:otherwise>
+			</c:choose>
+
+	      <a class="page-link" href="<%=request.getContextPath()%>/board/selectAllBoard?currentPage=${paginationDto.prevPage}">이전</a>
+	      <%-- <a class="page-link" href="<%=request.getContextPath()%>/board/selectAllBoard?currentPage=${paginationDto.prevPage}" tabindex="1">이전</a> --%>
 	    </li>
 	    
 	    
@@ -53,15 +66,22 @@
 	     	 <c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 	    <li class="page-item">
 		    <a class="page-link" 
-		    	href="<%=request.getContextPath()%>/board/selectAllWithCategory?category=${category}&currentPage=${i}">
+		    	href="<%=request.getContextPath()%>/board/selectAllBoard?currentPage=${i}">
 		    ${i}
 	    </a>
 	    </li>
 
 	    </c:forEach>
-	    
-	    <li class="page-item">
-	      <a class="page-link" href="#">다음</a>
+	 <%  PaginationDto paginationDto = (PaginationDto)request.getAttribute("paginationDto"); %>
+		<% if(paginationDto.getNextPage() == paginationDto.getLastPage() + 1) { %>
+	
+     	   <li class="page-item disabled"> 
+       			<%} else { %>
+        <li class="page-item ">
+        <%} %>
+        
+	
+	      <a class="page-link" href="<%=request.getContextPath()%>/board/selectAllBoard?currentPage=${paginationDto.nextPage}">다음</a>
 	    </li>
 	  </ul>
 	</nav>
