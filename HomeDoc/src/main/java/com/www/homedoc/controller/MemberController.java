@@ -52,7 +52,7 @@ public class MemberController extends CRUDController<MemberDto, Integer,
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String moveLoginPage() {
-		return "/member/login";
+		return "member/login";
 	}
 	
 	@RequestMapping(value="/logout")
@@ -100,12 +100,12 @@ public class MemberController extends CRUDController<MemberDto, Integer,
 				
 
 				
-				return "home";
+				return "redirect:/";
 			} else {
 				// 로그인 실패 페이지
 				System.out.println("로그인 실패");
 
-				return "redirect:/";
+				return "member/login";
 			}
 			
 	}

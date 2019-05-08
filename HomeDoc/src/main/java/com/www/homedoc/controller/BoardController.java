@@ -124,19 +124,17 @@ BoardService> {
 
 	
 	@RequestMapping(value = "/view" , method = RequestMethod.GET)
-	public ModelAndView boardView(@RequestParam int no,ModelAndView mv) {
+	public String boardView(@RequestParam int no,Model model) {
 	 
 		boardService.increaseHit(no);
 		
-		mv.addObject("boardDto",
+		model.addAttribute("boardDto",
 				boardService.selectByNo(no));
 		
-		mv.addObject("replyDto",
+		model.addAttribute("replyDto",
 				replyService.getAllReplyWithboard_no(no));
 
-		mv.setViewName("boardView");
-		
-		return mv;
+		return "board/boardView";
 	}
 	
 	

@@ -68,6 +68,7 @@
 		<a href="mypage.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-user">&nbsp&nbsp&nbsp</i>마이 페이지</a>
         <a href="quo_select.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-house-damage">&nbsp&nbsp</i>수리견적</a>
 		<a href="quo_select_c.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-house-damage">&nbsp&nbsp</i>견적 확인(업체메뉴)</a>
+		<a href="<%=request.getContextPath() %>/board/selectAllBoard" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-house-damage">&nbsp&nbsp</i>간편견적 목록</a>
         <a href="company_list.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fa fa-search">&nbsp&nbsp&nbsp</i>업체검색</a>
 		<button class="list-group-item list-group-item-action bg-light" style="width:239px;  border-bottom:1px;" data-toggle="collapse" data-target="#side_m0" aria-expanded="false" aria-controls="collapseExample"><i class="fab fa-fort-awesome">&nbsp&nbsp</i>하우징 서비스</button>
 <!--<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -144,7 +145,7 @@ data-target 버튼
 		<div class="container" style="width:100px;">
 	      <span style="color:limegreen"><i class="fas fa-house-damage fa-lg"></i></span>
 		  <div style="margin: 8px 0px 0px 10px;">
-			<a class="navbar-brand" href="index.html"><h6>HomeDoc</h6></a>
+			<a class="navbar-brand" href="<%=request.getContextPath()%>/"><h6>HomeDoc</h6></a>
 		  </div>
 		</div>
 		</a>
@@ -215,7 +216,7 @@ data-target 버튼
 	    <!-- 로그인 버튼 -->     
 			<form  class="nav_log" align="right">
           <font data-toggle="modal" data-target="#loginModal" style="cursor:pointer">
-	        <button type="button" class="btn btn-outline-info btn" style="border: solid; width: 60pt; height: 35pt;">로그인</button>
+	        <a href="<%=request.getContextPath() %>/member/login" type="button" class="btn btn-outline-info btn" style="border: solid; width: 60pt; height: 35pt;">로그인</a>
 		  </font>
 		  <%} else { %>
 		  
