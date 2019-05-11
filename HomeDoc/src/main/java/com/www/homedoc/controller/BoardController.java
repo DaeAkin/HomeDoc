@@ -41,11 +41,10 @@ BoardService> {
 	@Autowired
 	PaginationService paginationService;
 	
-	@RequestMapping(value = "/insert" , method = RequestMethod.GET)
-	public String boardInsert() {
-		
-		return "board/boardInsert";
-	}
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/boardwrite" , method = RequestMethod.GET)
 	public String moveBoardWriteView() {
@@ -136,6 +135,8 @@ BoardService> {
 
 		return "board/boardView";
 	}
+	
+	
 	
 	
 	

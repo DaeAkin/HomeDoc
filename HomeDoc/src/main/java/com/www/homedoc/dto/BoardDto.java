@@ -7,7 +7,7 @@ public class BoardDto {
 	int no;
 	String title;
 	String writer;
-	String datetime = TimeUtil.getExactlyCurrentTime();
+	String datetime;
 	int hit;
 	String category;
 	String content;

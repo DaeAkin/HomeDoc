@@ -12,28 +12,19 @@
   <div id="jb-header">
 	<img src="img/LED.jpg" alt="Sample Image" style="height:275px; float: left; margin:3px 3px 3px 3px;">
 	<div id="jb-text" style="">
-	  <h3><b>전등이 고장났어요!</b></h3><hr>
-	  <p>오늘 아침에 일어났는데 전등이 나갔습니다. 전등을 고치려면 얼마정도 드나요</p><br>
+	  <h3><b>${boardDto.title }</b></h3><hr>
+	  <!-- <p>오늘 아침에 일어났는데 전등이 나갔습니다. 전등을 고치려면 얼마정도 드나요</p><br> -->
 	  <h3><b>[최저가 가격 표시]</b></h3><hr>
 	  <font color="gray">[판매자의 간단한 이유 입력란]<br>전구교체만 하면 해결될 문제로 보입니다.</font>
 	</div>
 	<div id="jb-map" style="maring-right:0px; padding-top:230px; border:none; text-align:right;">
-          <img src="img/user.png" style="width:30px;"><b>  volde***</b></img><br>
-          작성일자 : 2019/03/13
+          <img src="img/user.png" style="width:30px;"><b>${boardDto.writer }</b></img><br>
+          작성일자 : ${boardDto.datetime }
 		</div>
   </div>
 
   <div id="jb-content-re">
-	<h3><b>상세 내용</b></h3><hr>
-	<img src="img/LED_detail_1.jpg" class="media-object" alt="Sample Image" height="300"><br>
-	질문자가 올린 게시글 내용이 들어가면 됩니다.<br>니가죽나 내가죽나 해보자
-	<div id="111">시발</div>
-	<div class="111">개시발</div>
-	<img src="img/LED_detail_2.jpg" class="media-object" alt="Sample Image" height="300"><br>
-	질문자가 올린 게시글 내용이 들어가면 됩니다.<br>
-	<img src="img/LED_detail_3.jpg" class="media-object" alt="Sample Image" height="300"><br>
-	질문자가 올린 게시글 내용이 들어가면 됩니다.
-	<Br><br><br><br>
+	${boardDto.content}
   </div>
 
   <div id="jb-map" style="">

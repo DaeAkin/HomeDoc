@@ -23,6 +23,7 @@
 
 
 	<form action="<%=request.getContextPath() %>/board/boardwrite" method="post" id="frm" name="frm" method="POST" >
+		<input type="hidden" name="thumbnail" value=""/>
 	  <table class="table table-bordered">
 		<tr>
 		  <th>제목</th>
@@ -40,8 +41,8 @@
          
           <td><input type="file" id="ajaxUpload" placeholder="파일을 선택하세요. " name="filename" class="form-control"/></td> -->
 	 	<th>첨부파일 : </th>
-	 <td><input type="file"  id="uploadFile" name="uploadFile" accept="image/*"/>
-                    <input type="button"  id="ajaxUpload" name="ajaxUpload" value="사진 업로드"/></td>
+	 <td><input  type="file"  id="uploadFile" name="uploadFile" accept="image/*"/>
+                  </td>
 		</tr>
 		<tr>
 		  <th>태그: </th>
@@ -175,8 +176,11 @@ $(document).ready(function() {
                 $("#uploadFile").on("change",function(event) {
                     event.preventDefault();
                     
-                    var form = document.forms[0];
-                    var formData = new FormData(form);
+  					 var formData = new FormData();
+                    formData.append("file",$("#uploadFile")[0].files[0]); 
+                    
+          /*  		var form = document.forms[0];
+                var formData = new FormData(form); */ 
                     
                     
                     $.ajax({
@@ -184,31 +188,43 @@ $(document).ready(function() {
                         type            :       "post",
                         url             :       "<%=request.getContextPath()%>/upload/image",
                         data            :       formData,
-                        dataType        :       "json",
+               
+                        enctype 		: 		'multipart/form-data',
                       processData     :       false,
                         contentType     :       false, 
                         success         :       function(data) {
                             
                         
-                        alert(data.makeThumbnail);
+                        alert("성공!");
+                       alert("썸네일 :"+  data.makeThumbnail);
                    
                         var str = "";
                         var textstr = "";
                         
-                        str = "<div><a href='<%=request.getContextPath()%>/board/displayFile?fileName="+data.originalFile+"'>";
-                        str += "<img src='<%=request.getContextPath()%>/board/displayFile?fileName="+data.makeThumbnail+"'></a></div>";
-                        textstr = "<div><a href='<%=request.getContextPath()%>/board/displayFile?fileName="+data.originalFile+"'>";
-                        textstr += "<img style='max-width:100%; height:auto'src='<%=request.getContextPath()%>/board/displayFile?fileName="+data.boardInsertImage+"'/></a>";
+                        str = "<div><a href='<%=request.getContextPath()%>/image/displayFile?fileName="+data.originalFile+"'>";
+                        str += "<img src='<%=request.getContextPath()%>/image/displayFile?fileName="+data.makeThumbnail+"'></a></div>";
+                        textstr = "<div><a href='<%=request.getContextPath()%>/image/displayFile?fileName="+data.originalFile+"'>";
+                        textstr += "<img style='max-width:100%; height:auto'src='<%=request.getContextPath()%>/image/displayFile?fileName="+data.boardInsertImage+"'/></a>";
                     
+                        $("input[type=hidden][name=thumbnail]").val(data.makeThumbnail);
                         
                             
                         /* $(".uploadList").append(str); */
                         oEditors.getById["smarteditor"].exec("PASTE_HTML", [textstr]);
+                        },
+                        
+                        error			:		function(request,status,error) {
+                        	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+                        	
+                        
                         }
+                        
+                        
                     })
                     
                     
-                })
+                });
 				
 		
 			
