@@ -39,13 +39,13 @@
 	
 	  <div class="card border-light" style="width: 28rem; height:29rem; cursor: pointer;" 
 	  onclick="location.href='<%=request.getContextPath()%>/board/view?no=${boardDtos.no }';">
-	    <img class="card-img-top" src="<%=request.getContextPath() %>/resources/img/map.jpg" id="index_r_image" alt="Card image cap">
+	    <img class="card-img-top" src="<%=request.getContextPath()%>/image/displayFile?fileName=${boardDtos.thumbnail}" id="index_r_image" >
 		<div class="card-body">
 		   <h3 class="card-title"><b>${boardDtos.title }</b></h3>   
             <small>${boardDtos.datetime }</small>
 			<br><br>
 		  </h6>
-	 	  <p class="card-text">${boardDtos.content}</p>        
+	 	  <%-- <p class="card-text">${boardDtos.content}</p>  --%>       
 		</div>
 	  </div>
                  

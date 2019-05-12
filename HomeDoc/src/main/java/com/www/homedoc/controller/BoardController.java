@@ -47,7 +47,10 @@ BoardService> {
 	
 	
 	@RequestMapping(value = "/boardwrite" , method = RequestMethod.GET)
-	public String moveBoardWriteView() {
+	public String moveBoardWriteView(Model model) {
+		
+		model.addAttribute("category",boardService.getCategoryList());
+		
 		return "board/boardWrite";
 				
 	}
@@ -136,6 +139,11 @@ BoardService> {
 		return "board/boardView";
 	}
 	
+	@RequestMapping(value = "/quo_select" ,method = RequestMethod.GET)
+	public String moveQuo_select() {
+		
+		return "board/quo_select";
+	}
 	
 	
 	

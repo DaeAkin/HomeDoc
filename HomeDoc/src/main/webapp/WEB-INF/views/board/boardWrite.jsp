@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="ko">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
@@ -45,17 +46,16 @@
                   </td>
 		</tr>
 		<tr>
-		  <th>태그: </th>
+		  <th> 카테고리: </th>
           <td>
 		  <div class="form-group">
 			<select>
-	        <!-- Notice the HTML5 data attributes -->
-			  <option value="0" selected="selected" data-skip="1">클릭해서 업체를 선택해주세요.</option>
-			  <option value="1" data-icon="" data-html-text="전체">전체</option>
-			  <option value="2" data-icon="img/brand1.jpg" data-html-text="펌 리빙">펌 리빙</option>
-	          <option value="3" data-icon="img/brand2.jpg" data-html-text="현대리바트">현대리바트</option>
-	          <option value="4" data-icon="img/brand3.jpg" data-html-text="집공">집공</option>
-	          <option value="5" data-icon="img/brand4.jpg" data-html-text="떼시스">떼시스</option>
+			  <option value="0" selected="selected" data-skip="1">클릭해서 카테고리를 선택해주세요.</option>
+	        <c:forEach var="category" items="${category}" varStatus="status">
+			 
+			  <option value="${category.no }" data-icon="" data-html-text="전체">${category.category }</option>
+	
+			</c:forEach>
 			</select>
 		  </div>
 		  </td>

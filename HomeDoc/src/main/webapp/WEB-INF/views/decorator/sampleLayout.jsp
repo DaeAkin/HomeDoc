@@ -66,7 +66,7 @@
       <div class="sidebar-heading" style="background-color:white; height:50px; border: 1px solid #ffffff;"><font color="white">HomeDocssssssssssssss</font></div>
       <div class="list-group list-group-flush" style="position: fixed;">
 		<a href="mypage.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-user">&nbsp&nbsp&nbsp</i>마이 페이지</a>
-        <a href="quo_select.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-house-damage">&nbsp&nbsp</i>수리견적</a>
+        <a href="<%=request.getContextPath() %>/board/quo_select" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-house-damage">&nbsp&nbsp</i>수리견적</a>
 		<a href="quo_select_c.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-house-damage">&nbsp&nbsp</i>견적 확인(업체메뉴)</a>
 		<a href="<%=request.getContextPath() %>/board/selectAllBoard" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-house-damage">&nbsp&nbsp</i>간편견적 목록</a>
         <a href="company_list.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fa fa-search">&nbsp&nbsp&nbsp</i>업체검색</a>

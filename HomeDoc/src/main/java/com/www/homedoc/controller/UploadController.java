@@ -33,7 +33,7 @@ import com.www.homedoc.util.ImageUploadUtil;
 @Controller
 public class UploadController {
 	
-	private static final String uploadPath = "/Users/donghyeonmin/upload";
+	private static final String uploadPath = "/Users/donghyeonmin/upload/";
 
 	@Autowired
 	ImageUploadUtil imageUploadUtil;
@@ -70,17 +70,11 @@ public class UploadController {
 	
 
 	
-	// 이미지 표시 매핑.
+		// 이미지 표시 매핑.
 		@ResponseBody // view가 아닌 data 리턴
 		@RequestMapping("/image/displayFile")
 		public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
 			
-			
-			
-			System.out.println("*********************** displayFile 메소드 시작 *********************");
-			System.out.println("*********************** displayFile 메소드 시작 *********************");
-			System.out.println("*********************** displayFile 메소드 시작 *********************");
-			System.out.println("*********************** displayFile 메소드 시작 *********************");
 			//서버의 파일을 다운로드하기 위한 스트림
 			InputStream in = null; // java.io
 			ResponseEntity<byte[]> entity = null;
@@ -115,6 +109,9 @@ public class UploadController {
 			
 			return entity;
 		}
+		
+		// 이미지 표시 매핑.
+				
 	 
 	
 }

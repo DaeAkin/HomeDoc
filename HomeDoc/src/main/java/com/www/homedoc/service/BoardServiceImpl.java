@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.www.homedoc.dao.BoardDao;
 import com.www.homedoc.dto.BoardDto;
+import com.www.homedoc.dto.QuoDto;
 @Service
 public class BoardServiceImpl extends CRUDServiceImpl<BoardDto, Integer, BoardDao> implements BoardService{
 
@@ -45,6 +46,13 @@ public class BoardServiceImpl extends CRUDServiceImpl<BoardDto, Integer, BoardDa
 		
 		boardDao.increaseHit(board_no);
 		
+	}
+
+
+	@Override
+	public List<QuoDto> getCategoryList() {
+		// TODO Auto-generated method stub
+		return boardDao.getCategoryList();
 	}
 
 

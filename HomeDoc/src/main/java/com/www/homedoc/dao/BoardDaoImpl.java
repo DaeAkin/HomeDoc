@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.www.homedoc.dto.BoardDto;
 import com.www.homedoc.dto.PaginationDto;
+import com.www.homedoc.dto.QuoDto;
 @Repository("boardDao")
 public class BoardDaoImpl extends CRUDDaoImpl<BoardDto, Integer> implements BoardDao{
 
@@ -64,6 +65,14 @@ public class BoardDaoImpl extends CRUDDaoImpl<BoardDto, Integer> implements Boar
 	public List<BoardDto> getAllBoardWithPagination(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("getAllBoardWithPagination",paramMap);
+	}
+
+
+
+	@Override
+	public List<QuoDto> getCategoryList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("getCategoryList");
 	}
 
 }

@@ -28,8 +28,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public class FileUtils {
 
 	// 파일이 저장될 위치.
-	private static final String filePath = "/Users/donghyeonmin/upload";
-	private static final String imageMemberPath = "/Users/donghyeonmin/upload";
+	private static final String filePath = "/Users/donghyeonmin/upload/";
+	private static final String imageMemberPath = "/Users/donghyeonmin/upload/";
 
 	public List<Map<String, Object>> parseInsertFileInfo(Map<String, Object> map, HttpServletRequest request)
 			throws Exception {

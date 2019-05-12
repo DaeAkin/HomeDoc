@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.www.homedoc.dto.BoardDto;
+import com.www.homedoc.dto.QuoDto;
 
 public interface BoardService extends CRUDService<BoardDto, Integer>{
 
@@ -15,4 +16,8 @@ public interface BoardService extends CRUDService<BoardDto, Integer>{
 	List<BoardDto> getBoardForHomeWithLimit(Map<String, Object> paramMap);
 	
 	void increaseHit(int board_no);
+	
+	List<QuoDto> getCategoryList();
+	
+	
 }

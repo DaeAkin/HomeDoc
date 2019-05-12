@@ -76,6 +76,11 @@
 		
 	</update>
 	
+	<select id="getCategoryList"
+	 resultType="com.www.homedoc.dto.BoardDto">
+	select * from quotation;
+	</select>
+	
 	
 
 	
