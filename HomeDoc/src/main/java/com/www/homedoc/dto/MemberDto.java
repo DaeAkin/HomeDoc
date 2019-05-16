@@ -1,5 +1,10 @@
 package com.www.homedoc.dto;
 
+import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+
+import com.mysql.fabric.xmlrpc.base.Member;
+
 public class MemberDto {
 
 	int no;
@@ -31,11 +36,7 @@ public class MemberDto {
 		this.email = email;
 		this.address = address;
 		this.phone = phone;
-	}
-	
-	
-	
-	
+	}	
 	
 
 	public String getAddress() {

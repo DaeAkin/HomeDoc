@@ -1,13 +1,11 @@
 package com.www.homedoc.test;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import javax.servlet.http.HttpSession;
 
@@ -26,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.www.homedoc.controller.MemberController;
 import com.www.homedoc.dto.MemberDto;
 import com.www.homedoc.service.MemberService;
+import com.www.homedoc.service.interceptor.AlertInterceptor;
 
 // MemberController 부터 MVC 통합 테스트.
 
@@ -41,82 +40,76 @@ public class MemberControllerTest{
 	@Autowired
 	MemberService memberService;
 	
+	@Autowired
+	AlertInterceptor alertInterceptor;
+
 	MemberDto memberDto;
-	
+
 	@Before
 	public void setUp() {
 		mockMvc = MockMvcBuilders
                 .standaloneSetup(memberController)
-//                .addFilters(new CORSFilter())
+                .addInterceptors(alertInterceptor)
                 .build();
-		
-		memberDto = new MemberDto(
-				"testId", "1234", "testeMail@gmail.com",
-				"testAdress", "01011112222"
-				);
-		
-		
-		memberService.deleteAll();
-		
-		memberService.insert(memberDto);
+
 	}
+	
 	
 	@Test
 	public void memberLogin() throws Exception {
-
-		
+	
 		
 		//정상 로그인처리
 	MvcResult result =
 				mockMvc.perform(post("/member/login")
 					.param("id", "testid")
 					.param("pw", "1234"))
-					.andDo(print())
-					//리다이렉트 응답코드는 302
-					.andExpect(status().is(200))
-					.andExpect(jsonPath("$.code", is("OK")))
+//					.andExpect(status().is(302))
 					.andReturn();
 
-	ModelAndView mav = result.getModelAndView();
+	ModelAndView mv = result.getModelAndView();
 	MockHttpServletRequest request = result.getRequest();
-	
+
 	HttpSession session = request.getSession();
 	
+	System.out.println("view Name :" + mv.getViewName());
 	System.out.println("--- session user : " + 
 			session.getAttribute("id"));
 	assertThat((String)session.getAttribute("id"), is("testid"));
 	
+	System.out.println("model : " + mv.getModel().get("a"));
 	
-//	Map<String, Object> paramMap = null;
-//	System.out.println("code : " + 
-//			memberController.memberLogin(paramMap, session).get("code"));
-//	
+	assertThat(mv.getModelMap().get("alertDtos"), is(notNullValue()));
+//	System.out.println("request : " + request.getAttribute("alertDtos"));
+	
+	
 	
 	}
 	
 	//회원가입 테스트
 	@Test
-	public void MemberSignup() throws Exception {
+	public void memberSignup() throws Exception {
 		MvcResult result =
-					mockMvc.perform(post("/member/signup")
+					mockMvc.perform(post("/member/insert")
 					.param("id", "testidid")
 					.param("pw", "1234")
 					.param("address", "서울시 강동구")
 					.param("email", "kei89011@gmail.com")
 					.param("phone", "010-1111-2222")
 							)
-					
-					
-					// redirect 됐는지 확인
-					.andExpect(status().is(302))
 					.andReturn();
 					
 	}
 	
+	@Test
+	public void memberValidationTest() throws Exception {
 	
-	//이메일인증 로직 
+				mockMvc.perform(post("/member/login")
+//				.param("id", "testid")
+				.param("pw", "1234"));
 	
+	}
 	
-	
+
 
 } 

@@ -22,35 +22,36 @@ public class BoardServiceTest {
 	
 	@Autowired
 	BoardService boardService;
-	
+
 	BoardDto boardDto;
 	
 	@Before
 	public void setUp() {
 		 boardDto = new BoardDto(
-				 "testboard", "testwriter", "2019-03-01", 0, "1" ,"컨텐트 내용","asd.jpg");
+				 "testboard", "testwriter", 0, "1" ,"컨텐트 내용","asd.jpg");
 	}
 	
 	@Test
 	public void cRUDTest() {
 		//DB 전부삭제. 
-		boardService.deleteAllBoard();
+		boardService.deleteAll();
 	
 		//DTO 1개 삽입
-		boardService.insertBoard(
+		boardService.insert(
 				boardDto);
 		
 		//DB 전부 가져오기
 		List<BoardDto> boardDtos =
-				boardService.getAllBoard();
-	
-		
+				boardService.selectAll();
 		//확인 
 		assertThat(boardDtos.get(0).getTitle(), is(boardDto.getTitle()));
 		
+		//조회수 증가 테스트
+		boardService.increaseHit(boardDtos.get(0).getNo());
 		// 게시글 업데이트 시작.
 		boardDto.setTitle("updateTitle");
-		boardDto.setContent("update Content");
+		boardDto.setContent("update Content"); 
+		
 		
 		// 게시글 업데이트
 		// no 업데이트 
@@ -61,22 +62,25 @@ public class BoardServiceTest {
 
 	
 	
-		boardService.updateBoard(boardDto);
+		boardService.update(boardDto);
 		
 		// 게시글 한개 가져오는 함수도 잘 작동되는지 확인하기. 
-		BoardDto resultBoard = boardService.getOneBoard(boardDto);
+		BoardDto resultBoard = boardService.selectByNo(boardDto.getNo());
 		
 		assertThat(resultBoard.getTitle(), is(boardDto.getTitle()));
 		
 		 boardDtos = 
-					boardService.getAllBoard();
+					boardService.selectAll();
 		
 		 assertThat(boardDtos.get(0).getTitle(), is(boardDto.getTitle()));
 		
+		 //조회수가 1증가했는지확인.
+		 assertThat(boardDto.getHit()+1,
+				 	is(resultBoard.getHit()));
 		//게시글 업데이트 끝. 
 		 
 		//삭제 테스트
-		boardService.deleteOneBoardWithBoard_no(
+		boardService.deleteByNo(
 				boardDtos.get(0).getNo());
 		
 		System.out.println("삭제할 no :" + boardDtos.get(0).getNo());
@@ -84,9 +88,9 @@ public class BoardServiceTest {
 		
 		//DB 전부 가져오기 
 		List<BoardDto> resultDtos = 
-				boardService.getAllBoard();
+				boardService.selectAll();
 		
-		// DB가 0개인지 확인
+		// DB가 0개인지 확인 
 		assertThat(resultDtos.size(), is(0));
 		
 		 

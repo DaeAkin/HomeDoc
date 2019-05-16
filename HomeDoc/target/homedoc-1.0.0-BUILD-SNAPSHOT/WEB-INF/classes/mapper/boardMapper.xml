@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN/" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.homedoc.dao.BoardDaoImpl"><!-- Class be looked -->
+
+	
+	
+	<select id="getAllboardWithCategory" parameterType="com.www.homedoc.dto.BoardDto"
+	resultType="com.www.homedoc.dto.BoardDto">
+		select 
+			*
+		from
+			board
+		where 
+			category = #{category}
+		order by no desc
+	</select> 
+	
+	<insert id="insertBoard" parameterType="com.www.homedoc.dto.BoardDto">
+	
+		insert into board(
+		title,
+		writer,
+		datetime, <!-- hit 의 디폴트는 0  -->
+		category, 
+		content
+		)values(
+		#{title},
+		#{writer},
+		#{datetime},
+		#{category},
+		#{content}
+		)
+	</insert>
+	
+	<delete id="deleteAllBoard">
+		delete
+			from
+		board
+	</delete>
+	
+	<select id="getOneBoard" parameterType="com.www.homedoc.dto.BoardDto"
+	resultType="com.www.homedoc.dto.BoardDto">
+		select
+			*
+		from
+			board
+		where
+			no = #{no}
+	</select>
+	
+	<select id="getAllBoard" resultType="com.www.homedoc.dto.BoardDto">
+		select
+			*
+		from
+			board
+	</select>
+	
+	<delete id="deleteOneBoardWithBoard_no"
+	parameterType="int">
+		delete
+			from
+		board
+			where
+		no = #{no}
+	</delete>
+	<!--   -->
+	<update id="updateBoard" parameterType="com.www.homedoc.dto.BoardDto">
+		update
+			board
+		set
+			title = #{title},
+			datetime = #{datetime}, <!-- datetime은 글을 수정한 날짜로 -->
+			category = #{category},
+			content = #{content}
+		where
+			no = #{no}
+	</update>
+	
+	<select id="getBoardListDoWithPagination"
+	parameterType="java.util.HashMap"
+	resultType="com.www.homedoc.dto.BoardDto"
+	>
+		select 
+			* 
+		from
+			board 
+		where category = #{category}
+			order by no desc
+		limit #{startNo},#{perPage}
+		
+	
+	</select>
+	
+	<select id="getBoardForHomeWithLimit" 
+		parameterType="java.util.HashMap"
+		resultType="com.www.homedoc.dto.BoardDto"
+	>
+	
+		select 
+			* 
+		from
+			board 
+		where category = #{category}
+			order by no desc
+		limit 0,#{end}
+	</select>
+	
+	
+
+	
+
+
+	
+	
+</mapper>

@@ -35,13 +35,13 @@ public class PaginationTest {
 				 "testboard", "testwriter", "2019-03-01", 0, "1" ,"컨텐트 내용","asd.jpg");
 		
 		 	//DB 전부삭제. 
-			boardService.deleteAllBoard();
+			boardService.deleteAll();
 			
 			//테스트용 게시판 50개 작업 
 			//30개로 페이징 처리 테스트를 해볼 예정.
 			for(int i=0; i<50; i++) {
 				boardDto.setTitle("testboard" + i);
-				boardService.insertBoard(boardDto);
+				boardService.insert(boardDto);
 			}
 		 
 	}
@@ -57,7 +57,7 @@ public class PaginationTest {
 		Map<String, Object> pagingMap = new HashMap<>();
 		
 		pagingMap.put("category", "1");
-		pagingMap.put("currentPage", 4);
+		pagingMap.put("currentPage", "4");
 		
 		
 		
@@ -71,21 +71,49 @@ public class PaginationTest {
 		
 		PaginationDto paginationDto =
 				(PaginationDto)resultMap.get("paginationDto");
-		
-		System.out.println("---- 출력할 페이지 ----");
-		System.out.println("startPage :" +paginationDto.getStartPage());
-		System.out.println("endPage :" +paginationDto.getEndPage());
-		System.out.println("currentPage :" +paginationDto.getCurrentPage());
-		System.out.println("startNo :" +paginationDto.getStartNo());
-		System.out.println("endNo :" +paginationDto.getEndNo());
-		System.out.println("lastPage :" +paginationDto.getLastPage());
-		
+			
+		System.out.println(paginationDto.toString());
 		
 		System.out.print("<<" + " ");
 		for(int i = paginationDto.getStartPage(); i<=paginationDto.getEndPage(); i++) {
 			System.out.print(i + " ");
 		}
 		System.out.print(">>" + " ");
+		
+		//<< 1 2 3 4 5 6 >>
+		
+	}
+	
+	
+	@Test
+	public void paginationTest2() {
+		// 게시판 전부 가져오는..
+		Map<String, Object> pagingMap = new HashMap<>();
+		
+		pagingMap.put("currentPage", "4");
+		
+		
+		
+		
+		Map<String, Object> resultMap = 
+				paginationService.getAllBoardWithPagination(pagingMap);
+						
+		List<BoardDto> boardDtos = (List<BoardDto>)resultMap.get("boardDtos");
+		
+		System.out.println(boardDtos.size());
+		
+		PaginationDto paginationDto =
+				(PaginationDto)resultMap.get("paginationDto");
+			
+		System.out.println(paginationDto.toString());
+		
+		System.out.print("<<" + " ");
+		for(int i = paginationDto.getStartPage(); i<=paginationDto.getEndPage(); i++) {
+			System.out.print(i + " ");
+		}
+		System.out.print(">>" + " ");
+		
+		//<< 1 2 3 4 5 6 >>
 		
 	}
 	

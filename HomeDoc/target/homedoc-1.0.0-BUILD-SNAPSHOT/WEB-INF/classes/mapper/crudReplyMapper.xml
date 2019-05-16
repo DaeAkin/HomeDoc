@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN/" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.homedoc.dao.ReplyDaoImpl"><!-- Class be looked -->
+
+   
+	<!--  CRUD 기본 SQL들 -->
+	<insert 
+	id="insert"
+	parameterType="com.www.homedoc.dto.ReplyDto">
+		insert into boardreply(
+		board_no,
+		content,
+		writer,
+		isalert
+		)values(
+		#{board_no},
+		#{content},
+		#{writer},
+		#{isalert}
+		)
+	</insert>
+
+	<update id="update"  parameterType="com.www.homedoc.dto.ReplyDto">
+		update
+			boardReply
+		set
+			content = #{content}
+		where
+			no = #{no}
+	
+	</update>
+	
+	<delete id="delete" parameterType="com.www.homedoc.dto.ReplyDto">
+		delete
+			from
+		boardreply
+			where 
+		no = #{no}
+	</delete>
+	
+	
+	<select id="selectAll" 
+	resultType="com.www.homedoc.dto.ReplyDto">
+		select
+			*
+		from
+			boardreply
+	</select>
+	
+		<select id="selectByNo" 
+	resultType="com.www.homedoc.dto.ReplyDto">
+		select
+			*
+		from
+			boardreply
+		where 
+			no = #{no}
+	</select>
+	
+	<delete id="deleteAll">
+		delete
+			from
+		boardreply
+	</delete>
+	
+	
+	
+	
+	
+	
+ 
+
+	<!-- 끝 -->
+
+
+	
+
+
+	
+	
+</mapper>

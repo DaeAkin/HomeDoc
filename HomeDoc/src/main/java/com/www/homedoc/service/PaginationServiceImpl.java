@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.www.homedoc.dao.BoardDao;
 import com.www.homedoc.dto.BoardDto;
 import com.www.homedoc.dto.PaginationDto;
+import com.www.homedoc.util.TimeUtil;
 
 @Service
 public class PaginationServiceImpl implements PaginationService{
@@ -21,16 +22,13 @@ public class PaginationServiceImpl implements PaginationService{
 	BoardDao boardDao;
 	
 	
+	
+	
 	//dao로 #{category} #{startNo}, #{endNo} 줘야함.
 	//Map에 List<BoardDto>랑 paginationDto 넣어짐. 
 	@Override
 	public Map<String, Object> getBoardListDoWithPagination(Map<String, Object> paramMap) {
 		Integer currentPage;
-		//테스트 
-		System.out.println("Service Category : " + paramMap.get("category"));
-		
-		//끝 테스트 
-		
 		
 		// 현재 누른페이지 가져오기. 없으면 1대입. 
 		if(paramMap.get("currentPage") == null) {
@@ -39,36 +37,71 @@ public class PaginationServiceImpl implements PaginationService{
 			currentPage = Integer.parseInt((String)paramMap.get("currentPage"));
 		}
 		
-		System.out.println("currentPage in Service : " + currentPage);
-		
+		// 카테고리지정. 		
 		BoardDto boardDto = new BoardDto();
-		
-		// 카테고리지정. 
 		boardDto.setCategory((String)paramMap.get("category"));
 		
 		// totalPage 구하기 . Map에 Key로 category 값 넣어주기.
 		int totalPage = boardDao.getAllboardWithCategory(boardDto).size();
 		
-		PaginationDto paginationDto = new PaginationDto(currentPage,totalPage);
-		System.out.println("startNo in Service :" +paginationDto.getStartNo());
-		System.out.println("perPage in Service :" +paginationDto.getPerPage());
+		Map<String, Object> paginationMap = doPagination(9,currentPage,totalPage);
+		paginationMap.put("category", paramMap.get("category"));
+		
+		Map<String,Object> resultMap = new HashMap<>();
+		
+		resultMap.put("boardDtos", boardDao.getBoardListDoWithPagination(paginationMap));
+		resultMap.put("paginationDto", paginationMap.get("paginationDto"));
+		return resultMap;
+	}
+	
+	public Map<String, Object >doPagination(int perPage,int currentPage,int totalPage) {
+		Map<String, Object> paramMap = new HashMap<>();
+		
+		
+		PaginationDto paginationDto = new PaginationDto(perPage,currentPage,totalPage);
+		
 		
 		paramMap.put("perPage", paginationDto.getPerPage());
 		paramMap.put("startNo", paginationDto.getStartNo());
 		paramMap.put("endNo", paginationDto.getEndNo());
+		paramMap.put("perView", paginationDto.getPerView());
+		paramMap.put("paginationDto", paginationDto);
 		
-		Map<String,Object> resultMap = new HashMap<>();
+		return paramMap;
 		
-		resultMap.put("boardDtos", boardDao.getBoardListDoWithPagination(paramMap));
-		resultMap.put("paginationDto", paginationDto);
+	}
+
+	@Override
+	public Map<String, Object> getAllBoardWithPagination(Map<String, Object> paramMap) {
+
+		Integer currentPage;
+		// 현재 누른페이지 가져오기. 없으면 1대입.
+		if (paramMap.get("currentPage") == null) {
+			currentPage = 1;
+		} else {
+			currentPage = Integer.parseInt((String) paramMap.get("currentPage"));
+		}
+		// 전체개시물 가져오기 .
+		int totalNum = boardDao.selectAll().size();
+		Map<String, Object> paginationMap = doPagination(3,currentPage,totalNum);
 		
-		List<BoardDto> boardDtos =
-				boardDao.getBoardListDoWithPagination(paramMap);
+		Map<String, Object> resultMap = new HashMap<>();
+
+		List<BoardDto> boardDtos = boardDao.getBoardListDoWithPagination(paginationMap);
+		resultMap.put("boardDtos", boardDtos);
+		for (BoardDto boardDto : boardDtos) {
+			boardDto.setDatetime(TimeUtil.TimeChange(boardDto.getDatetime()));
+			
+		}
 		
-		System.out.println("사이즈 뭐얌 :" + boardDtos.size());
+		System.out.println(resultMap.get("boardDtos").toString());
 		
+		resultMap.put("paginationDto", paginationMap.get("paginationDto"));
+		
+
 		return resultMap;
 	}
+	
 	
 	
 	

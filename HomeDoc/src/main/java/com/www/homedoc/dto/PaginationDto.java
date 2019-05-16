@@ -7,7 +7,7 @@ import apple.laf.JRSUIState.TitleBarHeightState;
 public class PaginationDto {
 
 	// 한번에 몇개의 페이지를 할건지? ex)5 : 1 2 3 4 5 가 뜸 
-	int perPage = 5;
+	int perPage;
 	//누른 페이지가 몇페이지인지 ?
 	int currentPage;
 	// 1 2 3 4 5 중에 1에 해당하는 시작페이지
@@ -15,7 +15,7 @@ public class PaginationDto {
 	// 1 2 3 4 5 중에 5에 해당하는 끝페이지 ( 라스트 페이지 아님.)
 	int endPage;
 	// << < 1 2 3 4 5 > >>
-	// 전체 보여줄 페이지의 개수 
+	// 전체 보여줄 게시물의 개수 
 	int totalPage;
 	// 가져올 갯수인데 처음에 정해주는?  
 	//DB에서 limit start,end 를 사용할때.
@@ -24,31 +24,33 @@ public class PaginationDto {
 	int perView = 5;  // 한페이지에 5개씩 보여준다.
 	// 가져올 갯수인데 마지막을 정해주는?
 	int endNo = perView;
-	@Deprecated
+	
 	// 다음페이지
 	int nextPage;
 	// 이전 페이지 
-	@Deprecated
+	
 	int prevPage;
 	// 최종 마지막 페이지 
 	int lastPage;
 	
 	//실제 서비스시 CurrentPage,totalPage를 생성자에 넣어서 호출해야함. 
-	public PaginationDto(int currentPage,int totalPage) {
+	public PaginationDto(int perPage, int currentPage,int totalPage) {
+		this.perPage = perPage;
 		this.currentPage = currentPage;
 		this.totalPage = totalPage;
 		
-		this.startNo = perPage * (currentPage-1); // 0
+		this.startNo = perView * (currentPage-1); // 0
 		
 		// 끝 no 처리 해줘야함. 아직안했는데, 안해도 될듯? 
-		this.endNo = perPage * currentPage; // 5 
+		this.endNo = perView * currentPage; // 5 
 		
-		this.lastPage = totalPage/perPage + 1;
+		this.lastPage = totalPage/perView + 1;
+		
 		// 몫이 0이면 ?
-		if (currentPage < perPage) {
+		if (currentPage <= perPage) {
 			this.startPage = 1;
 		} else {
-			this.startPage = currentPage / perPage * perPage + 1;
+			this.startPage = currentPage / perPage * perPage;
 		}
 		
 		this.endPage = startPage + perPage - 1;
@@ -57,7 +59,9 @@ public class PaginationDto {
 			this.endPage = lastPage;
 			System.out.println("????");
 		}
-	PrettyPrintUtil.printPaginationDto(this);
+		nextPage = endPage +1;
+		prevPage = startPage - 1;
+		System.out.println(toString());
 		
 		
 	}
@@ -147,6 +151,47 @@ public class PaginationDto {
 		this.lastPage = lastPage;
 	}
 	
+	
+	public int getNextPage() {
+		return nextPage;
+	}
+
+
+
+	public void setNextPage(int nextPage) {
+		this.nextPage = nextPage;
+	}
+
+
+
+	public int getPrevPage() {
+		return prevPage;
+	}
+
+
+
+	public void setPrevPage(int prevPage) {
+		this.prevPage = prevPage;
+	}
+
+
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "--- PagintationDto ---" + "\n" +
+		"perPage : " + this.perPage + "\n" +
+		"currentPage : " + this.currentPage + "\n" +
+		"startPage : " + this.startPage + "\n" +
+		"endPage : " + this.endPage +  "\n" +
+		"totalPage :" + this.totalPage + "\n"+
+		"startNo : " + this.startNo +  "\n" +
+		"perView : " + this.perView +  "\n" +
+		"endNo : " + this.endNo +  "\n" +
+		"lastPage : " + this.lastPage + "\n" +
+		"nextPage : " + this.nextPage + "\n" +
+		"prevPage : " + this.prevPage + "\n";
+	}
 	
 	
 }

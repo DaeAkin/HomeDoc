@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN/" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.homedoc.dao.MemberDaoImpl"><!-- Class be looked -->
+
+   
+	
+
+
+	
+	<select id="selectOneById" parameterType="com.www.homedoc.dto.MemberDto"
+		resultType="com.www.homedoc.dto.MemberDto">
+		select
+			*
+		from
+			member
+		where
+			id = #{id}
+	</select>
+	
+	<delete id="deleteAllMember">
+		delete
+			from
+		member
+	</delete>
+	
+	
+	<select id="getAlert" parameterType="java.lang.String"
+	resultType="com.www.homedoc.dto.AlertDto">
+	
+		select 
+			boardreply.no as reply_no,
+			board.title,
+			board.no,
+			boardreply.isalert,
+			boardreply.writer
+	   	from 
+	   		board left outer join
+	   	 boardreply on 
+	   		boardreply.board_no = (select no from board where writer=#{wrtier})
+	</select>
+	
+	<update id="changeIsAlertToTrue" parameterType="int">
+		update
+			boardreply
+		set
+			isalert = true
+		where
+			no = #{reply_no}
+	</update>
+	
+
+	
+
+
+	
+	
+</mapper>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org//DTD Mapper 3.0//EN/" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.homedoc.dao.BoardDaoImpl"><!-- Class be looked -->
+
+   
+	<!--  CRUD 기본 SQL들 -->
+	<insert 
+	id="insert"
+	parameterType="com.www.homedoc.dto.BoardDto">
+		insert into board(
+		title,
+		writer,
+		datetime, <!-- hit 의 디폴트는 0  -->
+		category, 
+		content,
+		thumbnail
+		)values(
+		#{title},
+		#{writer},
+		now(),
+		#{category},
+		#{content},
+		#{thumbnail}
+		)
+	</insert>
+
+	<update id="update"  parameterType="com.www.homedoc.dto.BoardDto">
+		update
+			board
+		set
+			title = #{title},
+			datetime = #{datetime}, <!-- datetime은 글을 수정한 날짜로 -->
+			category = #{category},
+			content = #{content}
+		where
+			no = #{no}
+	
+	</update>
+	
+	<delete id="delete" parameterType="com.www.homedoc.dto.BoardDto">
+		delete
+			from
+		board
+			where
+		no = #{no}
+	</delete>
+	
+	
+	<select id="selectAll" 
+	resultType="com.www.homedoc.dto.BoardDto">
+		select
+			*
+		from
+			board
+	</select>
+	
+		<select id="selectByNo" 
+	resultType="com.www.homedoc.dto.BoardDto">
+		select
+			*
+		from
+			board
+		where 
+			no = #{no}
+	</select>
+	
+	<delete id="deleteAll">
+		delete
+			from
+		board
+	</delete>
+	
+	
+	
+	
+	
+	
+ 
+
+	<!-- 끝 -->
+
+
+	
+
+
+	
+	
+</mapper>

@@ -67,7 +67,7 @@ public class MemberServiceTest{
 		
 		// 이메일 수정 테스트 시작
 		memberDto.setEmail("1111@gmail.com");
-		
+	
 		memberService.update(
 				memberDto);
 	

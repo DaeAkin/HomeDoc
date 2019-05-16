@@ -1,5 +1,7 @@
 package com.www.homedoc.dto;
 
+import com.www.homedoc.util.TimeUtil;
+
 public class BoardDto {
 
 	int no;
@@ -34,6 +36,20 @@ public class BoardDto {
 		this.title = title;
 		this.writer = writer;
 		this.datetime = datetime;
+		this.hit = hit;
+		this.category = category;
+		this.content = content;
+		this.thumbnail = thumbnail;
+		
+	}
+	
+	public BoardDto( String title,String writer
+			,int hit,String category,
+			String content,String thumbnail) {
+		
+		
+		this.title = title;
+		this.writer = writer;
 		this.hit = hit;
 		this.category = category;
 		this.content = content;
