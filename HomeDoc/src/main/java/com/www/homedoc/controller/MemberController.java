@@ -3,6 +3,7 @@ package com.www.homedoc.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -30,8 +31,7 @@ import com.www.homedoc.service.MemberService;
 //아래 어노테이션을 쓰면 오류가 뜨는데 확인하길.
 //@SessionAttributes("memberDto")
 @Controller
-public class MemberController extends CRUDController<MemberDto, Integer,
-	MemberService>{
+public class MemberController{
 	
 	
 	
@@ -131,6 +131,51 @@ public class MemberController extends CRUDController<MemberDto, Integer,
 	public String moveSignupJsp() {
 		return "register_client";
 	}
+	@RequestMapping(value = "/insert" , method = RequestMethod.POST )
+	public String SignUp(@ModelAttribute MemberDto memberDto) {
+		
+		return "redirect:/";
+				
+	}
+	
+	@RequestMapping(value = "/find_id",method = RequestMethod.GET)
+	public String moveFind_id() {
+		return "member/find_id";
+	}
+	
+	@RequestMapping(value = "/find_pw",method = RequestMethod.GET)
+	public String moveFind_pw() {
+		return "member/find_pw";
+	}
+	@RequestMapping(value = "/myPage",method = RequestMethod.GET)
+	public String moveMyPage() {
+		return "/member/myPagePw";
+	}
+	@RequestMapping(value="/myPage" , method = RequestMethod.POST)
+	public String isInvalidMyPage(@RequestParam String pw,HttpSession session) {
+		// interceptor나 AOP로 추후에 변경
+		// 세션은 현재 id만 갖고 있음.  
+		
+		
+		MemberDto memberDto = new MemberDto();
+		
+		memberDto.setId((String)session.getAttribute("id"));
+		
+		memberDto.setPw(pw);
+		
+		Boolean iscanLogined =
+				memberService.memberLogin(memberDto);
+		
+		if(iscanLogined) {
+		
+		return "/member/myPage";
+		} else {
+			return "/member/myPagePw";
+		}
+		
+	}
+
+	
 	
 	
 

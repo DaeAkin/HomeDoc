@@ -21,7 +21,7 @@ public class PaginationDto {
 	//DB에서 limit start,end 를 사용할때.
 	int startNo = 0;
 	// 한 페이지에 보여줄 게시물 갯수. 
-	int perView = 5;  // 한페이지에 5개씩 보여준다.
+	int perView; // 한페이지에 5개씩 보여준다.
 	// 가져올 갯수인데 마지막을 정해주는?
 	int endNo = perView;
 	
@@ -34,10 +34,11 @@ public class PaginationDto {
 	int lastPage;
 	
 	//실제 서비스시 CurrentPage,totalPage를 생성자에 넣어서 호출해야함. 
-	public PaginationDto(int perPage, int currentPage,int totalPage) {
+	public PaginationDto(int perPage, int currentPage,int totalPage,int perView) {
 		this.perPage = perPage;
 		this.currentPage = currentPage;
 		this.totalPage = totalPage;
+		this.perView = perView;
 		
 		this.startNo = perView * (currentPage-1); // 0
 		

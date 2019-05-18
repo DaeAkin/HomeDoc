@@ -27,26 +27,10 @@
 	<select id="getAlert" parameterType="java.lang.String"
 	resultType="com.www.homedoc.dto.AlertDto">
 	
-		select 
-			boardreply.no as reply_no,
-			board.title,
-			board.no,
-			boardreply.isalert,
-			boardreply.writer
-	   	from 
-	   		board left outer join
-	   	 boardreply on 
-	   		boardreply.board_no = (select no from board where writer=#{wrtier})
+		select boardreply.no as reply_no,boardreply.content,boardreply.datetime,board.title,board.no,boardreply.isalert,boardreply.writer from boardreply left outer join board on boardreply.board_writer = board.writer where boardreply.board_writer = #{wrtier};
 	</select>
 	
-	<update id="changeIsAlertToTrue" parameterType="int">
-		update
-			boardreply
-		set
-			isalert = true
-		where
-			no = #{reply_no}
-	</update>
+
 	
 
 	

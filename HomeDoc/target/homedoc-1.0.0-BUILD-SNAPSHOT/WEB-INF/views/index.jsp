@@ -16,16 +16,16 @@
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="margin-top:50px;">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src=""<%=resourceUri %>img/banner_1.jpg" alt="첫번째 슬라이드" id="index_slide">
+      <img class="d-block w-100" src="<%=resourceUri %>img/banner_1.jpg" alt="첫번째 슬라이드" id="index_slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src=""<%=resourceUri %>img/banner_2.jpg" alt="두번째 슬라이드" id="index_slide">
+      <img class="d-block w-100" src="<%=resourceUri %>img/banner_2.jpg" alt="두번째 슬라이드" id="index_slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src=""<%=resourceUri %>img/banner_3.jpg" alt="세번째 슬라이드" id="index_slide">
+      <img class="d-block w-100" src="<%=resourceUri %>img/banner_3.jpg" alt="세번째 슬라이드" id="index_slide">
     </div>
 	<div class="carousel-item">
-      <img class="d-block w-100" src=""<%=resourceUri %>img/banner_4.jpg" alt="세번째 슬라이드"  id="index_slide">
+      <img class="d-block w-100" src="<%=resourceUri %>img/banner_4.jpg" alt="세번째 슬라이드"  id="index_slide">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -51,13 +51,13 @@
 	<div class="index_tag">
 	<c:forEach var="boardDto1" items="${boardDto1}" varStatus="status">
 	  <div class="card" style="width: 13rem;  cursor: pointer;" onclick="location.href='/comso/jiseong/request.html';">
-	    <img class="card-img-top" src="<%=resourceUri %>${boardDto1.thumbnail }" id="index_image" alt="Card image cap">
+	    <img class="card-img-top" src="<%=request.getContextPath()%>/image/displayFile?fileName=${boardDto1.thumbnail }" id="index_image" alt="Card image cap">
 		<div class="card-body">
 		  <h6 class="card-title"><b>${boardDto1.title}</b>
             <br>
-            <small>2019-03-21</small>
+            <small>${boardDto1.datetime}</small>
 		  </h6>
-	 	  <p class="card-text">${boardDto1.content}</p>        
+	 	          
 		</div>
 	  </div>
 	</c:forEach>

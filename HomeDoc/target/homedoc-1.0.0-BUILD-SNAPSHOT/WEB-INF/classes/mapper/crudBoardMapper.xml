@@ -12,13 +12,15 @@
 		writer,
 		datetime, <!-- hit 의 디폴트는 0  -->
 		category, 
-		content
+		content,
+		thumbnail
 		)values(
 		#{title},
 		#{writer},
-		#{datetime},
+		now(),
 		#{category},
-		#{content}
+		#{content},
+		#{thumbnail}
 		)
 	</insert>
 

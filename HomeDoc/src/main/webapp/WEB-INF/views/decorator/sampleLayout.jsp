@@ -65,7 +65,7 @@
 	<div class="bg-light border-right" id="sidebar-wrapper" style="">
       <div class="sidebar-heading" style="background-color:white; height:50px; border: 1px solid #ffffff;"><font color="white">HomeDocssssssssssssss</font></div>
       <div class="list-group list-group-flush" style="position: fixed;">
-		<a href="mypage.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-user">&nbsp&nbsp&nbsp</i>마이 페이지</a>
+	
         <a href="<%=request.getContextPath() %>/board/quo_select" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-house-damage">&nbsp&nbsp</i>수리견적</a>
 		<a href="quo_select_c.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-house-damage">&nbsp&nbsp</i>견적 확인(업체메뉴)</a>
 		<a href="<%=request.getContextPath() %>/board/selectAllBoard" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-house-damage">&nbsp&nbsp</i>간편견적 목록</a>
@@ -76,9 +76,9 @@ data-target 버튼
 </button> -->
 		<div class="collapse" id="side_m0" style="width:240px;">
 		  <div style="width:240px; padding:5px 10px 0px 10px; background-color:#EBF2F7;">
-			<a href="housing_1.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp침실</a>
-			<a href="housing_2.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp욕실</a>
-			<a href="housing_3.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp거실</a>
+			<a href="<%=request.getContextPath() %>/board/selectAllWithCategory?category=1" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp침실</a>
+			<a href="<%=request.getContextPath() %>/board/selectAllWithCategory?category=2" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp욕실</a>
+			<a href="<%=request.getContextPath() %>/board/selectAllWithCategory?category=3" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp거실</a>
 		  </div>
 		</div>
 
@@ -88,9 +88,9 @@ data-target 버튼
 </button> -->
 		<div class="collapse" id="side_m1" style="width:240px;">
 		  <div style="width:240px; padding:5px 10px 0px 10px; background-color:#EBF2F7;">
-			<a href="inter_1.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp도배 / 장판</a>
-			<a href="inter_2.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp전기 / 조명</a>
-			<a href="inter_3.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp유리교체 / 창호</a>
+			<a href="<%=request.getContextPath() %>/board/selectAllWithCategory?category=4" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp도배 / 장판</a>
+			<a href="<%=request.getContextPath() %>/board/selectAllWithCategory?category=5" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp전기 / 조명</a>
+			<a href="<%=request.getContextPath() %>/board/selectAllWithCategory?category=6" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp유리교체 / 창호</a>
 		  </div>
 		</div>
 
@@ -100,9 +100,9 @@ data-target 버튼
 </button> -->
 		<div class="collapse" id="side_m2" style="width:240px;">
 		  <div style="width:240px; padding:5px 10px 0px 10px; background-color:#EBF2F7;">
-			<a href="out_1.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp외벽 / 지붕수리</a>
-			<a href="out_2.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp타일 시공</a>
-			<a href="out_3.html" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp페인트</a>
+			<a href="<%=request.getContextPath() %>/board/selectAllWithCategory?category=7" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp외벽 / 지붕수리</a>
+			<a href="<%=request.getContextPath() %>/board/selectAllWithCategory?category=8" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp타일 시공</a>
+			<a href="<%=request.getContextPath() %>/board/selectAllWithCategory?category=9" class="list-group-item list-group-item-action" style="width:229px; border:none;background-color:#EBF2F7; ">&nbsp페인트</a>
 			</div>
 		</div>
 		<a href="review.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fa fa-search">&nbsp&nbsp</i>서비스 후기</a>
@@ -219,7 +219,7 @@ data-target 버튼
 	        <a href="<%=request.getContextPath() %>/member/login" type="button" class="btn btn-outline-info btn" style="border: solid; width: 60pt; height: 35pt;">로그인</a>
 		  </font>
 		  <%} else { %>
-		  
+		  <a href="<%=request.getContextPath() %>/member/myPage" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-user">&nbsp&nbsp&nbsp</i>마이 페이지</a>
 		  	<form  class="nav_log" align="right">
           <font data-toggle="modal" data-target="#loginModal" style="cursor:pointer">
 	        <a href="<%=request.getContextPath() %>/member/logout" type="button" class="btn btn-outline-info btn" style="border: solid; width: 60pt; height: 35pt;">로그아웃</a>
@@ -365,24 +365,7 @@ data-target 버튼
   $('[data-toggle="popover"]').popover()
 })
     
-    
-    //    
-//    //패스워드 체크 유효성 검사 2
-//    $(function(){
-//  $('#user_pass').keyup(function(){
-//   $('font[name=check]').text('');
-//  }); //#user_pass.keyup
-//
-//  $('#chpass').keyup(function(){
-//   if($('#user_pass').val()!=$('#chpass').val()){
-//    $('font[name=check]').text('');
-//    $('font[name=check]').html("암호틀림");
-//   }else{
-//    $('font[name=check]').text('');
-//    $('font[name=check]').html("암호맞음");
-//   }
-//  }); //#chpass.keyup
-// });
+
 </script>
       
   </body>

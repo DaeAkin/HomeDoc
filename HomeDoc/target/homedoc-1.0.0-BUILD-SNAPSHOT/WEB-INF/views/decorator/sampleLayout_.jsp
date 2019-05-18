@@ -55,7 +55,7 @@
 
 	<!-- Sidebar -->
 	<div class="bg-light border-right" id="sidebar-wrapper" style="">
-      <div class="sidebar-heading" style=""><font color="white">HomeDocssssssssssssss</font></div>
+      <div class="sidebar-heading" style=""><font color="white">HomeDoc</font></div>
       <div class="list-group list-group-flush" style="position: fixed;">
 		<a href="mypage1.html" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-user">&nbsp</i>마이 페이지</a>
         <a href="#" class="list-group-item list-group-item-action bg-light" style="width:239px; border:none;"><i class="fas fa-house-damage">&nbsp</i>수리견적</a>
@@ -104,8 +104,7 @@
 			<span class="p1 fa-stack fa-1x has-badge" data-count="9+" style="color:gray">
 				<button type="button"
 				data-toggle="popover"
-				data-content="
-                              
+				data-content="                       
 <div>                              
                               
  <div class='list-group'>

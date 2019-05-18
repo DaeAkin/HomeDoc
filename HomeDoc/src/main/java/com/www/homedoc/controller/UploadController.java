@@ -80,8 +80,9 @@ public class UploadController {
 			ResponseEntity<byte[]> entity = null;
 			
 			try {
+				System.out.println("파일이름 :" + fileName);
 				//확장자를 추출하여 formatName에 저장.
-				String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+//				String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
 				// 추출한 확장자를 MediaUtil 클래스나 다른 클래스를 만들어서 이미지파일여부를 검사하고 리턴하기.
 //				MediaType mType = MediaUtils.getMediaType(formatName);
 				//

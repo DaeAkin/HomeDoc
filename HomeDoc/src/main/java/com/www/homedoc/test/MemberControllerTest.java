@@ -7,9 +7,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +55,8 @@ public class MemberControllerTest{
                 .standaloneSetup(memberController)
                 .addInterceptors(alertInterceptor)
                 .build();
+		
+		
 
 	}
 	
@@ -79,7 +85,7 @@ public class MemberControllerTest{
 	
 	System.out.println("model : " + mv.getModel().get("a"));
 	
-	assertThat(mv.getModelMap().get("alertDtos"), is(notNullValue()));
+//	assertThat(mv.getModelMap().get("alertDtos"), is(notNullValue()));
 //	System.out.println("request : " + request.getAttribute("alertDtos"));
 	
 	
@@ -87,20 +93,30 @@ public class MemberControllerTest{
 	}
 	
 	//회원가입 테스트
+	@Before
 	@Test
 	public void memberSignup() throws Exception {
-		MvcResult result =
-					mockMvc.perform(post("/member/insert")
-					.param("id", "testidid")
-					.param("pw", "1234")
-					.param("address", "서울시 강동구")
-					.param("email", "kei89011@gmail.com")
-					.param("phone", "010-1111-2222")
-							)
-					.andReturn();
+		memberService.deleteAll();
+		
+		String testId = "testid";
+		
+		
+		mockMvc.perform(post("/member/insert").
+				param("id", testId).
+				param("pw", "1234").
+				param("address", "서울시 강동구")
+				.param("email", "kei89011@gmail.com").param("phone", "010-1111-2222"));
 					
+			
+		List<MemberDto> memberDtos = memberService.selectAll();
+		
+		MemberDto memberDto = memberDtos.get(0);
+		
+		assertThat(memberDto.getId(), is(testId));			
 	}
 	
+	
+	@Ignore
 	@Test
 	public void memberValidationTest() throws Exception {
 	

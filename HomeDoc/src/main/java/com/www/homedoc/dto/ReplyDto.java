@@ -105,5 +105,15 @@ public class ReplyDto {
 	public void setBoard_writer(String board_writer) {
 		this.board_writer = board_writer;
 	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "board_no : " + board_no +
+				"content : " + content +
+				"writer :" + writer +
+				"isalert :" + isalert +
+				"datetime :" + datetime;
+	}
 
 }

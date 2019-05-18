@@ -44,8 +44,9 @@ public class PaginationServiceImpl implements PaginationService{
 		// totalPage 구하기 . Map에 Key로 category 값 넣어주기.
 		int totalPage = boardDao.getAllboardWithCategory(boardDto).size();
 		
-		Map<String, Object> paginationMap = doPagination(9,currentPage,totalPage);
+		Map<String, Object> paginationMap = doPagination(3,currentPage,totalPage,9);
 		paginationMap.put("category", paramMap.get("category"));
+	
 		
 		Map<String,Object> resultMap = new HashMap<>();
 		
@@ -54,11 +55,12 @@ public class PaginationServiceImpl implements PaginationService{
 		return resultMap;
 	}
 	
-	public Map<String, Object >doPagination(int perPage,int currentPage,int totalPage) {
+	public Map<String, Object >doPagination(int perPage,int currentPage,int totalPage,int perView) {
 		Map<String, Object> paramMap = new HashMap<>();
 		
 		
-		PaginationDto paginationDto = new PaginationDto(perPage,currentPage,totalPage);
+		PaginationDto paginationDto = new PaginationDto(perPage,currentPage,totalPage,perView);
+		
 		
 		
 		paramMap.put("perPage", paginationDto.getPerPage());
@@ -83,11 +85,11 @@ public class PaginationServiceImpl implements PaginationService{
 		}
 		// 전체개시물 가져오기 .
 		int totalNum = boardDao.selectAll().size();
-		Map<String, Object> paginationMap = doPagination(3,currentPage,totalNum);
+		Map<String, Object> paginationMap = doPagination(3,currentPage,totalNum,5);
 		
 		Map<String, Object> resultMap = new HashMap<>();
 
-		List<BoardDto> boardDtos = boardDao.getBoardListDoWithPagination(paginationMap);
+		List<BoardDto> boardDtos = boardDao.getAllBoardWithPagination(paginationMap);
 		resultMap.put("boardDtos", boardDtos);
 		for (BoardDto boardDto : boardDtos) {
 			boardDto.setDatetime(TimeUtil.TimeChange(boardDto.getDatetime()));

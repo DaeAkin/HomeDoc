@@ -30,7 +30,7 @@
 			* 
 		from
 			board 
-	
+		where category = #{category}
 			order by no desc
 		limit #{startNo},#{perView }
 		
@@ -46,7 +46,7 @@
 		from
 			board 
 		order by no desc
-			limit #{startNo},#{perPage}
+			limit #{startNo},#{perView}
 		
 	
 	</select>

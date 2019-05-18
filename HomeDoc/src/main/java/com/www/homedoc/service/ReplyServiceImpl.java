@@ -13,6 +13,8 @@ public class ReplyServiceImpl extends CRUDServiceImpl<ReplyDto, Integer,
 	
 	@Autowired
 	ReplyDao replyDao;
+	
+	
 
 	@Override
 	public List<ReplyDto> getAllReplyWithboard_no(int board_no) {

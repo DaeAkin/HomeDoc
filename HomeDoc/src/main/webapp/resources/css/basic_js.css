@@ -1,3 +1,46 @@
+.button_grid{
+	display: grid;
+	grid-template-columns: 92px 92px 92px 92px 92px 92px ;
+    grid-template-rows: 37px;
+}
+
+
+label{
+	display: block;
+	margin:none;
+}
+/* index Modal*/
+.modal-dialog.modal-80size {
+  width: 80%;
+  height: 80%;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-content.modal-80size {
+  height: auto;
+  min-height: 80%;
+}
+
+.modal.modal-center {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .modal.modal-center:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog.modal-center {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
 /* board*/
 #hover_:hover tbody tr:hover td{
 	background: #D2F0EE;
@@ -47,7 +90,13 @@
 body{
 	/*overflow:visible;*/
 }
-
+/* request 업체 비교글 div*/
+#compare{
+	margin:0px 0px 15px 0px;
+	padding:10px;
+	border: 2px solid #ADD8E6;
+	width:1000px;
+}
 /* 알림 css */
 #notice .p1[data-count]:after{
   position:absolute;
@@ -83,7 +132,79 @@ body{
 	outline: none;
 }
 
+#post_1{
+	display:inline-block;
+	margin:0px 70px 100px 0px;
+}
+
+#card_1{
+	width: 446px;
+	height:29rem;
+	cursor: pointer;
+}
+
+#button_al{
+	border:0px;
+	background-color:#F8F9FA;
+}
+
+#login_1{
+	border: solid;
+	width: 60pt;
+	height: 35pt;
+}
+
+#logo_1{
+	margin: 0px 10px 0px 10px;
+}
+
+#logo_2{
+	margin: 8px 0px 0px 10px;
+}
+
+#nav_1{
+ margin-bottom: 80px;
+ height: 45pt;
+ background-color:#ffffff;
+ border-bottom:3px solid #DEE2E6;
+}
+
+#nav_span_1{
+	color: gray;
+	cursor:pointer;
+}
+
 /* 사이드 메뉴 바 */
+
+#side{
+	border:none;
+}
+
+#side_h{
+	width:239px;
+	border-bottom:1px;
+}
+
+#side_1{
+	width:229px;
+	border:none;
+	background-color:#EBF2F7; 
+}
+
+#side_2{
+	width:239px;
+	border:none;
+}
+
+#side_3{
+	width:240px;
+	padding:5px 10px 0px 10px;
+	background-color:#EBF2F7;
+}
+
+#search_1{
+	margin: 0px 0px 0px 100px;
+}
 .sidenav {
     height: 100%;
     width: 0;
@@ -131,7 +252,9 @@ body{
   margin:5px 10px 5px 10px;
 }
 
-
+#side_mom{
+	width:200px;
+}
 /* 떠다니는 메뉴 (Floating Menu) */
  #floatdiv { 
     position:fixed; _position:absolute; _z-index:-1;
@@ -153,10 +276,12 @@ body{
 #floatdiv .menu, #floatdiv .last    { margin-bottom: 0px; }
 
 		#container-re{
-		margin:25px 0px 60px 25px;
+		margin:25px 0px 0px 25px;
+		margin-bottom:50px;
 		padding:10px;
 		/*border: 3px solid  #ADD8E6;*/
-		width: 1500px;
+		width:1590px;
+		height:700px;
 		}
 
 		#container-tag{
@@ -182,10 +307,10 @@ body{
 		margin-top: 60px;
         /*border: 5px solid  #ADD8E6;*/
 		content: " ";
-		
       }
      #jb-header {
-	  	height: 300px;
+		width:1550px;
+	  	height: 310px;
         padding: 10px 10px 10px 10px;
         margin-bottom: 80px;
 		border:1px solid #ADD8E6;
@@ -195,6 +320,13 @@ body{
       }
 	  #jb-content {
         width: 1550px;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: left;
+        border:1px solid #ADD8E6;
+      }
+	   #jb-content-re {
+        width: 1100px;
         padding: 20px;
         margin-bottom: 20px;
         float: left;
@@ -1480,3 +1612,5 @@ a:hover    {color:#0099ff;text-decoration:none}
 			.image.main img {
 				width: 100%;
 			}
+
+

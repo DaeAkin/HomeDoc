@@ -9,14 +9,18 @@
 	parameterType="com.www.homedoc.dto.ReplyDto">
 		insert into boardreply(
 		board_no,
+		board_writer,
 		content,
 		writer,
-		isalert
+		isalert,
+		datetime
 		)values(
 		#{board_no},
+		#{board_writer},
 		#{content},
 		#{writer},
-		#{isalert}
+		#{isalert},
+		#{datetime}
 		)
 	</insert>
 

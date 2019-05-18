@@ -59,6 +59,8 @@ BoardService> {
 	public String doBoardWrite(@ModelAttribute BoardDto boardDto,HttpSession session,
 			BindingResult result) {
 			
+		boardDto.setWriter((String)session.getAttribute("id"));
+		
 		System.out.println("글쓰기 ㄱㄱ ");
 		boardService.insert(boardDto);
 		
