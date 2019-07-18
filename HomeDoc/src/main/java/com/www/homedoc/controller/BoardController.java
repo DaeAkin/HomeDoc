@@ -29,6 +29,8 @@ import com.www.homedoc.util.PrettyPrintUtil;
 @RequestMapping("/board")
 //@SessionAttributes("boardDto")
 @Controller
+//테스트
+//마마마마
 public class BoardController extends CRUDController<BoardDto, Integer,
 BoardService> {
 
